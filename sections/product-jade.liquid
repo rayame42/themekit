@@ -22,9 +22,10 @@
         {{ product.price | money }}
       </div>
 
-      <p class="desc">
-        {{ product.description | strip_html }}
-      </p>
+      <!-- DESCRIÇÃO CORRIGIDA -->
+      <div class="desc">
+        {{ product.description }}
+      </div>
 
       <!-- VARIANTES -->
       <form method="post" action="/cart/add" id="product-form">
@@ -135,11 +136,37 @@
   margin-bottom: 20px;
 }
 
+/* DESCRIÇÃO BONITA */
 .desc {
   font-size: 14px;
   line-height: 1.8;
   color: #555;
   margin-bottom: 35px;
+}
+
+.desc p {
+  margin-bottom: 12px;
+}
+
+.desc strong {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.desc table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.desc table td,
+.desc table th {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
 
 /* VARIANTES */
