@@ -12,6 +12,19 @@
     "sections": {
       "home-jade": {
         "type": "home-jade",
+        "blocks": {
+          "categoria_DT9YAf": {
+            "type": "categoria",
+            "settings": {
+              "img": "shopify://shop_images/lift-image_f301684e-df6e-44c7-ae69-bb6795b76f25.webp",
+              "title": "BODY",
+              "link": "shopify://collections/body"
+            }
+          }
+        },
+        "block_order": [
+          "categoria_DT9YAf"
+        ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero": "shopify://shop_images/SELENE_a97150aa-72e5-4ed8-addb-e35580c014d8.jpg",
