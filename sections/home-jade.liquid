@@ -1,76 +1,129 @@
-<section class="home">
+<section class="home-luxo">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    {{ section.settings.topbar }}
+<!-- BARRA TOPO -->
+<div class="topbar">
+  Frete grátis + 6x sem juros • 15% OFF em toda loja
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="{{ section.settings.hero }}" alt="">
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.subtitle }}</p>
+    <a href="{{ section.settings.link }}" class="btn-primary">
+      {{ section.settings.button }}
+    </a>
   </div>
+</div>
 
-  <!-- HERO -->
-  <div class="hero" style="background-image:url({{ section.settings.hero_image | image_url: width: 2000 }})">
-    <div class="overlay"></div>
-
-    <div class="content">
-      <h1>{{ section.settings.title }}</h1>
-      <p>{{ section.settings.subtitle }}</p>
-      <a href="{{ section.settings.link }}" class="btn">
-        {{ section.settings.button }}
-      </a>
-    </div>
-  </div>
-
-  <!-- CATEGORIAS -->
-  <div class="categories">
-    {% for block in section.blocks %}
+<!-- CATEGORIAS -->
+<div class="categorias">
+  {% for block in section.blocks %}
+    {% if block.type == 'categoria' %}
       <a href="{{ block.settings.link }}" class="cat">
-        <img src="{{ block.settings.image | image_url: width: 800 }}">
-        <span>{{ block.settings.title }}</span>
+        <img src="{{ block.settings.img }}">
+        <span>{{ block.settings.nome }}</span>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- BEST SELLERS -->
+<div class="best">
+  <div class="best-text">
+    <h2>BEST SELLERS | TOP 05</h2>
+    <p>Essas são as peças que deixaram marca. Nas fotos, na memória e na cama.</p>
+  </div>
+
+  <div class="best-images">
+    {% for product in collections['all'].products limit:5 %}
+      <img src="{{ product.featured_image | image_url: width: 500 }}">
+    {% endfor %}
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<div class="produtos">
+  <h2>Mais desejados</h2>
+
+  <div class="grid">
+    {% for product in collections['all'].products limit:4 %}
+      <a href="{{ product.url }}" class="card">
+
+        <div class="img">
+          <img src="{{ product.featured_image | image_url: width: 500 }}">
+          {% if product.compare_at_price > product.price %}
+            <span class="badge">Promoção</span>
+          {% endif %}
+        </div>
+
+        <h3>{{ product.title }}</h3>
+
+        <div class="price">
+          {% if product.compare_at_price > product.price %}
+            <span class="old">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+          <span class="new">{{ product.price | money }}</span>
+        </div>
+
       </a>
     {% endfor %}
   </div>
+</div>
 
-  <!-- PRODUTOS -->
-  <div class="products">
-    <h2>{{ section.settings.products_title }}</h2>
+<!-- PROVA SOCIAL -->
+<div class="reviews">
+  <h2>O que dizem sobre nós</h2>
 
-    <div class="grid">
-      {% for product in collections[section.settings.collection].products limit: 4 %}
-        <a href="{{ product.url }}" class="card">
-          <img src="{{ product.featured_image | image_url: width: 600 }}">
+  <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
+</div>
 
-          <p class="title">{{ product.title }}</p>
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h2>Faça parte da nossa lista</h2>
+  <p>Receba ofertas exclusivas</p>
 
-          <div class="price">
-            {% if product.compare_at_price > product.price %}
-              <span class="old">{{ product.compare_at_price | money }}</span>
-            {% endif %}
-            <span class="new">{{ product.price | money }}</span>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
-  </div>
+  <form method="post" action="/contact#contact_form">
+    <input type="email" name="contact[email]" placeholder="Seu e-mail">
+    <button type="submit">Inscrever-se</button>
+  </form>
+</div>
+
+<!-- ATENDIMENTO -->
+<div class="faq">
+  <h3>Atendimento ao Cliente</h3>
+
+  <div>Envio e Frete</div>
+  <div>Políticas de Reembolso</div>
+  <div>Fale Conosco</div>
+  <div>Sobre Nós</div>
+</div>
 
 </section>
 
 <style>
 
-.home { max-width:1200px; margin:auto; font-family:Arial; }
-
-/* TOPBAR */
 .topbar{
-  background:#111;
+  background:#000;
   color:#fff;
   text-align:center;
   padding:10px;
   font-size:12px;
+  letter-spacing:1px;
 }
 
-/* HERO */
 .hero{
-  height:80vh;
-  background-size:cover;
-  background-position:center;
   position:relative;
+  height:85vh;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .overlay{
@@ -79,29 +132,36 @@
   background:rgba(0,0,0,0.4);
 }
 
-.content{
+.hero-content{
   position:absolute;
-  bottom:60px;
-  left:60px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
   color:#fff;
+  max-width:600px;
 }
 
-.content h1{ font-size:40px; font-weight:300; }
-.content p{ margin:10px 0 20px; }
+.hero h1{
+  font-size:48px;
+  font-weight:300;
+}
 
-.btn{
+.hero p{
+  margin:20px 0;
+}
+
+.btn-primary{
   background:#8B1E3F;
+  padding:14px 28px;
   color:#fff;
-  padding:12px 25px;
   text-decoration:none;
 }
 
 /* CATEGORIAS */
-.categories{
+.categorias{
   display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:10px;
-  margin:60px 0;
+  grid-template-columns:repeat(3,1fr);
 }
 
 .cat{
@@ -110,38 +170,61 @@
 
 .cat img{
   width:100%;
-  height:350px;
+  height:400px;
   object-fit:cover;
 }
 
 .cat span{
   position:absolute;
-  bottom:15px;
-  left:15px;
-  color:white;
+  bottom:20px;
+  left:20px;
+  color:#fff;
+  font-size:20px;
+}
+
+/* BEST */
+.best{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:80px;
+  background:#2b0000;
+  color:#fff;
+}
+
+.best-images{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
 /* PRODUTOS */
-.products h2{
+.produtos{
+  padding:80px 20px;
   text-align:center;
-  margin-bottom:30px;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px;
+  gap:30px;
 }
 
 .card img{
   width:100%;
-  height:350px;
-  object-fit:cover;
 }
 
-.title{ font-size:13px; }
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#fff;
+  padding:5px;
+  font-size:12px;
+}
 
-.price{ font-size:13px; }
+.price{
+  margin-top:10px;
+}
 
 .old{
   text-decoration:line-through;
@@ -152,41 +235,61 @@
   color:#8B1E3F;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-  .grid{ grid-template-columns:1fr 1fr; }
-  .categories{ grid-template-columns:1fr; }
+/* REVIEW */
+.reviews{
+  padding:80px;
+  text-align:center;
+}
+
+/* NEWS */
+.newsletter{
+  padding:80px;
+  text-align:center;
+}
+
+.newsletter input{
+  padding:12px;
+  width:250px;
+}
+
+.newsletter button{
+  padding:12px;
+  background:#8B1E3F;
+  color:#fff;
+}
+
+/* FAQ */
+.faq{
+  padding:60px;
+  background:#2b0000;
+  color:#fff;
 }
 
 </style>
 
 {% schema %}
 {
-  "name": "Home Premium",
+  "name": "Home Luxo",
   "settings": [
-    { "type": "text", "id": "topbar", "label": "Texto topo", "default": "Frete grátis • 6x sem juros • 15% OFF" },
-    { "type": "image_picker", "id": "hero_image", "label": "Imagem principal" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Mais do que lingerie. Uma experiência." },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Sinta-se desejada, confiante e poderosa." },
-    { "type": "text", "id": "button", "label": "Texto botão", "default": "Explorar coleção" },
-    { "type": "url", "id": "link", "label": "Link botão" },
-    { "type": "collection", "id": "collection", "label": "Coleção" },
-    { "type": "text", "id": "products_title", "label": "Título produtos", "default": "Mais desejados" }
+    { "type": "image_picker", "id": "hero", "label": "Imagem Hero" },
+    { "type": "text", "id": "title", "label": "Título" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo" },
+    { "type": "text", "id": "button", "label": "Texto botão" },
+    { "type": "url", "id": "link", "label": "Link botão" }
   ],
   "blocks": [
     {
       "type": "categoria",
       "name": "Categoria",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagem" },
-        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "image_picker", "id": "img", "label": "Imagem" },
+        { "type": "text", "id": "nome", "label": "Nome" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
     }
   ],
-  "max_blocks": 3,
   "presets": [
-    { "name": "Home Premium" }
+    { "name": "Home Luxo" }
   ]
 }
 {% endschema %}
