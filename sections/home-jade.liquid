@@ -27,30 +27,34 @@
 
 <!-- PRODUTOS -->
 <div class="products">
-  {% for product in collections[section.settings.collection].products limit: 8 %}
-    <div class="card">
+  {% assign selected_collection = collections[section.settings.collection] %}
 
-      <a href="{{ product.url }}" class="image-wrapper">
+  {% if selected_collection != blank %}
+    {% for product in selected_collection.products limit: 8 %}
+      <div class="card">
 
-        <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+        <a href="{{ product.url }}" class="image-wrapper">
 
-        {% if product.images.size > 1 %}
-          <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
-        {% endif %}
+          <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
 
-      </a>
+          {% if product.images.size > 1 %}
+            <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+          {% endif %}
 
-      <p class="title">{{ product.title }}</p>
+        </a>
 
-      <div class="price">
-        {% if product.compare_at_price > product.price %}
-          <span class="old">{{ product.compare_at_price | money }}</span>
-        {% endif %}
-        <span class="new">{{ product.price | money }}</span>
+        <p class="title">{{ product.title }}</p>
+
+        <div class="price">
+          {% if product.compare_at_price > product.price %}
+            <span class="old">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+          <span class="new">{{ product.price | money }}</span>
+        </div>
+
       </div>
-
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
 </div>
 
 </section>
@@ -98,14 +102,15 @@
   font-size:46px;
   font-weight:300;
 }
+
 .hero-text a{
   display:inline-block;
   margin-top:12px;
   font-size:12px;
   letter-spacing:1.5px;
   text-transform:uppercase;
-  color:#fff; /* ← aqui muda a cor */
-  text-decoration:none; /* remove o azul padrão */
+  color:#fff;
+  text-decoration:none;
   border-bottom:1px solid rgba(255,255,255,0.6);
   padding-bottom:4px;
   transition:0.3s;
@@ -116,25 +121,27 @@
   opacity:0.8;
 }
 
-/* CATEGORIAS */
+/* CATEGORIAS (AJUSTADO) */
 .categories{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:10px;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  padding:30px 40px;
 }
 
 .categories img{
   width:100%;
-  height:280px;
+  height:220px;
   object-fit:cover;
 }
 
 .categories span{
   display:block;
   text-align:center;
-  font-size:12px;
-  margin-top:5px;
+  font-size:11px;
+  margin-top:8px;
+  letter-spacing:2px;
+  color:#111;
 }
 
 /* PRODUTOS */
@@ -160,6 +167,7 @@
   position:absolute;
   inset:0;
   opacity:0;
+  transition:0.3s;
 }
 
 .image-wrapper:hover .img2{
@@ -195,7 +203,12 @@
   }
 
   .categories{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr);
+    padding:20px;
+  }
+
+  .categories img{
+    height:180px;
   }
 
   .hero-text{
@@ -259,7 +272,7 @@
       ]
     }
   ],
-  "max_blocks": 3,
+  "max_blocks": 8,
   "presets": [
     {
       "name": "Home Zara"
