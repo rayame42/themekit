@@ -1,95 +1,193 @@
-<section class="best-seller">
+<section class="motion-section">
 
-  <div class="container">
+  <div class="motion-container">
 
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.subtitle }}</p>
-
-    <div class="grid">
-
-      {% assign collection = collections[section.settings.collection] %}
-
-      {% for product in collection.products limit: 4 %}
-        <a href="{{ product.url }}" class="card">
-
-          <img src="{{ product.featured_image | image_url: width: 600 }}">
-
-          <span>{{ product.title }}</span>
-          <strong>{{ product.price | money }}</strong>
-
-        </a>
-      {% endfor %}
-
+    <!-- IMAGEM PRINCIPAL -->
+    <div class="main-img">
+      {% if section.settings.main_image %}
+        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
+      {% endif %}
     </div>
 
+    <!-- LATERAIS -->
+    <div class="side left-top">
+      {% if section.settings.img1 %}
+        <img src="{{ section.settings.img1 | image_url: width: 400 }}">
+      {% endif %}
+    </div>
+
+    <div class="side right-top">
+      {% if section.settings.img2 %}
+        <img src="{{ section.settings.img2 | image_url: width: 400 }}">
+      {% endif %}
+    </div>
+
+    <div class="side left-bottom">
+      {% if section.settings.img3 %}
+        <img src="{{ section.settings.img3 | image_url: width: 400 }}">
+      {% endif %}
+    </div>
+
+    <div class="side right-bottom">
+      {% if section.settings.img4 %}
+        <img src="{{ section.settings.img4 | image_url: width: 400 }}">
+      {% endif %}
+    </div>
+
+  </div>
+
+  <div class="motion-text">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.subtitle }}</p>
   </div>
 
 </section>
 
 <style>
 
-.best-seller{
-  padding:80px 20px;
+.motion-section{
+  background:#2b0000;
+  padding:100px 20px;
   text-align:center;
+  color:#fff;
 }
 
-/* TÍTULO */
-.best-seller h2{
-  font-size:32px;
-  letter-spacing:3px;
-  font-weight:300;
-  text-transform:uppercase;
+/* CONTAINER */
+.motion-container{
+  position:relative;
+  max-width:600px;
+  margin:80px auto;
+  overflow:visible;
 }
 
-.best-seller p{
-  font-size:14px;
-  opacity:0.6;
-  margin-bottom:40px;
+/* PRINCIPAL */
+.main-img{
+  position:relative;
+  z-index:1;
+  animation:fadeMain 1s ease forwards;
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  text-decoration:none;
-  color:#111;
-}
-
-.card img{
-  width:100%;
-  height:300px;
+.main-img img{
+  width:260px;
+  height:360px;
   object-fit:cover;
-}
-
-.card span{
+  border-radius:20px;
   display:block;
-  font-size:12px;
-  margin-top:10px;
+  margin:auto;
+  box-shadow:0 25px 70px rgba(0,0,0,0.45);
 }
 
-.card strong{
-  font-size:14px;
-  color:#8B1E3F;
+/* LATERAIS NA FRENTE */
+.side{
+  position:absolute;
+  z-index:999;
+  opacity:0;
 }
 
-/* HOVER */
-.card img{
+.side img{
+  width:140px;
+  height:190px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
   transition:0.4s;
 }
 
-.card:hover img{
-  transform:scale(1.05);
+/* POSIÇÕES */
+.left-top{
+  top:10px;
+  left:-140px;
+  animation:showLeftTop 1s ease forwards;
+  animation-delay:0.4s;
 }
 
+.right-top{
+  top:10px;
+  right:-140px;
+  animation:showRightTop 1s ease forwards;
+  animation-delay:0.6s;
+}
+
+.left-bottom{
+  bottom:10px;
+  left:-160px;
+  animation:showLeftBottom 1s ease forwards;
+  animation-delay:0.8s;
+}
+
+.right-bottom{
+  bottom:10px;
+  right:-160px;
+  animation:showRightBottom 1s ease forwards;
+  animation-delay:1s;
+}
+
+/* HOVER WOW */
+.side img:hover{
+  transform:scale(1.08) translateY(-5px);
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeMain{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
+@keyframes showLeftTop{
+  from{opacity:0; transform:translate(-60px,60px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showRightTop{
+  from{opacity:0; transform:translate(60px,60px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showLeftBottom{
+  from{opacity:0; transform:translate(-60px,-60px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showRightBottom{
+  from{opacity:0; transform:translate(60px,-60px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+/* TEXTO */
+.motion-text{
+  margin-top:70px;
+}
+
+.motion-text h2{
+  font-size:28px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  font-weight:300;
+}
+
+.motion-text p{
+  font-size:14px;
+  opacity:0.8;
+}
+
+/* MOBILE */
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
+
+  .main-img img{
+    width:200px;
+    height:280px;
   }
+
+  .side img{
+    width:90px;
+    height:130px;
+  }
+
+  .left-top{ left:-70px; }
+  .right-top{ right:-70px; }
+  .left-bottom{ left:-80px; }
+  .right-bottom{ right:-80px; }
+
 }
 
 </style>
@@ -98,48 +196,16 @@
 {
   "name": "Best Seller Motion",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "main_image",
-      "label": "Imagem principal"
-    },
-    {
-      "type": "image_picker",
-      "id": "img1",
-      "label": "Imagem 1 (esquerda topo)"
-    },
-    {
-      "type": "image_picker",
-      "id": "img2",
-      "label": "Imagem 2 (direita topo)"
-    },
-    {
-      "type": "image_picker",
-      "id": "img3",
-      "label": "Imagem 3 (esquerda baixo)"
-    },
-    {
-      "type": "image_picker",
-      "id": "img4",
-      "label": "Imagem 4 (direita baixo)"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título",
-      "default": "BEST SELLERS | TOP 05"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtítulo",
-      "default": "As peças mais desejadas da coleção."
-    }
+    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
+    { "type": "image_picker", "id": "img1", "label": "Imagem 1 (esquerda topo)" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem 2 (direita topo)" },
+    { "type": "image_picker", "id": "img3", "label": "Imagem 3 (esquerda baixo)" },
+    { "type": "image_picker", "id": "img4", "label": "Imagem 4 (direita baixo)" },
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
   ],
   "presets": [
-    {
-      "name": "Best Seller Motion"
-    }
+    { "name": "Best Seller Motion" }
   ]
 }
 {% endschema %}
