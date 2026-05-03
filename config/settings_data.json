@@ -20,10 +20,37 @@
               "title": "BODY",
               "link": "shopify://collections/body"
             }
+          },
+          "categoria_XkcnwE": {
+            "type": "categoria",
+            "settings": {
+              "img": "shopify://shop_images/SELENE_3_5630888d-ca04-44e8-b7e9-23dac1a2163a.jpg",
+              "title": "CONJUNTOS",
+              "link": "shopify://collections/conjuntos"
+            }
+          },
+          "categoria_mVG6ma": {
+            "type": "categoria",
+            "settings": {
+              "img": "shopify://shop_images/lift-image_10_15290e5c-0792-43e4-a108-778bcf76e0ce.webp",
+              "title": "CAMISOLAS",
+              "link": "shopify://collections/camisolas"
+            }
+          },
+          "categoria_zr43E3": {
+            "type": "categoria",
+            "settings": {
+              "img": "shopify://shop_images/Kiana-Sheer-Corset-3.webp",
+              "title": "CORSET",
+              "link": "shopify://collections/corset"
+            }
           }
         },
         "block_order": [
-          "categoria_DT9YAf"
+          "categoria_DT9YAf",
+          "categoria_XkcnwE",
+          "categoria_mVG6ma",
+          "categoria_zr43E3"
         ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
