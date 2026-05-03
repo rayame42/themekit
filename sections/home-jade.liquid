@@ -54,3 +54,149 @@
 
   </div>
   {% endfor %}
+  </div>
+
+</section>
+
+<style>
+
+/* RESET LUXO */
+.home-zara{
+  font-family: Helvetica, Arial, sans-serif;
+  color:#111;
+}
+
+/* TOPBAR */
+.topbar{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  font-size:11px;
+  padding:8px;
+  letter-spacing:2px;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  background:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
+  position:relative;
+  }
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.25);
+}
+.hero-text{
+  position:absolute;
+   bottom:60px;
+  left:60px;
+  color:#fff;
+  }
+  .hero-text h1{
+  font-size:46px;
+  font-weight:300;
+  letter-spacing:2px;
+}
+.hero-text a{
+  display:inline-block;
+  margin-top:10px;
+  border-bottom:1px solid #fff;
+  font-size:13px;
+}
+
+/* CATEGORIAS */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:10px;
+}
+.categories img{
+    width:100%;
+    }
+    .categories span{
+  display:block;
+  text-align:center;
+  font-size:12px;
+  margin-top:5px;
+  letter-spacing:1px;
+}
+/* PRODUTOS */
+.products{
+  display:grid;
+   grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  padding:40px;
+}
+
+
+/* CARD */
+.card{
+  text-align:left;
+}
+
+.img1, .img2{
+  width:100%;
+  transition:0.5s;
+}
+
+/* HOVER ZARA */
+.img2{
+  position:absolute;
+   inset:0;
+  opacity:0;
+}
+
+.image-wrapper:hover .img2{
+  opacity:1;
+}
+
+.image-wrapper:hover .img1{
+  opacity:0;
+}
+
+/* TEXTO */
+.title{
+  font-size:12px;
+  margin-top:10px;
+}
+
+.price{
+    font-size:13px;
+}
+
+.old{
+  text-decoration:line-through;
+   color:#aaa;
+  margin-right:5px;
+}
+
+.new{
+  color:#8B1E3F;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+   .categories{
+    grid-template-columns:1fr;
+  }
+
+   .hero-text{
+    left:20px;
+    bottom:20px;
+  }
+
+
+  .hero-text h1{
+    font-size:28px;
+  }
+}
+
+
+</style>
