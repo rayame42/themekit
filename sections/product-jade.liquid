@@ -1,144 +1,32 @@
-<section class="product-premium">
-  <div class="wrap">
+<div class="info">
+  <h1>{{ product.title }}</h1>
 
-    <!-- GALERIA -->
-    <div class="gallery">
-      <div class="main-image">
-        <img src="{{ product.featured_image | image_url: width: 900 }}">
-      </div>
-
-      <div class="thumbs">
-        {% for image in product.images %}
-          <img src="{{ image | image_url: width: 300 }}">
-        {% endfor %}
-      </div>
-    </div>
-
-    <!-- INFO -->
-    <div class="info">
-      <h1>{{ product.title }}</h1>
-
-      <div class="price">
-        {{ product.price | money }}
-      </div>
-
-      <p class="desc">
-        {{ product.description | strip_html }}
-      </p>
-
-      <form method="post" action="/cart/add">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-
-        <button class="btn">
-          Adicionar ao carrinho
-        </button>
-      </form>
-
-      <div class="meta">
-        <span>🔥 Últimas unidades</span>
-        <span>✔ Frete rápido</span>
-        <span>✔ Troca fácil</span>
-      </div>
-    </div>
-
+  <div class="price">
+    {{ product.price | money }}
   </div>
-</section>
 
-<style>
-.product-premium {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-}
+  <p class="desc">
+    Feito para destacar suas curvas com elegância e sensualidade. 
+    Toque macio, caimento perfeito e detalhes que fazem você se sentir única.
+  </p>
 
-/* GRID */
-.wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    <button type="submit" class="btn-primary">
+      Adicionar ao carrinho
+    </button>
+  </form>
 
-/* GALERIA */
-.main-image img {
-  width: 100%;
-  border-radius: 10px;
-}
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    <input type="hidden" name="return_to" value="/checkout">
+    <button type="submit" class="btn-secondary">
+      Comprar agora
+    </button>
+  </form>
 
-.thumbs {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.thumbs img {
-  width: 70px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 6px;
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.thumbs img:hover {
-  opacity: 1;
-}
-
-/* INFO */
-.info h1 {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.3;
-  margin-bottom: 15px;
-}
-
-.price {
-  font-size: 22px;
-  color: #8B1E3F;
-  margin-bottom: 25px;
-}
-
-.desc {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #444;
-  margin-bottom: 30px;
-}
-
-/* BOTÃO */
-.btn {
-  width: 100%;
-  background: #8B1E3F;
-  color: #fff;
-  padding: 16px;
-  border: none;
-  font-size: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #6f1832;
-}
-
-/* META */
-.meta {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  font-size: 13px;
-  color: #777;
-}
-
-/* MOBILE */
-@media(max-width: 768px){
-  .wrap {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
-</style>
+  <div class="meta">
+    🔥 Últimas unidades disponíveis<br>
+    ✔ Frete rápido • ✔ Troca fácil
+  </div>
+</div>
