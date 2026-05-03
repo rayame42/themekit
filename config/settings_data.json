@@ -52,13 +52,19 @@
           "categoria_mVG6ma",
           "categoria_zr43E3"
         ],
+        "custom_css": [
+          ".motion-text h2{font-size:32px; letter-spacing:3px; text-transform:uppercase; font-weight:300;}",
+          ".motion-text p{font-size:14px; opacity:0.7; margin-top:10px;}",
+          "/* efeito premium */.motion-text{margin-top:80px;}"
+        ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero": "shopify://shop_images/SELENE_a97150aa-72e5-4ed8-addb-e35580c014d8.jpg",
           "title": "Seu momento. Sua essência.",
           "button": "Explorar coleção",
           "link": "shopify://collections",
-          "collection": ""
+          "motion_title": "BEST SELLERS | TOP 05",
+          "motion_subtitle": "Essas são as peças que deixaram marca."
         }
       },
       "header": {
