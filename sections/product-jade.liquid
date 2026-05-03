@@ -1,89 +1,135 @@
-<form method="post" action="/cart/add" id="product-form">
-  <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
+<section class="product-premium">
+  <div class="wrap">
 
-  <!-- CORES -->
-  <div class="option-group">
-    <p>Cor</p>
-    <div class="options">
-      {% assign colors = product.options_with_values[0].values %}
-      {% for value in colors %}
-        <button type="button" class="option-btn" onclick="selectOption(0, '{{ value }}')">
-          {{ value }}
-        </button>
-      {% endfor %}
+    <!-- GALERIA -->
+    <div class="gallery">
+      <img id="main-product-image" src="{{ product.featured_image | image_url: width: 900 }}">
+
+      <div class="thumbs">
+        {% for image in product.images %}
+          <img 
+            src="{{ image | image_url: width: 200 }}" 
+            onclick="document.getElementById('main-product-image').src = this.src"
+          >
+        {% endfor %}
+      </div>
     </div>
-  </div>
 
-  <!-- TAMANHOS -->
-  <div class="option-group">
-    <p>Tamanho</p>
-    <div class="options">
-      {% assign sizes = product.options_with_values[1].values %}
-      {% for value in sizes %}
-        <button type="button" class="option-btn" onclick="selectOption(1, '{{ value }}')">
-          {{ value }}
+    <!-- INFO -->
+    <div class="info">
+      <h1>{{ product.title }}</h1>
+
+      <div class="price">
+        {{ product.price | money }}
+      </div>
+
+      <div class="desc">
+        {{ product.description }}
+      </div>
+
+      <!-- VARIANTES -->
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
+
+        {% if product.variants.size > 1 %}
+          <select name="id" id="variant-select">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+            {% endfor %}
+          </select>
+        {% endif %}
+
+        <button type="submit" class="btn">
+          Adicionar ao carrinho
         </button>
-      {% endfor %}
-    </div>
-  </div>
+      </form>
 
-  <button type="submit" class="btn">
-    Adicionar ao carrinho
-  </button>
-</form>.option-group {
+      <div class="meta">
+        🔥 Últimas unidades disponíveis<br>
+        ✔ Frete rápido • ✔ Troca fácil
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.product-premium {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+/* GALERIA */
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbs img {
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.thumbs img:hover {
+  opacity: 1;
+}
+
+/* INFO */
+.info h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #8B1E3F;
+  font-size: 22px;
   margin-bottom: 20px;
 }
 
-.option-group p {
-  font-weight: bold;
-  margin-bottom: 8px;
+.desc {
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
-.options {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+/* SELECT */
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
-.option-btn {
-  padding: 8px 14px;
-  border: 1px solid #ccc;
-  background: #fff;
+/* BOTÃO */
+.btn {
+  width: 100%;
+  background: #8B1E3F;
+  color: white;
+  padding: 15px;
+  border: none;
   cursor: pointer;
-  border-radius: 6px;
 }
 
-.option-btn.active {
-  border: 2px solid #8B1E3F;
-}<script>
-let selectedOptions = [];
-
-function selectOption(index, value) {
-  selectedOptions[index] = value;
-
-  // highlight botão
-  const groups = document.querySelectorAll('.options');
-  const buttons = groups[index].querySelectorAll('button');
-
-  buttons.forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.innerText === value) {
-      btn.classList.add('active');
-    }
-  });
-
-  updateVariant();
-}
-
-function updateVariant() {
-  const variants = {{ product.variants | json }};
-  
-  const found = variants.find(v => {
-    return selectedOptions.every((opt, i) => v.options[i] === opt);
-  });
-
-  if (found) {
-    document.getElementById('variant-id').value = found.id;
+/* MOBILE */
+@media(max-width: 768px){
+  .wrap {
+    grid-template-columns: 1fr;
   }
 }
-</script>
+</style>
