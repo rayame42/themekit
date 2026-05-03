@@ -1,0 +1,107 @@
+<section class="footer-premium">
+
+  <div class="footer-container">
+
+    <!-- COLUNA 1 -->
+    <div class="col">
+      <h3>Loja</h3>
+      <ul>
+        <li><a href="/">Início</a></li>
+        <li><a href="/collections/all">Catálogo</a></li>
+        <li><a href="/collections/conjuntos">Conjuntos</a></li>
+        <li><a href="/collections/body">Body</a></li>
+        <li><a href="/collections/camisolas">Camisolas</a></li>
+        <li><a href="/collections/corset">Corset</a></li>
+        <li><a href="/pages/contact">Fale conosco</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUNA 2 -->
+    <div class="col">
+      <h3>Conecte-se</h3>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUNA 3 -->
+    <div class="col contato">
+      <h3>Central de Atendimento</h3>
+      <p>Atendimento via Whatsapp:</p>
+      <p>Segunda à sexta (exceto fins de semana e feriados).</p>
+
+      <p><strong>Whatsapp:</strong> (21) 96677-6897</p>
+      <p><strong>E-mail:</strong> contato@jadeintimates.com.br</p>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.footer-premium{
+  background:#2b0000;
+  color:#fff;
+  padding:80px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:60px;
+}
+
+.col h3{
+  font-size:16px;
+  margin-bottom:15px;
+  letter-spacing:1px;
+}
+
+.col ul{
+  list-style:none;
+  padding:0;
+}
+
+.col li{
+  margin-bottom:8px;
+}
+
+.col a{
+  color:#ccc;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.col a:hover{
+  color:#fff;
+  transform:translateX(3px);
+}
+
+.contato p{
+  margin-bottom:8px;
+  color:#ddd;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .footer-container{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Footer Premium",
+  "presets": [
+    { "name": "Footer Premium" }
+  ]
+}
+{% endschema %}
