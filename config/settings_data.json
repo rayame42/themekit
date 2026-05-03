@@ -77,7 +77,13 @@
       },
       "best-seller-motion": {
         "type": "best-seller-motion",
+        "custom_css": [],
         "settings": {
+          "main_image": "shopify://shop_images/SELENE_1_16f40b78-4f27-454f-a0a4-afac2dbfd4a4.jpg",
+          "img1": "shopify://shop_images/SELENE_1162240f-28e2-4bec-85d2-f93c62cedf18.jpg",
+          "img2": "shopify://shop_images/SELENE_1_ec5e1089-4fb3-4d12-a612-b9a36d8625d9.jpg",
+          "img3": "shopify://shop_images/SELENE_3_fa7b8b39-9eb6-4861-ba68-797c8b0a3287.jpg",
+          "img4": "shopify://shop_images/SELENE_1_ec5e1089-4fb3-4d12-a612-b9a36d8625d9.jpg",
           "title": "BEST SELLERS | TOP 05",
           "subtitle": "As peças mais desejadas da coleção."
         }
