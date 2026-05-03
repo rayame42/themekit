@@ -78,9 +78,9 @@
       "best-seller-motion": {
         "type": "best-seller-motion",
         "custom_css": [
-          ".text{max-width: 420px; display: flex; flex-direction: column; justify-content: center;}",
-          ".text h2{line-height: 1.2; margin-bottom: 12px; letter-spacing: 3px;}",
-          ".text p{margin-bottom: 20px;}"
+          ".text {max-width: 320px; display: flex; flex-direction: column; justify-content: center;}",
+          ".text h2 {line-height: 1.2; margin-bottom: 12px; letter-spacing: 3px;}",
+          ".text p {margin-bottom: 20px;}"
         ],
         "settings": {
           "main_image": "shopify://shop_images/ChatGPT_Image_7_de_jan._de_2026_12_24_55_afab005f-f517-403e-9bc4-14b56877fcad.png",
