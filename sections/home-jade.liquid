@@ -6,7 +6,7 @@
 </div>
 
 <!-- HERO -->
-<div class="hero" style="background:url({{ section.settings.hero | image_url: width: 2000 }}) center/cover;">
+<div class="hero" style="background-image:url({{ section.settings.hero | image_url: width: 2000 }});">
   <div class="overlay"></div>
 
   <div class="hero-text">
@@ -28,35 +28,34 @@
 <!-- PRODUTOS -->
 <div class="products">
   {% for product in collections[section.settings.collection].products limit: 8 %}
-  <div class="card">
+    <div class="card">
 
-    <a href="{{ product.url }}" class="image-wrapper">
+      <a href="{{ product.url }}" class="image-wrapper">
 
-      <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+        <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
 
-      {% if product.images.size > 1 %}
-      <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
-      {% endif %}
+        {% if product.images.size > 1 %}
+          <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+        {% endif %}
 
-    </a>
+      </a>
 
-    <p class="title">{{ product.title }}</p>
+      <p class="title">{{ product.title }}</p>
 
-    <div class="price">
-      {% if product.compare_at_price > product.price %}
-        <span class="old">{{ product.compare_at_price | money }}</span>
-      {% endif %}
-      <span class="new">{{ product.price | money }}</span>
+      <div class="price">
+        {% if product.compare_at_price > product.price %}
+          <span class="old">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+        <span class="new">{{ product.price | money }}</span>
+      </div>
+
     </div>
-
-  </div>
   {% endfor %}
 </div>
 
 </section>
 
 <style>
-/* (SEU CSS ORIGINAL — NÃO MUDEI NADA IMPORTANTE) */
 
 .home-zara{
   max-width:1200px;
@@ -64,6 +63,7 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
+/* TOPBAR */
 .topbar{
   background:#000;
   color:#fff;
@@ -73,8 +73,11 @@
   letter-spacing:2px;
 }
 
+/* HERO */
 .hero{
   height:80vh;
+  background-size:cover;
+  background-position:center;
   position:relative;
 }
 
@@ -97,7 +100,10 @@
 }
 
 .hero-text a{
+  display:inline-block;
+  margin-top:10px;
   border-bottom:1px solid #fff;
+  font-size:13px;
 }
 
 /* CATEGORIAS */
@@ -114,6 +120,13 @@
   object-fit:cover;
 }
 
+.categories span{
+  display:block;
+  text-align:center;
+  font-size:12px;
+  margin-top:5px;
+}
+
 /* PRODUTOS */
 .products{
   display:grid;
@@ -128,23 +141,63 @@
   object-fit:cover;
 }
 
-/* HOVER */
-.image-wrapper{position:relative;}
+.image-wrapper{
+  position:relative;
+  display:block;
+}
+
 .img2{
   position:absolute;
   inset:0;
   opacity:0;
 }
-.image-wrapper:hover .img2{opacity:1;}
-.image-wrapper:hover .img1{opacity:0;}
 
-.old{text-decoration:line-through;color:#aaa;}
-.new{color:#8B1E3F;}
-
-@media(max-width:768px){
-  .products{grid-template-columns:repeat(2,1fr);}
-  .categories{grid-template-columns:1fr;}
+.image-wrapper:hover .img2{
+  opacity:1;
 }
+
+.image-wrapper:hover .img1{
+  opacity:0;
+}
+
+.title{
+  font-size:12px;
+  margin-top:10px;
+}
+
+.price{
+  font-size:13px;
+}
+
+.old{
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+.new{
+  color:#8B1E3F;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .categories{
+    grid-template-columns:1fr;
+  }
+
+  .hero-text{
+    left:20px;
+    bottom:20px;
+  }
+
+  .hero-text h1{
+    font-size:28px;
+  }
+}
+
 </style>
 
 {% schema %}
@@ -155,12 +208,12 @@
       "type": "text",
       "id": "topbar",
       "label": "Texto topo",
-      "default": "Frete grátis • 6x sem juros • 15% OFF em toda loja"
+      "default": "Frete grátis • 6x sem juros • 15% OFF"
     },
     {
       "type": "image_picker",
       "id": "hero",
-      "label": "Imagem Hero"
+      "label": "Imagem do Hero"
     },
     {
       "type": "text",
@@ -171,7 +224,7 @@
     {
       "type": "text",
       "id": "button",
-      "label": "Botão",
+      "label": "Texto do botão",
       "default": "COMPRAR"
     },
     {
@@ -182,7 +235,7 @@
     {
       "type": "collection",
       "id": "collection",
-      "label": "Coleção"
+      "label": "Coleção de produtos"
     }
   ],
   "blocks": [
@@ -191,7 +244,7 @@
       "name": "Categoria",
       "settings": [
         { "type": "image_picker", "id": "img", "label": "Imagem" },
-        { "type": "text", "id": "title", "label": "Nome" },
+        { "type": "text", "id": "title", "label": "Título" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
     }
