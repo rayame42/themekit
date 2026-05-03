@@ -147,6 +147,35 @@
       "newsletter-custom": {
         "type": "newsletter-custom",
         "settings": {}
+      },
+      "footer-custom": {
+        "type": "footer-custom",
+        "settings": {
+          "col1_title": "Loja",
+          "text1": "Início",
+          "link1": "shopify://collections/frontpage",
+          "text2": "Catálogo",
+          "link2": "shopify://collections/all",
+          "text3": "Conjuntos",
+          "link3": "shopify://collections/conjuntos",
+          "text4": "Body",
+          "link4": "shopify://collections/body",
+          "text5": "Camisolas",
+          "link5": "shopify://collections/camisolas",
+          "text6": "Corset",
+          "link6": "shopify://collections/corset",
+          "col2_title": "Conecte-se",
+          "social1_text": "Facebook",
+          "social1": "https://www.facebook.com/jadeintimatesrj/",
+          "social2_text": "Instagram",
+          "social2": "https://www.instagram.com/jadeintimates",
+          "social3_text": "TikTok",
+          "social3": "https://www.tiktok.com/@jadeintimates_",
+          "col3_title": "Central de Atendimento",
+          "atendimento": "Atendimento via Whatsapp: Segunda à sexta (exceto fins de semana e feriados).",
+          "whatsapp": "(21) 96677-6897",
+          "email": "contato@jadeintimates.com.br"
+        }
       }
     },
     "content_for_index": [],
