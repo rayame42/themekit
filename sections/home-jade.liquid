@@ -45,30 +45,6 @@
 }
 </style>
 </div>
-.categories-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  padding:20px;
-}
-
-.category-item img{
-  width:100%;
-}
-
-.category-item span{
-  display:block;
-  text-align:center;
-  font-size:12px;
-  margin-top:5px;
-  letter-spacing:1px;
-}
-
-@media(max-width:768px){
-  .categories-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
 <!-- PRODUTOS -->
 <div class="products">
   {% for product in collections[section.settings.collection].products limit: 8 %}
