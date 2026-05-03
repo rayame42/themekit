@@ -2,14 +2,23 @@
 
   <div class="atendimento-container">
 
-    <h2>{{ section.settings.title }}</h2>
+    <h2 class="atendimento-title">
+      {{ section.settings.title }}
+    </h2>
 
     <div class="accordion">
 
       {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" class="item">
-          <span>{{ block.settings.title }}</span>
-          <span class="arrow">+</span>
+        <a href="{{ block.settings.link }}" class="item" {{ block.shopify_attributes }}>
+          
+          <span class="item-title">
+            {{ block.settings.title }}
+          </span>
+
+          <span class="arrow">
+            →
+          </span>
+
         </a>
       {% endfor %}
 
@@ -21,54 +30,86 @@
 
 <style>
 
+/* FUNDO */
 .atendimento{
-  background:#f7f7f7;
-  padding:80px 20px;
+  background:#f5f5f5;
+  padding:100px 20px;
 }
 
+/* CONTAINER */
 .atendimento-container{
-  max-width:900px;
+  max-width:800px;
   margin:auto;
 }
 
-.atendimento h2{
-  font-size:28px;
-  margin-bottom:30px;
-  font-weight:400;
+/* TÍTULO */
+.atendimento-title{
+  font-size:32px;
+  font-weight:300;
+  letter-spacing:1px;
+  margin-bottom:40px;
+  text-align:left;
+  color:#111;
 }
 
+/* LISTA */
 .accordion{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
 }
 
+/* ITEM */
 .item{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 20px;
-  border:1px solid #ddd;
-  border-radius:8px;
+  padding:20px 24px;
+  border:1px solid #e5e5e5;
+  border-radius:10px;
   text-decoration:none;
   color:#111;
   background:#fff;
-  transition:0.3s;
+  transition:all 0.3s ease;
 }
 
+/* TEXTO */
+.item-title{
+  font-size:15px;
+  letter-spacing:0.5px;
+}
+
+/* SETA */
+.arrow{
+  font-size:16px;
+  opacity:0.6;
+  transition:all 0.3s ease;
+}
+
+/* HOVER PREMIUM */
 .item:hover{
   background:#2b0000;
   color:#fff;
-  transform:translateY(-2px);
-}
-
-.arrow{
-  font-size:18px;
-  transition:0.3s;
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
 .item:hover .arrow{
-  transform:rotate(45deg);
+  transform:translateX(6px);
+  opacity:1;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .atendimento-title{
+    font-size:24px;
+  }
+
+  .item{
+    padding:16px;
+  }
+
 }
 
 </style>
@@ -86,31 +127,31 @@
   ],
   "blocks": [
     {
-      "type": "link",
+      "type": "item",
       "name": "Item",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Título"
+          "label": "Título",
+          "default": "Nome da página"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link da página"
+          "label": "Link"
         }
       ]
     }
   ],
-  "max_blocks": 6,
   "presets": [
     {
       "name": "Atendimento ao Cliente",
       "blocks": [
-        { "type": "link", "settings": { "title": "Envio e Frete" } },
-        { "type": "link", "settings": { "title": "Políticas de Reembolso" } },
-        { "type": "link", "settings": { "title": "Fale Conosco" } },
-        { "type": "link", "settings": { "title": "Sobre Nós" } }
+        { "type": "item", "settings": { "title": "Envio e Frete" } },
+        { "type": "item", "settings": { "title": "Políticas de Reembolso" } },
+        { "type": "item", "settings": { "title": "Fale Conosco" } },
+        { "type": "item", "settings": { "title": "Sobre Nós" } }
       ]
     }
   ]
