@@ -4,6 +4,47 @@
   <meta charset="utf-8">
   <title>{{ shop.name }}</title>
   {{ content_for_header }}
+
+<style>
+
+/* ===== FORÇAR NEWSLETTER ===== */
+input[type="email"]{
+  border-radius:40px !important;
+  padding:16px 20px !important;
+  border:1px solid #ccc !important;
+}
+
+button{
+  border-radius:40px !important;
+  padding:14px 25px !important;
+  background:#2b0000 !important;
+  color:#fff !important;
+  border:none !important;
+}
+
+/* ===== FORÇAR FOOTER ===== */
+footer, [class*="footer"]{
+  background:#2b0000 !important;
+  color:#fff !important;
+}
+
+footer a, [class*="footer"] a{
+  color:#ddd !important;
+}
+
+footer a:hover{
+  color:#fff !important;
+  transform:translateX(3px);
+}
+
+/* ===== ATENDIMENTO ===== */
+summary{
+  background:#2b0000 !important;
+  color:#fff !important;
+  padding:18px !important;
+}
+
+</style>
   <style>
 
 /* ===== NEWSLETTER PREMIUM ===== */
