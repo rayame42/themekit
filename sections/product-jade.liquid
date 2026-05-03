@@ -1,80 +1,70 @@
-<div class="product-jade">
+<section class="product">
+  <div class="product-container">
 
-  <h1>{{ product.title }}</h1>
+    <!-- IMAGEM -->
+    <div class="product-images">
+      {% for image in product.images %}
+        <img src="{{ image | image_url: width: 600 }}">
+      {% endfor %}
+    </div>
 
-  <div class="price">
-    {{ product.price | money }}
+    <!-- INFO -->
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+
+      <p class="price">{{ product.price | money }}</p>
+
+      <p class="desc">
+        {{ product.description }}
+      </p>
+
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit" class="btn">
+          Adicionar ao carrinho
+        </button>
+      </form>
+
+      <p class="urgency">🔥 Últimas unidades disponíveis</p>
+    </div>
+
   </div>
-
-  <p class="desc">
-    Delicada, envolvente e feita para realçar sua beleza natural.<br><br>
-
-    O toque macio se adapta ao corpo, proporcionando conforto e sensualidade na medida certa.<br><br>
-
-    Ideal para momentos especiais — ou para se sentir incrível todos os dias.
-  </p>
-
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-
-    <button type="submit" class="btn-buy">
-      Adicionar ao carrinho
-    </button>
-  </form>
-
-  <div class="urgency">
-    🔥 Últimas unidades disponíveis
-  </div>
-
-</div>
+</section>
 
 <style>
-.product-jade {
-  max-width: 500px;
-  margin: 40px auto;
-  text-align: center;
+.product-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
 }
 
-.product-jade h1 {
-  font-size: 26px;
+.product-images img {
+  width: 100%;
   margin-bottom: 10px;
+}
+
+.product-info {
+  max-width: 400px;
 }
 
 .price {
   font-size: 22px;
   color: #8B1E3F;
-  margin-bottom: 15px;
-}
-
-.desc {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.btn-buy {
-  background: #8B1E3F;
-  color: #fff;
-  padding: 15px;
-  width: 100%;
-  border: none;
   font-weight: bold;
+}
+
+.btn {
+  background: #8B1E3F;
+  color: white;
+  padding: 15px;
+  border: none;
+  width: 100%;
+  margin-top: 15px;
   cursor: pointer;
 }
 
-.btn-buy:hover {
-  background: #a52a4f;
-}
-
 .urgency {
-  margin-top: 15px;
   color: red;
-  font-size: 13px;
+  margin-top: 10px;
 }
 </style>
-
-{% schema %}
-{
-  "name": "Produto Jade",
-  "settings": []
-}
-{% endschema %}
