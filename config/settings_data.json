@@ -85,18 +85,18 @@
       "atendimento-cliente": {
         "type": "atendimento-cliente",
         "blocks": {
-          "item_XHgNNe": {
-            "type": "item",
-            "settings": {
-              "title": "Terms of Service",
-              "link": "shopify://policies/terms-of-service"
-            }
-          },
           "item_jaWQFw": {
             "type": "item",
             "settings": {
               "title": "Envio e Frete",
               "link": "shopify://policies/shipping-policy"
+            }
+          },
+          "item_XHgNNe": {
+            "type": "item",
+            "settings": {
+              "title": "Termos de serviço",
+              "link": "shopify://policies/terms-of-service"
             }
           },
           "item_VWfNH4": {
@@ -122,8 +122,8 @@
           }
         },
         "block_order": [
-          "item_XHgNNe",
           "item_jaWQFw",
+          "item_XHgNNe",
           "item_VWfNH4",
           "item_R8Gbgf",
           "item_3zdePj"
