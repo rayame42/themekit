@@ -1,42 +1,28 @@
-<section class="motion-section">
+<section class="best-editorial">
 
-  <div class="motion-container">
+  <div class="editorial-container">
 
-    <!-- PRINCIPAL -->
-    <div class="main-img">
-      {% if section.settings.main_image != blank %}
-        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
+    <!-- ESQUERDA -->
+    <div class="left">
+      {% if section.settings.img1 != blank %}
+        <img src="{{ section.settings.img1 | image_url: width: 600 }}">
+      {% endif %}
+
+      {% if section.settings.img2 != blank %}
+        <img src="{{ section.settings.img2 | image_url: width: 600 }}">
       {% endif %}
     </div>
 
-    <!-- LATERAIS -->
-    {% if section.settings.img1 != blank %}
-      <div class="side left-top">
-        <img src="{{ section.settings.img1 | image_url: width: 400 }}">
-      </div>
-    {% endif %}
-
-    {% if section.settings.img2 != blank %}
-      <div class="side right-top">
-        <img src="{{ section.settings.img2 | image_url: width: 400 }}">
-      </div>
-    {% endif %}
-
-    {% if section.settings.img3 != blank %}
-      <div class="side left-bottom">
-        <img src="{{ section.settings.img3 | image_url: width: 400 }}">
-      </div>
-    {% endif %}
-
-    {% if section.settings.img4 != blank %}
-      <div class="side right-bottom">
-        <img src="{{ section.settings.img4 | image_url: width: 400 }}">
-      </div>
-    {% endif %}
+    <!-- PRINCIPAL -->
+    <div class="center">
+      {% if section.settings.main_image != blank %}
+        <img src="{{ section.settings.main_image | image_url: width: 900 }}">
+      {% endif %}
+    </div>
 
   </div>
 
-  <div class="motion-text">
+  <div class="text">
     <h2>{{ section.settings.title }}</h2>
     <p>{{ section.settings.subtitle }}</p>
   </div>
@@ -46,114 +32,65 @@
 <style>
 
 /* FUNDO */
-.motion-section{
+.best-editorial{
   background:#2b0000;
-  padding:120px 20px;
+  padding:100px 20px;
   text-align:center;
   color:#fff;
 }
 
-/* CONTAINER */
-.motion-container{
-  position:relative;
-  max-width:700px;
-  margin:0 auto 80px;
+/* GRID */
+.editorial-container{
+  display:grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap:30px;
+  max-width:1000px;
+  margin:auto;
+  align-items:center;
 }
 
-/* PRINCIPAL */
-.main-img{
-  position:relative;
-  z-index:1;
-  animation:fadeMain 1s ease;
+/* ESQUERDA */
+.left{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-.main-img img{
-  width:260px;
-  height:360px;
+.left img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:16px;
+  transition:0.4s;
+}
+
+/* CENTRO */
+.center img{
+  width:100%;
+  height:540px;
   object-fit:cover;
   border-radius:20px;
-  box-shadow:0 25px 70px rgba(0,0,0,0.5);
+  box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  transition:0.4s;
 }
 
-/* LATERAIS NA FRENTE */
-.side{
-  position:absolute;
-  z-index:10;
-  opacity:0;
-}
-
-/* POSIÇÕES */
-.left-top{
-  top:0;
-  left:-140px;
-  animation:showLeftTop 1s ease forwards;
-  animation-delay:0.3s;
-}
-
-.right-top{
-  top:0;
-  right:-140px;
-  animation:showRightTop 1s ease forwards;
-  animation-delay:0.5s;
-}
-
-.left-bottom{
-  bottom:0;
-  left:-160px;
-  animation:showLeftBottom 1s ease forwards;
-  animation-delay:0.7s;
-}
-
-.right-bottom{
-  bottom:0;
-  right:-160px;
-  animation:showRightBottom 1s ease forwards;
-  animation-delay:0.9s;
-}
-
-/* TAMANHO */
-.side img{
-  width:140px;
-  height:190px;
-  object-fit:cover;
-  border-radius:14px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
-}
-
-/* ANIMAÇÕES */
-@keyframes fadeMain{
-  from{opacity:0; transform:scale(0.9);}
-  to{opacity:1; transform:scale(1);}
-}
-
-@keyframes showLeftTop{
-  from{opacity:0; transform:translate(-60px,60px);}
-  to{opacity:1; transform:translate(0,0);}
-}
-
-@keyframes showRightTop{
-  from{opacity:0; transform:translate(60px,60px);}
-  to{opacity:1; transform:translate(0,0);}
-}
-
-@keyframes showLeftBottom{
-  from{opacity:0; transform:translate(-60px,-60px);}
-  to{opacity:1; transform:translate(0,0);}
-}
-
-@keyframes showRightBottom{
-  from{opacity:0; transform:translate(60px,-60px);}
-  to{opacity:1; transform:translate(0,0);}
+/* HOVER PREMIUM */
+.left img:hover,
+.center img:hover{
+  transform:scale(1.03);
 }
 
 /* TEXTO */
-.motion-text h2{
-  font-size:28px;
-  letter-spacing:2px;
-  margin-bottom:10px;
+.text{
+  margin-top:60px;
 }
 
-.motion-text p{
+.text h2{
+  font-size:28px;
+  letter-spacing:2px;
+}
+
+.text p{
   font-size:14px;
   opacity:0.8;
 }
@@ -161,20 +98,17 @@
 /* MOBILE */
 @media(max-width:768px){
 
-  .main-img img{
-    width:200px;
-    height:280px;
+  .editorial-container{
+    grid-template-columns:1fr;
   }
 
-  .side img{
-    width:90px;
-    height:120px;
+  .center img{
+    height:400px;
   }
 
-  .left-top{ left:-70px; }
-  .right-top{ right:-70px; }
-  .left-bottom{ left:-80px; }
-  .right-bottom{ right:-80px; }
+  .left img{
+    height:180px;
+  }
 
 }
 
@@ -182,18 +116,16 @@
 
 {% schema %}
 {
-  "name": "Best Seller Motion",
+  "name": "Best Seller Editorial",
   "settings": [
     { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem 1 (esquerda topo)" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem 2 (direita topo)" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem 3 (esquerda baixo)" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem 4 (direita baixo)" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
+    { "type": "image_picker", "id": "img1", "label": "Imagem lateral 1" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem lateral 2" },
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS" },
     { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
   ],
   "presets": [
-    { "name": "Best Seller Motion" }
+    { "name": "Best Seller Editorial" }
   ]
 }
 {% endschema %}
