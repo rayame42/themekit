@@ -7,20 +7,20 @@
     <img src="{{ section.settings.main_image | image_url: width: 900 }}">
   </div>
 
-  <!-- IMAGENS LATERAIS -->
-  <div class="side img1">
+  <!-- LATERAIS -->
+  <div class="side left-top">
     <img src="{{ section.settings.img1 | image_url: width: 500 }}">
   </div>
 
-  <div class="side img2">
+  <div class="side right-top">
     <img src="{{ section.settings.img2 | image_url: width: 500 }}">
   </div>
 
-  <div class="side img3">
+  <div class="side left-bottom">
     <img src="{{ section.settings.img3 | image_url: width: 500 }}">
   </div>
 
-  <div class="side img4">
+  <div class="side right-bottom">
     <img src="{{ section.settings.img4 | image_url: width: 500 }}">
   </div>
 
@@ -37,104 +37,140 @@
 
 .motion-section{
   background:#2b0000;
-  padding:80px 20px;
+  padding:100px 20px;
   text-align:center;
   color:#fff;
 }
 
+/* CONTAINER */
 .motion-container{
   position:relative;
   max-width:500px;
   margin:80px auto;
-  overflow:visible; /* 🔥 MUITO IMPORTANTE */
+  overflow:visible;
 }
 
-/* PRINCIPAL */
+/* IMAGEM PRINCIPAL */
 .main-img{
   position:relative;
-  z-index:5; /* menor que as laterais */
+  z-index:1;
+  animation:fadeMain 1s ease forwards;
 }
 
 .main-img img{
-  width:220px;
-  height:300px;
+  width:260px; /* 🔥 menor */
+  height:360px;
   object-fit:cover;
   border-radius:20px;
   display:block;
   margin:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
 }
-/* LATERAIS */
-/* POSIÇÃO DAS LATERAIS */
 
-/* esquerda */
-.side.left-top{
+/* LATERAIS (POR CIMA) */
+.side{
+  position:absolute;
+  z-index:10; /* 🔥 FICA NA FRENTE */
+  opacity:0;
+}
+
+/* POSIÇÕES */
+.left-top{
   top:20px;
-  left:-80px;
+  left:-140px;
+  animation:showLeftTop 1s ease forwards;
+  animation-delay:0.4s;
 }
 
-.side.left-bottom{
-  bottom:20px;
-  left:-100px;
-}
-
-/* direita */
-.side.right-top{
+.right-top{
   top:20px;
-  right:-80px;
+  right:-140px;
+  animation:showRightTop 1s ease forwards;
+  animation-delay:0.6s;
 }
 
-.side.right-bottom{
+.left-bottom{
   bottom:20px;
-  right:-100px;
+  left:-160px;
+  animation:showLeftBottom 1s ease forwards;
+  animation-delay:0.8s;
 }
 
+.right-bottom{
+  bottom:20px;
+  right:-160px;
+  animation:showRightBottom 1s ease forwards;
+  animation-delay:1s;
+}
+
+/* TAMANHO DAS LATERAIS */
 .side img{
   width:140px;
   height:190px;
   object-fit:cover;
   border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-/* POSIÇÕES */
-.img1{ top:0; left:-120px; }
-.img2{ top:0; right:-120px; }
-.img3{ bottom:0; left:-120px; }
-.img4{ bottom:0; right:-120px; }
-
-/* ANIMAÇÕES */
-.img1{ animation:show1 1s ease forwards; animation-delay:0.5s; }
-.img2{ animation:show2 1s ease forwards; animation-delay:0.8s; }
-.img3{ animation:show3 1s ease forwards; animation-delay:1.1s; }
-.img4{ animation:show4 1s ease forwards; animation-delay:1.4s; }
-
+/* ANIMAÇÕES WOW */
 @keyframes fadeMain{
-  from{opacity:0; transform:scale(0.95);}
-  to{opacity:1; transform:scale(1);}
+  from{
+    opacity:0;
+    transform:scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
-@keyframes show1{
-  from{opacity:0; transform:translate(-40px,40px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes showLeftTop{
+  from{
+    opacity:0;
+    transform:translate(-60px,60px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
 }
 
-@keyframes show2{
-  from{opacity:0; transform:translate(40px,40px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes showRightTop{
+  from{
+    opacity:0;
+    transform:translate(60px,60px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
 }
 
-@keyframes show3{
-  from{opacity:0; transform:translate(-40px,-40px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes showLeftBottom{
+  from{
+    opacity:0;
+    transform:translate(-60px,-60px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
 }
 
-@keyframes show4{
-  from{opacity:0; transform:translate(40px,-40px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes showRightBottom{
+  from{
+    opacity:0;
+    transform:translate(60px,-60px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
 }
 
 /* TEXTO */
 .motion-text{
-  margin-top:60px;
+  margin-top:70px;
 }
 
 .motion-text h2{
@@ -151,33 +187,21 @@
 /* MOBILE */
 @media(max-width:768px){
 
-  .side img{
-    width:100px;
+  .main-img img{
+    width:200px;
+    height:280px;
   }
 
-  .img1{ left:-60px; }
-  .img2{ right:-60px; }
-  .img3{ left:-60px; }
-  .img4{ right:-60px; }
+  .side img{
+    width:90px;
+    height:130px;
+  }
+
+  .left-top{ left:-70px; }
+  .right-top{ right:-70px; }
+  .left-bottom{ left:-80px; }
+  .right-bottom{ right:-80px; }
 
 }
 
 </style>
-
-{% schema %}
-{
-  "name": "Best Seller Motion",
-  "settings": [
-    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças que marcaram presença." }
-  ],
-  "presets": [
-    { "name": "Best Seller Motion" }
-  ]
-}
-{% endschema %}
