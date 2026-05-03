@@ -1,0 +1,98 @@
+<header class="header-luxo">
+
+  <div class="header-wrap">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <a href="/">{{ shop.name }}</a>
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <!-- ICONES -->
+    <div class="icons">
+      <a href="/search">🔍</a>
+      <a href="/account">👤</a>
+      <a href="/cart">🛒</a>
+    </div>
+
+  </div>
+
+</header>
+
+<style>
+
+.header-luxo{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#fff;
+  border-bottom:1px solid #eee;
+}
+
+.header-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* LOGO */
+.logo a{
+  font-size:18px;
+  letter-spacing:2px;
+  text-decoration:none;
+  color:#111;
+}
+
+/* MENU */
+.menu{
+  display:flex;
+  gap:25px;
+}
+
+.menu a{
+  text-decoration:none;
+  font-size:12px;
+  color:#111;
+  letter-spacing:1px;
+  transition:0.3s;
+}
+
+.menu a:hover{
+  opacity:0.6;
+}
+
+/* ICONES */
+.icons{
+  display:flex;
+  gap:15px;
+}
+
+.icons a{
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu{
+    display:none;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}
