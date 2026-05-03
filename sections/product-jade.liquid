@@ -1,10 +1,10 @@
 <section class="product">
   <div class="product-container">
 
-    <!-- IMAGEM -->
+    <!-- IMAGENS -->
     <div class="product-images">
       {% for image in product.images %}
-        <img src="{{ image | image_url: width: 600 }}">
+        <img src="{{ image | image_url: width: 500 }}">
       {% endfor %}
     </div>
 
@@ -14,9 +14,9 @@
 
       <p class="price">{{ product.price | money }}</p>
 
-      <p class="desc">
+      <div class="desc">
         {{ product.description }}
-      </p>
+      </div>
 
       <form method="post" action="/cart/add">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
@@ -34,49 +34,63 @@
 <style>
 .product-container {
   display: flex;
-  gap: 40px;
-  padding: 40px;
+  gap: 80px;
+  padding: 60px;
+  align-items: flex-start;
+  justify-content: center;
 }
+
+/* IMAGENS */
 .product-images {
-  width: 45%;
+  width: 30%;
 }
 
 .product-images img {
   width: 100%;
-  max-width: 400px;
+  max-width: 320px;
   display: block;
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+
+/* TEXTO */
+.product-info {
+  width: 40%;
+}
+
+.product-info h1 {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-.product-container {
-  display: flex;
-  gap: 60px;
-  padding: 40px;
-  align-items: flex-start;
-}
-
-.product-info {
-  max-width: 400px;
-}
-
 .price {
-  font-size: 22px;
+  font-size: 20px;
   color: #8B1E3F;
+  margin-bottom: 15px;
   font-weight: bold;
+}
+
+.desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
 }
 
 .btn {
   background: #8B1E3F;
-  color: white;
-  padding: 15px;
+  color: #fff;
+  padding: 14px;
   border: none;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 20px;
   cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 .urgency {
-  color: red;
+  font-size: 13px;
   margin-top: 10px;
+  color: #a00;
 }
 </style>
