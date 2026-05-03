@@ -96,14 +96,50 @@
 
 {% schema %}
 {
-  "name": "Best Seller",
+  "name": "Best Seller Motion",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." },
-    { "type": "collection", "id": "collection", "label": "Coleção" }
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Imagem principal"
+    },
+    {
+      "type": "image_picker",
+      "id": "img1",
+      "label": "Imagem 1 (esquerda topo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "img2",
+      "label": "Imagem 2 (direita topo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "img3",
+      "label": "Imagem 3 (esquerda baixo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "img4",
+      "label": "Imagem 4 (direita baixo)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "BEST SELLERS | TOP 05"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "As peças mais desejadas da coleção."
+    }
   ],
   "presets": [
-    { "name": "Best Seller" }
+    {
+      "name": "Best Seller Motion"
+    }
   ]
 }
 {% endschema %}
