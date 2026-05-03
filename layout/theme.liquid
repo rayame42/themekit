@@ -139,39 +139,13 @@ summary{
 }
 
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE CATEGORIAS FORÇADO ===== */
 @media(max-width:768px){
 
-  .newsletter{
-    padding:60px 20px;
-  }
-
-  h2{
-    font-size:26px !important;
-  }
-
-  input[type="email"]{
-    width:100%;
-  }
-
-  button{
-    width:100%;
-  }
-
-  footer, [class*="footer"]{
-    padding:50px 20px;
-  }
-
-  footer .container,
-  [class*="footer"] .container{
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-
-  /* ===== CATEGORIAS MOBILE SLIDER ===== */
   .categories{
-    display:flex;
-    overflow-x:auto;
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
     gap:12px;
     padding:20px;
     scroll-snap-type:x mandatory;
@@ -179,9 +153,13 @@ summary{
   }
 
   .categories a{
-    min-width:48%;
-    flex:0 0 auto;
+    min-width:50% !important; /* 🔥 2 por tela */
+    flex:0 0 50% !important;
     scroll-snap-align:start;
+  }
+
+  .categories img{
+    height:200px;
   }
 
   .categories::-webkit-scrollbar{
@@ -189,9 +167,7 @@ summary{
   }
 
 }
-
 </style>
-
 </head>
 
 <body>
