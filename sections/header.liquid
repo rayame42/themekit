@@ -4,12 +4,12 @@
 
     <!-- LOGO -->
     <div class="logo">
-      <a href="/">{{ shop.name }}</a>
+      <a href="/">{{ section.settings.logo_text }}</a>
     </div>
 
     <!-- MENU -->
     <nav class="menu">
-      {% for link in linklists.main-menu.links %}
+      {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
     </nav>
@@ -26,7 +26,6 @@
 </header>
 
 <style>
-
 .header-luxo{
   position:sticky;
   top:0;
@@ -44,7 +43,6 @@
   justify-content:space-between;
 }
 
-/* LOGO */
 .logo a{
   font-size:18px;
   letter-spacing:2px;
@@ -52,7 +50,6 @@
   color:#111;
 }
 
-/* MENU */
 .menu{
   display:flex;
   gap:25px;
@@ -63,36 +60,33 @@
   font-size:12px;
   color:#111;
   letter-spacing:1px;
-  transition:0.3s;
 }
 
-.menu a:hover{
-  opacity:0.6;
-}
-
-/* ICONES */
 .icons{
   display:flex;
   gap:15px;
 }
 
-.icons a{
-  text-decoration:none;
-  font-size:14px;
-}
-
-/* MOBILE */
 @media(max-width:768px){
-  .menu{
-    display:none;
-  }
+  .menu{display:none;}
 }
-
 </style>
 
 {% schema %}
 {
   "name": "Header",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Nome da marca",
+      "default": "Jade Intimates"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
 }
 {% endschema %}
