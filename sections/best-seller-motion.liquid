@@ -1,109 +1,218 @@
-<section class="best-seller">
+<section class="best-motion">
 
-  <div class="container">
+  <div class="motion-container">
 
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.subtitle }}</p>
-
-    <div class="grid">
-
-      {% assign collection = collections[section.settings.collection] %}
-
-      {% for product in collection.products limit: 4 %}
-        <a href="{{ product.url }}" class="card">
-
-          <img src="{{ product.featured_image | image_url: width: 600 }}">
-
-          <span>{{ product.title }}</span>
-          <strong>{{ product.price | money }}</strong>
-
-        </a>
-      {% endfor %}
-
+    <!-- IMAGEM PRINCIPAL -->
+    <div class="main-img">
+      <img src="{{ section.settings.main_image | image_url: width: 900 }}">
     </div>
 
+    <!-- LATERAIS (NA FRENTE) -->
+    <div class="side left-top">
+      <img src="{{ section.settings.img1 | image_url: width: 400 }}">
+    </div>
+
+    <div class="side right-top">
+      <img src="{{ section.settings.img2 | image_url: width: 400 }}">
+    </div>
+
+    <div class="side left-bottom">
+      <img src="{{ section.settings.img3 | image_url: width: 400 }}">
+    </div>
+
+    <div class="side right-bottom">
+      <img src="{{ section.settings.img4 | image_url: width: 400 }}">
+    </div>
+
+  </div>
+
+  <div class="motion-text">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.subtitle }}</p>
   </div>
 
 </section>
 
 <style>
 
-.best-seller{
-  padding:80px 20px;
+/* ===== FUNDO ===== */
+.best-motion{
+  background:#2b0000;
+  padding:100px 20px;
   text-align:center;
+  color:#fff;
 }
 
-/* TÍTULO */
-.best-seller h2{
-  font-size:32px;
+/* ===== CONTAINER ===== */
+.motion-container{
+  position:relative;
+  max-width:500px;
+  margin:80px auto;
+}
+
+/* ===== PRINCIPAL ===== */
+.main-img{
+  position:relative;
+  z-index:1;
+  animation:fadeMain 0.8s ease forwards;
+}
+
+.main-img img{
+  width:260px;
+  height:360px;
+  object-fit:cover;
+  border-radius:20px;
+  display:block;
+  margin:auto;
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+}
+
+/* ===== LATERAIS NA FRENTE ===== */
+.side{
+  position:absolute;
+  z-index:10; /* 🔥 FICA NA FRENTE */
+  opacity:0;
+}
+
+/* POSIÇÕES */
+.left-top{
+  top:0;
+  left:-120px;
+  animation:showLeftTop 0.8s ease forwards 0.3s;
+}
+
+.right-top{
+  top:0;
+  right:-120px;
+  animation:showRightTop 0.8s ease forwards 0.5s;
+}
+
+.left-bottom{
+  bottom:0;
+  left:-140px;
+  animation:showLeftBottom 0.8s ease forwards 0.7s;
+}
+
+.right-bottom{
+  bottom:0;
+  right:-140px;
+  animation:showRightBottom 0.8s ease forwards 0.9s;
+}
+
+/* TAMANHO */
+.side img{
+  width:140px;
+  height:190px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeMain{
+  from{
+    opacity:0;
+    transform:scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes showLeftTop{
+  from{
+    opacity:0;
+    transform:translate(-60px,60px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0);
+  }
+}
+
+@keyframes showRightTop{
+  from{
+    opacity:0;
+    transform:translate(60px,60px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0);
+  }
+}
+
+@keyframes showLeftBottom{
+  from{
+    opacity:0;
+    transform:translate(-60px,-60px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0);
+  }
+}
+
+@keyframes showRightBottom{
+  from{
+    opacity:0;
+    transform:translate(60px,-60px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0);
+  }
+}
+
+/* ===== TEXTO ===== */
+.motion-text{
+  margin-top:60px;
+}
+
+.motion-text h2{
+  font-size:28px;
   letter-spacing:3px;
   font-weight:300;
-  text-transform:uppercase;
 }
 
-.best-seller p{
+.motion-text p{
   font-size:14px;
-  opacity:0.6;
-  margin-bottom:40px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  text-decoration:none;
-  color:#111;
-}
-
-.card img{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-}
-
-.card span{
-  display:block;
-  font-size:12px;
+  opacity:0.8;
   margin-top:10px;
 }
 
-.card strong{
-  font-size:14px;
-  color:#8B1E3F;
-}
-
-/* HOVER */
-.card img{
-  transition:0.4s;
-}
-
-.card:hover img{
-  transform:scale(1.05);
-}
-
+/* MOBILE */
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
+
+  .main-img img{
+    width:200px;
+    height:280px;
   }
+
+  .side{
+    display:none;
+  }
+
 }
 
 </style>
 
 {% schema %}
 {
-  "name": "Best Seller",
+  "name": "Best Seller Motion",
   "settings": [
+    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
+    { "type": "image_picker", "id": "img1", "label": "Imagem 1 (esquerda topo)" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem 2 (direita topo)" },
+    { "type": "image_picker", "id": "img3", "label": "Imagem 3 (esquerda baixo)" },
+    { "type": "image_picker", "id": "img4", "label": "Imagem 4 (direita baixo)" },
     { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." },
-    { "type": "collection", "id": "collection", "label": "Coleção" }
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
   ],
   "presets": [
-    { "name": "Best Seller" }
+    {
+      "name": "Best Seller Motion"
+    }
   ]
 }
 {% endschema %}
