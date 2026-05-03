@@ -2,7 +2,7 @@
 
   <div class="motion-container">
 
-    <!-- IMAGEM PRINCIPAL -->
+    <!-- PRINCIPAL -->
     <div class="main-img">
       {% if section.settings.main_image %}
         <img src="{{ section.settings.main_image | image_url: width: 800 }}">
@@ -55,7 +55,7 @@
 /* CONTAINER */
 .motion-container{
   position:relative;
-  max-width:600px;
+  max-width:500px;
   margin:80px auto;
   overflow:visible;
 }
@@ -68,16 +68,16 @@
 }
 
 .main-img img{
-  width:260px;
-  height:360px;
+  width:240px;
+  height:340px;
   object-fit:cover;
   border-radius:20px;
   display:block;
   margin:auto;
-  box-shadow:0 25px 70px rgba(0,0,0,0.45);
+  box-shadow:0 30px 80px rgba(0,0,0,0.5);
 }
 
-/* LATERAIS NA FRENTE */
+/* LATERAIS (NA FRENTE E PRÓXIMAS) */
 .side{
   position:absolute;
   z-index:999;
@@ -85,72 +85,111 @@
 }
 
 .side img{
-  width:140px;
-  height:190px;
+  width:130px;
+  height:180px;
   object-fit:cover;
   border-radius:15px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  box-shadow:0 20px 50px rgba(0,0,0,0.35);
   transition:0.4s;
 }
 
-/* POSIÇÕES */
+/* POSIÇÕES (COLADAS NA PRINCIPAL) */
 .left-top{
   top:10px;
-  left:-140px;
-  animation:showLeftTop 1s ease forwards;
-  animation-delay:0.4s;
+  left:-70px;
+  animation:popLeftTop 0.8s ease forwards;
+  animation-delay:0.3s;
 }
 
 .right-top{
   top:10px;
-  right:-140px;
-  animation:showRightTop 1s ease forwards;
-  animation-delay:0.6s;
+  right:-70px;
+  animation:popRightTop 0.8s ease forwards;
+  animation-delay:0.5s;
 }
 
 .left-bottom{
   bottom:10px;
-  left:-160px;
-  animation:showLeftBottom 1s ease forwards;
-  animation-delay:0.8s;
+  left:-80px;
+  animation:popLeftBottom 0.8s ease forwards;
+  animation-delay:0.7s;
 }
 
 .right-bottom{
   bottom:10px;
-  right:-160px;
-  animation:showRightBottom 1s ease forwards;
-  animation-delay:1s;
+  right:-80px;
+  animation:popRightBottom 0.8s ease forwards;
+  animation-delay:0.9s;
 }
 
-/* HOVER WOW */
+/* HOVER PREMIUM */
 .side img:hover{
-  transform:scale(1.08) translateY(-5px);
+  transform:scale(1.1) translateY(-5px);
 }
 
-/* ANIMAÇÕES */
+/* ANIMAÇÃO PRINCIPAL */
 @keyframes fadeMain{
-  from{opacity:0; transform:scale(0.9);}
-  to{opacity:1; transform:scale(1);}
+  from{
+    opacity:0;
+    transform:scale(0.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
-@keyframes showLeftTop{
-  from{opacity:0; transform:translate(-60px,60px);}
-  to{opacity:1; transform:translate(0,0);}
+/* EFEITO SAINDO DA PRINCIPAL */
+@keyframes popLeftTop{
+  from{
+    opacity:0;
+    transform:translate(80px,80px) scale(0.5);
+    filter:blur(6px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+    filter:blur(0);
+  }
 }
 
-@keyframes showRightTop{
-  from{opacity:0; transform:translate(60px,60px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes popRightTop{
+  from{
+    opacity:0;
+    transform:translate(-80px,80px) scale(0.5);
+    filter:blur(6px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+    filter:blur(0);
+  }
 }
 
-@keyframes showLeftBottom{
-  from{opacity:0; transform:translate(-60px,-60px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes popLeftBottom{
+  from{
+    opacity:0;
+    transform:translate(80px,-80px) scale(0.5);
+    filter:blur(6px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+    filter:blur(0);
+  }
 }
 
-@keyframes showRightBottom{
-  from{opacity:0; transform:translate(60px,-60px);}
-  to{opacity:1; transform:translate(0,0);}
+@keyframes popRightBottom{
+  from{
+    opacity:0;
+    transform:translate(-80px,-80px) scale(0.5);
+    filter:blur(6px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+    filter:blur(0);
+  }
 }
 
 /* TEXTO */
@@ -183,10 +222,10 @@
     height:130px;
   }
 
-  .left-top{ left:-70px; }
-  .right-top{ right:-70px; }
-  .left-bottom{ left:-80px; }
-  .right-bottom{ right:-80px; }
+  .left-top{ left:-50px; }
+  .right-top{ right:-50px; }
+  .left-bottom{ left:-60px; }
+  .right-bottom{ right:-60px; }
 
 }
 
