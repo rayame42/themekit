@@ -1,0 +1,45 @@
+<section class="contact-page">
+
+  <h1>Fale Conosco</h1>
+
+  <form method="post" action="/contact#contact_form" accept-charset="UTF-8">
+
+    <input type="hidden" name="form_type" value="contact">
+
+    <input type="text" name="contact[name]" placeholder="Seu nome" required>
+    <input type="email" name="contact[email]" placeholder="Seu e-mail" required>
+    <textarea name="contact[body]" placeholder="Sua mensagem"></textarea>
+
+    <button type="submit">Enviar</button>
+
+  </form>
+
+</section>
+
+<style>
+.contact-page{
+  max-width:600px;
+  margin:80px auto;
+  text-align:center;
+}
+
+.contact-page h1{
+  font-size:32px;
+  margin-bottom:30px;
+}
+
+.contact-page input,
+.contact-page textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+}
+
+.contact-page button{
+  background:#8B1E3F;
+  color:#fff;
+  padding:12px 20px;
+  border:none;
+}
+</style>
