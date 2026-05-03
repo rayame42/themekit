@@ -279,22 +279,22 @@
 
 {% schema %}
 {
-  "name": "Home Zara",
+  "name": "Home Jade",
   "settings": [
-    { "type": "text", "id": "topbar", "label": "Texto topo" },
-    { "type": "image_picker", "id": "hero", "label": "Hero" },
-    { "type": "text", "id": "title", "label": "Título" },
-    { "type": "text", "id": "button", "label": "Botão" },
-    { "type": "url", "id": "link", "label": "Link" },
-    { "type": "collection", "id": "collection", "label": "Coleção" },
+    { "type": "text", "id": "topbar", "label": "Texto topo", "default": "Frete grátis • 6x sem juros • 15% OFF" },
+    { "type": "image_picker", "id": "hero", "label": "Imagem Hero" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Seu momento. Sua essência." },
+    { "type": "text", "id": "button", "label": "Botão", "default": "Explorar coleção" },
+    { "type": "url", "id": "link", "label": "Link botão" },
 
     { "type": "image_picker", "id": "main_image", "label": "Imagem principal motion" },
     { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
     { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
     { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
     { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
-    { "type": "text", "id": "motion_title", "label": "Título motion" },
-    { "type": "text", "id": "motion_subtitle", "label": "Subtítulo motion" }
+
+    { "type": "text", "id": "motion_title", "label": "Título motion", "default": "BEST SELLERS | TOP 05" },
+    { "type": "text", "id": "motion_subtitle", "label": "Subtítulo", "default": "Essas são as peças que deixaram marca." }
   ],
   "blocks": [
     {
@@ -309,7 +309,9 @@
   ],
   "max_blocks": 8,
   "presets": [
-    { "name": "Home Zara" }
+    {
+      "name": "Home Jade"
+    }
   ]
 }
 {% endschema %}
