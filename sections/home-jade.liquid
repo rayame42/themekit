@@ -1,295 +1,170 @@
-<section class="home-luxo">
+<!-- BEST SELLERS PREMIUM -->
+<section class="best-luxo">
 
-<!-- BARRA TOPO -->
-<div class="topbar">
-  Frete grátis + 6x sem juros • 15% OFF em toda loja
-</div>
+  <div class="best-left">
+    <h2>BEST SELLERS</h2>
+    <p>
+      Essas são as peças que deixaram marca.<br>
+      Na pele, na memória e na atitude.
+    </p>
 
-<!-- HERO -->
-<div class="hero">
-  <img src="{{ section.settings.hero }}" alt="">
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <h1>{{ section.settings.title }}</h1>
-    <p>{{ section.settings.subtitle }}</p>
-    <a href="{{ section.settings.link }}" class="btn-primary">
-      {{ section.settings.button }}
+    <a href="/collections/all" class="btn-outline">
+      Explorar coleção
     </a>
   </div>
-</div>
 
-<!-- CATEGORIAS -->
-<div class="categorias">
-  {% for block in section.blocks %}
-    {% if block.type == 'categoria' %}
-      <a href="{{ block.settings.link }}" class="cat">
-        <img src="{{ block.settings.img }}">
-        <span>{{ block.settings.nome }}</span>
+  <div class="best-right">
+    {% for product in collections['all'].products limit:3 %}
+      <a href="{{ product.url }}" class="best-card">
+        <img src="{{ product.featured_image | image_url: width: 800 }}">
+        <div class="best-overlay">
+          <span>{{ product.title }}</span>
+          <small>{{ product.price | money }}</small>
+        </div>
       </a>
-    {% endif %}
-  {% endfor %}
-</div>
-
-<!-- BEST SELLERS -->
-<div class="best">
-  <div class="best-text">
-    <h2>BEST SELLERS | TOP 05</h2>
-    <p>Essas são as peças que deixaram marca. Nas fotos, na memória e na cama.</p>
-  </div>
-
-  <div class="best-images">
-    {% for product in collections['all'].products limit:5 %}
-      <img src="{{ product.featured_image | image_url: width: 500 }}">
     {% endfor %}
   </div>
-</div>
 
-<!-- PRODUTOS -->
-<div class="produtos">
+</section>
+
+<!-- PRODUTOS PREMIUM -->
+<section class="prod-luxo">
+
   <h2>Mais desejados</h2>
 
-  <div class="grid">
+  <div class="prod-grid">
     {% for product in collections['all'].products limit:4 %}
-      <a href="{{ product.url }}" class="card">
+      <a href="{{ product.url }}" class="prod-card">
 
-        <div class="img">
-          <img src="{{ product.featured_image | image_url: width: 500 }}">
-          {% if product.compare_at_price > product.price %}
-            <span class="badge">Promoção</span>
-          {% endif %}
+        <div class="prod-img">
+          <img src="{{ product.featured_image | image_url: width: 600 }}">
         </div>
 
-        <h3>{{ product.title }}</h3>
+        <div class="prod-info">
+          <h3>{{ product.title }}</h3>
 
-        <div class="price">
-          {% if product.compare_at_price > product.price %}
-            <span class="old">{{ product.compare_at_price | money }}</span>
-          {% endif %}
-          <span class="new">{{ product.price | money }}</span>
+          <div class="price">
+            {% if product.compare_at_price > product.price %}
+              <span class="old">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="new">{{ product.price | money }}</span>
+          </div>
+
         </div>
 
       </a>
     {% endfor %}
   </div>
-</div>
-
-<!-- PROVA SOCIAL -->
-<div class="reviews">
-  <h2>O que dizem sobre nós</h2>
-
-  <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
-</div>
-
-<!-- NEWSLETTER -->
-<div class="newsletter">
-  <h2>Faça parte da nossa lista</h2>
-  <p>Receba ofertas exclusivas</p>
-
-  <form method="post" action="/contact#contact_form">
-    <input type="email" name="contact[email]" placeholder="Seu e-mail">
-    <button type="submit">Inscrever-se</button>
-  </form>
-</div>
-
-<!-- ATENDIMENTO -->
-<div class="faq">
-  <h3>Atendimento ao Cliente</h3>
-
-  <div>Envio e Frete</div>
-  <div>Políticas de Reembolso</div>
-  <div>Fale Conosco</div>
-  <div>Sobre Nós</div>
-</div>
 
 </section>
 
 <style>
 
-.topbar{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:10px;
-  font-size:12px;
-  letter-spacing:1px;
+/* BEST SELLERS */
+.best-luxo{
+  display:grid;
+  grid-template-columns: 1fr 2fr;
+  gap:60px;
+  padding:120px 8%;
+  align-items:center;
 }
 
-.hero{
-  position:relative;
-  height:85vh;
-}
-
-.hero img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-}
-
-.hero-content{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  color:#fff;
-  max-width:600px;
-}
-
-.hero h1{
-  font-size:48px;
+.best-left h2{
+  font-size:36px;
   font-weight:300;
+  margin-bottom:20px;
 }
 
-.hero p{
-  margin:20px 0;
+.best-left p{
+  color:#666;
+  line-height:1.6;
+  margin-bottom:25px;
 }
 
-.btn-primary{
-  background:#8B1E3F;
-  padding:14px 28px;
-  color:#fff;
+.btn-outline{
+  border:1px solid #000;
+  padding:12px 24px;
   text-decoration:none;
+  color:#000;
 }
 
-/* CATEGORIAS */
-.categorias{
+.best-right{
   display:grid;
   grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-.cat{
+.best-card{
   position:relative;
+  overflow:hidden;
 }
 
-.cat img{
+.best-card img{
   width:100%;
-  height:400px;
+  height:500px;
   object-fit:cover;
+  transition:0.4s;
 }
 
-.cat span{
+.best-card:hover img{
+  transform:scale(1.05);
+}
+
+.best-overlay{
   position:absolute;
   bottom:20px;
   left:20px;
   color:#fff;
-  font-size:20px;
-}
-
-/* BEST */
-.best{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding:80px;
-  background:#2b0000;
-  color:#fff;
-}
-
-.best-images{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
 }
 
 /* PRODUTOS */
-.produtos{
-  padding:80px 20px;
-  text-align:center;
+.prod-luxo{
+  padding:100px 8%;
 }
 
-.grid{
+.prod-luxo h2{
+  text-align:center;
+  font-weight:300;
+  margin-bottom:60px;
+}
+
+.prod-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:30px;
+  gap:40px;
 }
 
-.card img{
+.prod-card img{
   width:100%;
+  transition:0.3s;
 }
 
-.badge{
-  position:absolute;
-  top:10px;
-  left:10px;
-  background:#fff;
-  padding:5px;
-  font-size:12px;
+.prod-card:hover img{
+  opacity:0.85;
+}
+
+.prod-info{
+  margin-top:10px;
+}
+
+.prod-info h3{
+  font-size:14px;
+  font-weight:400;
 }
 
 .price{
-  margin-top:10px;
+  margin-top:5px;
 }
 
 .old{
   text-decoration:line-through;
   color:#999;
+  margin-right:8px;
 }
 
 .new{
   color:#8B1E3F;
-}
-
-/* REVIEW */
-.reviews{
-  padding:80px;
-  text-align:center;
-}
-
-/* NEWS */
-.newsletter{
-  padding:80px;
-  text-align:center;
-}
-
-.newsletter input{
-  padding:12px;
-  width:250px;
-}
-
-.newsletter button{
-  padding:12px;
-  background:#8B1E3F;
-  color:#fff;
-}
-
-/* FAQ */
-.faq{
-  padding:60px;
-  background:#2b0000;
-  color:#fff;
+  font-weight:500;
 }
 
 </style>
-
-{% schema %}
-{
-  "name": "Home Luxo",
-  "settings": [
-    { "type": "image_picker", "id": "hero", "label": "Imagem Hero" },
-    { "type": "text", "id": "title", "label": "Título" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo" },
-    { "type": "text", "id": "button", "label": "Texto botão" },
-    { "type": "url", "id": "link", "label": "Link botão" }
-  ],
-  "blocks": [
-    {
-      "type": "categoria",
-      "name": "Categoria",
-      "settings": [
-        { "type": "image_picker", "id": "img", "label": "Imagem" },
-        { "type": "text", "id": "nome", "label": "Nome" },
-        { "type": "url", "id": "link", "label": "Link" }
-      ]
-    }
-  ],
-  "presets": [
-    { "name": "Home Luxo" }
-  ]
-}
-{% endschema %}
