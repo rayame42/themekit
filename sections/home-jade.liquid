@@ -1,74 +1,88 @@
-<section class="home-zara">
+<section class="home-ultra">
 
-<!-- TOPBAR -->
+<!-- TOP STRIP (luxo discreto) -->
 <div class="topbar">
-Frete grátis • 6x sem juros • 15% OFF em toda loja
+Frete grátis • 6x sem juros • 15% OFF
 </div>
 
-<!-- HERO MINIMAL -->
+<!-- HERO EDITORIAL -->
 <div class="hero">
   <div class="overlay"></div>
+
   <div class="hero-text">
-    <h1>NOVA COLEÇÃO</h1>
-    <a href="/collections/all">COMPRAR</a>
+    <span class="tag">NOVA COLEÇÃO</span>
+    <h1>Elegância que se sente.</h1>
+    <a href="/collections/all">Explorar</a>
   </div>
 </div>
 
-<!-- CATEGORIAS (ESTILO ZARA) -->
+<!-- CATEGORIAS CLEAN -->
 <div class="categories">
   <a href="/collections/conjuntos">
     <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
-    <span>CONJUNTOS</span>
+    <span>Conjuntos</span>
   </a>
 
   <a href="/collections/body">
     <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
-    <span>BODY</span>
+    <span>Body</span>
   </a>
 
   <a href="/collections/camisolas">
     <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
-    <span>CAMISOLAS</span>
+    <span>Camisolas</span>
   </a>
 </div>
 
-<!-- PRODUTOS -->
+<!-- VITRINE PREMIUM -->
 <div class="products">
 
-  {% for product in collections.all.products limit: 8 %}
-  <div class="card">
+{% for product in collections.all.products limit: 8 %}
+<div class="card">
 
-    <a href="{{ product.url }}" class="image-wrapper">
+  <div class="img-box">
 
+    <a href="{{ product.url }}">
       <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
-
       {% if product.images.size > 1 %}
       <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
       {% endif %}
-
     </a>
 
-    <p class="title">{{ product.title }}</p>
-
-    <div class="price">
-      {% if product.compare_at_price > product.price %}
-        <span class="old">{{ product.compare_at_price | money }}</span>
-      {% endif %}
-      <span class="new">{{ product.price | money }}</span>
-    </div>
+    <!-- QUICK ADD -->
+    <form method="post" action="/cart/add" class="quick">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button>Adicionar</button>
+    </form>
 
   </div>
-  {% endfor %}
 
+  <p class="title">{{ product.title }}</p>
+
+  <div class="price">
+    {% if product.compare_at_price > product.price %}
+      <span class="old">{{ product.compare_at_price | money }}</span>
+    {% endif %}
+    <span class="new">{{ product.price | money }}</span>
+  </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+<!-- PROVA SOCIAL ELEGANTE -->
+<div class="social-proof">
+  Mais de 2.000 clientes apaixonadas ✦ Avaliações 5 estrelas ✦ Qualidade premium
 </div>
 
 </section>
 
 <style>
 
-/* RESET LUXO */
-.home-zara{
-  font-family: Helvetica, Arial, sans-serif;
+/* BASE */
+.home-ultra{
+  font-family: Helvetica, Arial;
   color:#111;
 }
 
@@ -97,20 +111,23 @@ Frete grátis • 6x sem juros • 15% OFF em toda loja
 
 .hero-text{
   position:absolute;
-  bottom:60px;
-  left:60px;
+  bottom:80px;
+  left:80px;
   color:#fff;
 }
 
-.hero-text h1{
-  font-size:46px;
-  font-weight:300;
+.tag{
+  font-size:12px;
   letter-spacing:2px;
 }
 
+.hero-text h1{
+  font-size:48px;
+  font-weight:300;
+  margin:10px 0;
+}
+
 .hero-text a{
-  display:inline-block;
-  margin-top:10px;
   border-bottom:1px solid #fff;
   font-size:13px;
 }
@@ -131,7 +148,7 @@ Frete grátis • 6x sem juros • 15% OFF em toda loja
   display:block;
   text-align:center;
   font-size:12px;
-  margin-top:5px;
+  margin-top:6px;
   letter-spacing:1px;
 }
 
@@ -139,8 +156,8 @@ Frete grátis • 6x sem juros • 15% OFF em toda loja
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px;
-  padding:40px;
+  gap:25px;
+  padding:60px;
 }
 
 /* CARD */
@@ -148,29 +165,51 @@ Frete grátis • 6x sem juros • 15% OFF em toda loja
   text-align:left;
 }
 
-.image-wrapper{
+.img-box{
   position:relative;
-  display:block;
 }
 
+/* IMAGENS */
 .img1, .img2{
   width:100%;
   transition:0.5s;
 }
 
-/* HOVER ZARA */
 .img2{
   position:absolute;
   inset:0;
   opacity:0;
 }
 
-.image-wrapper:hover .img2{
+.img-box:hover .img2{
   opacity:1;
 }
 
-.image-wrapper:hover .img1{
+.img-box:hover .img1{
   opacity:0;
+}
+
+/* QUICK ADD */
+.quick{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  right:10px;
+  opacity:0;
+  transition:0.3s;
+}
+
+.quick button{
+  width:100%;
+  background:#fff;
+  border:none;
+  padding:10px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.img-box:hover .quick{
+  opacity:1;
 }
 
 /* TEXTO */
@@ -193,10 +232,20 @@ Frete grátis • 6x sem juros • 15% OFF em toda loja
   color:#8B1E3F;
 }
 
+/* PROVA SOCIAL */
+.social-proof{
+  text-align:center;
+  font-size:12px;
+  padding:40px;
+  letter-spacing:1px;
+  color:#666;
+}
+
 /* MOBILE */
 @media(max-width:768px){
   .products{
     grid-template-columns:repeat(2,1fr);
+    padding:20px;
   }
 
   .categories{
