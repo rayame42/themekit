@@ -139,31 +139,54 @@ summary{
 }
 
 
-/* ===== MOBILE CATEGORIAS FORÇADO ===== */
+*/* ===== SLIDER MOBILE COM SETAS ===== */
 @media(max-width:768px){
+
+  .categories-wrapper{
+    position:relative;
+  }
 
   .categories{
     display:flex !important;
     flex-wrap:nowrap !important;
     overflow-x:auto !important;
+    scroll-behavior:smooth;
     gap:12px;
     padding:20px;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
   }
 
   .categories a{
-    min-width:50% !important; /* 🔥 2 por tela */
+    min-width:50% !important;
     flex:0 0 50% !important;
-    scroll-snap-align:start;
-  }
-
-  .categories img{
-    height:200px;
   }
 
   .categories::-webkit-scrollbar{
     display:none;
+  }
+
+  /* SETAS */
+  .arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:36px;
+    height:36px;
+    background:#2b0000;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:5;
+  }
+
+  .arrow.left{
+    left:5px;
+  }
+
+  .arrow.right{
+    right:5px;
   }
 
 }
