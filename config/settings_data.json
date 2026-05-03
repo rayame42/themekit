@@ -53,12 +53,13 @@
           "categoria_zr43E3"
         ],
         "custom_css": [
-          "/* ===== EMAIL ===== */h2 {font-size: 36px !important; font-weight: 300 !important; letter-spacing: 1px !important;}",
-          "input {border-radius: 40px !important; padding: 16px 20px !important;}",
-          "button {border-radius: 40px !important; background: #2b0000 !important; color: #fff !important;}",
-          " /* ===== FOOTER ===== */[class*=\"footer\"] {background: #2b0000 !important; color: #fff !important;}",
-          "[class*=\"footer\"] a {color: #ddd !important;}",
-          "[class*=\"footer\"] a:hover {color: #fff !important;}"
+          "h2{font-size:28px!important;font-weight:300!important}",
+          "input{border-radius:40px!important;padding:14px!important}",
+          "button{border-radius:40px!important;background:#2b0000!important;color:#fff!important;width:100%}",
+          "[class*=\"footer\"]{background:#2b0000!important;color:#fff!important;padding:40px 20px!important}",
+          "[class*=\"footer\"] a{color:#ccc!important}",
+          "[class*=\"footer\"] a:hover{color:#fff!important}",
+          "@media(min-width:768px){button{width:auto}[class*=\"footer\"]{padding:60px 40px!important}}"
         ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
