@@ -32,3 +32,25 @@
   </a>
 </div>
 
+<!-- PRODUTOS -->
+<div class="products">
+
+    {% for product in collections.all.products limit: 8 %}
+  <div class="card">
+        <a href="{{ product.url }}" class="image-wrapper">
+
+               <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+                 {% if product.images.size > 1 %}
+      <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+      {% endif %}
+       </a>
+        <p class="title">{{ product.title }}</p>
+          <div class="price">
+      {% if product.compare_at_price > product.price %}
+        <span class="old">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="new">{{ product.price | money }}</span>
+    </div>
+
+  </div>
+  {% endfor %}
