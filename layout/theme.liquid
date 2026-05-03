@@ -7,34 +7,118 @@
 
 <style>
 
-/* ===== FORÇAR NEWSLETTER ===== */
+/* ===== RESET SUAVE ===== */
+body{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ===== NEWSLETTER PREMIUM ===== */
+.newsletter, [class*="newsletter"]{
+  background:#fff;
+  padding:80px 20px;
+  text-align:center;
+}
+
+.newsletter h2, h2{
+  font-size:36px !important;
+  font-weight:300 !important;
+  letter-spacing:1px !important;
+  margin-bottom:10px;
+}
+
+.newsletter p{
+  color:#666;
+  font-size:14px;
+  margin-bottom:30px;
+}
+
+.newsletter form{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
 input[type="email"]{
   border-radius:40px !important;
-  padding:16px 20px !important;
-  border:1px solid #ccc !important;
+  padding:16px 22px !important;
+  border:1px solid #ddd !important;
+  min-width:260px;
+  transition:0.3s;
+}
+
+input[type="email"]:focus{
+  border-color:#2b0000;
+  outline:none;
 }
 
 button{
   border-radius:40px !important;
-  padding:14px 25px !important;
+  padding:14px 28px !important;
   background:#2b0000 !important;
   color:#fff !important;
   border:none !important;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-/* ===== FORÇAR FOOTER ===== */
+button:hover{
+  background:#4a0000 !important;
+  transform:translateY(-2px);
+}
+
+
+/* ===== FOOTER PREMIUM ===== */
 footer, [class*="footer"]{
   background:#2b0000 !important;
   color:#fff !important;
+  padding:70px 40px;
 }
 
+/* GRID AUTOMÁTICO */
+footer .container,
+[class*="footer"] .container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:60px;
+}
+
+/* TITULOS */
+footer h3, footer h4{
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+
+/* LINKS */
 footer a, [class*="footer"] a{
-  color:#ddd !important;
+  color:#ccc !important;
+  text-decoration:none;
+  font-size:13px;
+  display:block;
+  margin-bottom:10px;
+  transition:0.3s;
 }
 
 footer a:hover{
   color:#fff !important;
-  transform:translateX(3px);
+  transform:translateX(4px);
+}
+
+/* TEXTOS */
+footer p{
+  font-size:13px;
+  color:#ddd;
+  line-height:1.6;
+}
+
+footer strong{
+  color:#fff;
 }
 
 /* ===== ATENDIMENTO ===== */
@@ -42,56 +126,43 @@ summary{
   background:#2b0000 !important;
   color:#fff !important;
   padding:18px !important;
+  border-radius:8px;
+}
+
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+
+  .newsletter{
+    padding:60px 20px;
+  }
+
+  h2{
+    font-size:26px !important;
+  }
+
+  input[type="email"]{
+    width:100%;
+  }
+
+  button{
+    width:100%;
+  }
+
+  footer, [class*="footer"]{
+    padding:50px 20px;
+  }
+
+  footer .container,
+  [class*="footer"] .container{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
 }
 
 </style>
-  <style>
 
-/* ===== NEWSLETTER PREMIUM ===== */
-
-.newsletter{
-  background:#f5f5f5;
-  padding:80px 20px;
-}
-
-.newsletter h2{
-  font-size:36px;
-  font-weight:300;
-  letter-spacing:1px;
-}
-
-.newsletter input{
-  border-radius:40px;
-  padding:16px 20px;
-  border:1px solid #ccc;
-}
-
-.newsletter button{
-  border-radius:40px;
-  background:#2b0000;
-  color:#fff;
-  padding:14px 25px;
-}
-
-
-/* ===== FOOTER PREMIUM ===== */
-
-footer{
-  background:#2b0000;
-  color:#fff;
-}
-
-footer a{
-  color:#ddd;
-  transition:0.3s;
-}
-
-footer a:hover{
-  color:#fff;
-  transform:translateX(3px);
-}
-
-</style>
 </head>
 
 <body>
