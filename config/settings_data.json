@@ -89,7 +89,7 @@
             "type": "item",
             "settings": {
               "title": "Envio e Frete",
-              "link": "shopify://policies/shipping-policy"
+              "link": "shopify://pages/frete"
             }
           },
           "item_XHgNNe": {
@@ -103,7 +103,7 @@
             "type": "item",
             "settings": {
               "title": "Política de reembolso",
-              "link": "shopify://policies/refund-policy"
+              "link": "shopify://pages/politica-de-troca-reembolso-cancelamento"
             }
           },
           "item_R8Gbgf": {
@@ -116,8 +116,8 @@
           "item_3zdePj": {
             "type": "item",
             "settings": {
-              "title": "Contact Information",
-              "link": "shopify://policies/contact-information"
+              "title": "Sobre nós",
+              "link": "shopify://pages/sobre-nos"
             }
           }
         },
