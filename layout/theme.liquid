@@ -1,12 +1,16 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{ shop.name }}</title>
-    {{ content_for_header }}
-  </head>
-  <body>
-    {{ content_for_layout }}
-  </body>
-  {% section 'header' %}
+<head>
+  <meta charset="utf-8">
+  <title>{{ shop.name }}</title>
+  {{ content_for_header }}
+</head>
+
+<body>
+
+{% section 'header' %}
+
+{{ content_for_layout }}
+
+</body>
 </html>
