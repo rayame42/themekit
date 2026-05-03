@@ -1,311 +1,216 @@
-<section class="jade-home">
+<section class="home-zara">
 
-<!-- HERO -->
-<div class="jh-hero">
-  <div class="jh-hero-overlay"></div>
-  <div class="jh-hero-content">
-    <p class="jh-eyebrow">Nova Coleção · 2025</p>
-    <h1>Para quem<br>não teme <em>sentir</em></h1>
-    <p class="jh-sub">Lingerie criada para despertar o que há de mais íntimo em você.</p>
-    <div class="jh-ctas">
-      <a href="/collections/all" class="jh-btn-primary">Explorar Coleção</a>
-      <a href="/pages/sobre" class="jh-btn-ghost">Nossa história →</a>
-    </div>
+<!-- TOPBAR -->
+<div class="topbar">
+Frete grátis • 6x sem juros • 15% OFF em toda loja
+</div>
+
+<!-- HERO MINIMAL -->
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="hero-text">
+    <h1>NOVA COLEÇÃO</h1>
+    <a href="/collections/all">COMPRAR</a>
   </div>
 </div>
 
-<!-- CATEGORIAS -->
-<div class="jh-cats">
-  <div class="jh-section-head">
-    <h2>Explore <em>por desejo</em></h2>
-    <a href="/collections/all" class="jh-link">Ver tudo →</a>
-  </div>
-  <div class="jh-cats-grid">
-    <a href="/collections/conjuntos" class="jh-cat jh-cat-big">
-      <div class="jh-cat-overlay">
-        <span class="jh-cat-name">Conjuntos</span>
-        <span class="jh-cat-sub">A combinação perfeita</span>
-      </div>
-    </a>
-    <a href="/collections/corsets" class="jh-cat">
-      <div class="jh-cat-overlay">
-        <span class="jh-cat-name">Corsets</span>
-        <span class="jh-cat-sub">Poder e elegância</span>
-      </div>
-    </a>
-    <a href="/collections/bodies" class="jh-cat">
-      <div class="jh-cat-overlay">
-        <span class="jh-cat-name">Bodies</span>
-        <span class="jh-cat-sub">Segunda pele</span>
-      </div>
-    </a>
-    <a href="/collections/acessorios" class="jh-cat">
-      <div class="jh-cat-overlay">
-        <span class="jh-cat-name">Acessórios</span>
-        <span class="jh-cat-sub">Os detalhes que definem</span>
-      </div>
-    </a>
-    <a href="/collections/devota" class="jh-cat">
-      <div class="jh-cat-overlay">
-        <span class="jh-cat-name">Devota</span>
-        <span class="jh-cat-sub">Coleção exclusiva</span>
-      </div>
-    </a>
-  </div>
+<!-- CATEGORIAS (ESTILO ZARA) -->
+<div class="categories">
+  <a href="/collections/conjuntos">
+    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
+    <span>CONJUNTOS</span>
+  </a>
+
+  <a href="/collections/body">
+    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
+    <span>BODY</span>
+  </a>
+
+  <a href="/collections/camisolas">
+    <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
+    <span>CAMISOLAS</span>
+  </a>
 </div>
 
 <!-- PRODUTOS -->
-<div class="jh-products">
-  <div class="jh-section-head">
-    <h2>Recém <em>chegados</em></h2>
-    <a href="/collections/all" class="jh-link">Ver novidades →</a>
-  </div>
-  <div class="jh-prod-grid">
-    {% for product in collections.all.products limit: 8 %}
-      <div class="jh-card">
-        <a href="{{ product.url }}" class="jh-card-img-wrap">
-          <img class="jh-img1" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-          {% if product.images.size > 1 %}
-            <img class="jh-img2" src="{{ product.images[1] | image_url: width: 600 }}" alt="{{ product.title }}">
-          {% endif %}
-          {% if product.compare_at_price > product.price %}
-            <span class="jh-badge jh-badge-sale">
-              -{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
-            </span>
-          {% endif %}
-          <div class="jh-card-hover-btn">Ver produto →</div>
-        </a>
-        <div class="jh-card-info">
-          <p class="jh-card-name">{{ product.title }}</p>
-          <div class="jh-card-price">
-            {% if product.compare_at_price > product.price %}
-              <span class="jh-old">{{ product.compare_at_price | money }}</span>
-            {% endif %}
-            <span class="jh-new">{{ product.price | money }}</span>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-</div>
+<div class="products">
 
-<!-- MANIFESTO -->
-<div class="jh-manifesto">
-  <div class="jh-manifesto-line"></div>
-  <blockquote>"Lingerie não é sobre o que os outros veem.<br>É sobre como <strong>você se sente</strong> quando ninguém mais está olhando."</blockquote>
-  <p class="jh-manifesto-author">— Jade Intimates</p>
-  <div class="jh-manifesto-line"></div>
-</div>
+  {% for product in collections.all.products limit: 8 %}
+  <div class="card">
 
-<!-- DEPOIMENTOS -->
-<div class="jh-reviews">
-  <div class="jh-section-head jh-section-head-center">
-    <h2>O que <em>dizem</em> sobre nós</h2>
-  </div>
-  <div class="jh-reviews-grid">
-    <div class="jh-review">
-      <div class="jh-stars">★★★★★</div>
-      <p>"A qualidade é impecável. Chegou embalado como um presente. Me senti uma rainha."</p>
-      <div class="jh-review-author">
-        <div class="jh-avatar">AM</div>
-        <div>
-          <strong>Ana M.</strong>
-          <span>Conjunto Litania</span>
-        </div>
-      </div>
-    </div>
-    <div class="jh-review">
-      <div class="jh-stars">★★★★★</div>
-      <p>"Nunca me senti tão confiante. A Jade entendeu que lingerie é autoestima."</p>
-      <div class="jh-review-author">
-        <div class="jh-avatar">CL</div>
-        <div>
-          <strong>Carla L.</strong>
-          <span>Corset Obsidiana</span>
-        </div>
-      </div>
-    </div>
-    <div class="jh-review">
-      <div class="jh-stars">★★★★★</div>
-      <p>"Embalagem discreta, entrega rápida e o tecido é incrível. Terceiro pedido!"</p>
-      <div class="jh-review-author">
-        <div class="jh-avatar">RB</div>
-        <div>
-          <strong>Renata B.</strong>
-          <span>Body Yara</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <a href="{{ product.url }}" class="image-wrapper">
 
-<!-- NEWSLETTER -->
-<div class="jh-newsletter">
-  <h2>Entre no universo Jade</h2>
-  <p>Acesso antecipado a lançamentos e ofertas exclusivas.</p>
-  {% form 'customer' %}
-    <input type="hidden" name="contact[tags]" value="newsletter">
-    <div class="jh-nl-form">
-      <input type="email" name="contact[email]" placeholder="seu@email.com" required>
-      <button type="submit">Entrar</button>
+      <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+
+      {% if product.images.size > 1 %}
+      <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+      {% endif %}
+
+    </a>
+
+    <p class="title">{{ product.title }}</p>
+
+    <div class="price">
+      {% if product.compare_at_price > product.price %}
+        <span class="old">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="new">{{ product.price | money }}</span>
     </div>
-    {% if form.posted_successfully? %}
-      <p class="jh-nl-ok">✓ Bem-vinda ao universo Jade!</p>
-    {% endif %}
-  {% endform %}
+
+  </div>
+  {% endfor %}
+
 </div>
 
 </section>
 
 <style>
-/* ── VARIÁVEIS ── */
-.jade-home {
-  --noir: #141210;
-  --deep: #1c1815;
-  --card: #242018;
-  --gold: #c9a96e;
-  --gold2: #e0c48a;
-  --rose: #8b3a52;
-  --cream: #f0e6d8;
-  --muted: #9a8d7e;
-  --border: rgba(201,169,110,0.18);
-  font-family: 'Jost', 'Helvetica Neue', sans-serif;
-  background: var(--deep);
-  color: var(--cream);
+
+/* RESET LUXO */
+.home-zara{
+  font-family: Helvetica, Arial, sans-serif;
+  color:#111;
 }
 
-/* ── HERO ── */
-.jh-hero {
-  position: relative;
-  height: 92vh;
-  min-height: 580px;
-  background: url('https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=1600') center/cover no-repeat;
-  display: flex;
-  align-items: center;
+/* TOPBAR */
+.topbar{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  font-size:11px;
+  padding:8px;
+  letter-spacing:2px;
 }
-.jh-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(20,18,16,0.88) 0%, rgba(20,18,16,0.3) 70%);
-}
-.jh-hero-content {
-  position: relative; z-index: 1;
-  padding: 0 7vw;
-  max-width: 560px;
-}
-.jh-eyebrow {
-  font-size: 0.62rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.jh-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 32px; height: 1px;
-  background: var(--gold);
-}
-.jh-hero-content h1 {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  font-weight: 300;
-  line-height: 1.05;
-  color: var(--cream);
-  margin-bottom: 1.3rem;
-}
-.jh-hero-content h1 em {
-  font-style: italic;
-  color: var(--gold2);
-}
-.jh-sub {
-  font-size: 0.88rem;
-  line-height: 1.9;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  max-width: 340px;
-}
-.jh-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-.jh-btn-primary {
-  padding: 0.9rem 2.2rem;
-  background: var(--gold);
-  color: var(--noir);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.3s;
-  display: inline-block;
-}
-.jh-btn-primary:hover { background: var(--gold2); }
-.jh-btn-ghost {
-  padding: 0.9rem 1.8rem;
-  border: 1px solid rgba(201,169,110,0.35);
-  color: var(--muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s;
-  display: inline-block;
-}
-.jh-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-/* ── SEÇÕES ── */
-.jh-cats, .jh-products, .jh-reviews {
-  padding: 6rem 7vw;
+/* HERO */
+.hero{
+  height:90vh;
+  background:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
+  position:relative;
 }
-.jh-cats { background: var(--noir); }
-.jh-products { background: var(--deep); }
-.jh-reviews { background: var(--noir); }
 
-.jh-section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3rem;
-  flex-wrap: wrap; gap: 1rem;
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.25);
 }
-.jh-section-head-center { justify-content: center; text-align: center; }
-.jh-section-head h2 {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 300;
-  color: var(--cream);
-}
-.jh-section-head h2 em { font-style: italic; color: var(--gold2); }
-.jh-link {
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.jh-link:hover { color: var(--gold); }
 
-/* ── CATEGORIAS ── */
-.jh-cats-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 360px 260px;
-  gap: 4px;
+.hero-text{
+  position:absolute;
+  bottom:60px;
+  left:60px;
+  color:#fff;
 }
-.jh-cat {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  background: var(--card);
-  text-decoration: none;
+
+.hero-text h1{
+  font-size:46px;
+  font-weight:300;
+  letter-spacing:2px;
 }
-.jh-cat-big { grid-row: 1 / 3; }
-.jh-cat-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,18,16,0.85) 0%, transparent 55%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 1.6rem;
-  transition: background 0.4s;
+
+.hero-text a{
+  display:inline-block;
+  margin-top:10px;
+  border-bottom:1px solid #fff;
+  font-size:13px;
 }
-.jh-cat:hover .jh-cat-overlay {
-  bac
+
+/* CATEGORIAS */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:10px;
+}
+
+.categories img{
+  width:100%;
+}
+
+.categories span{
+  display:block;
+  text-align:center;
+  font-size:12px;
+  margin-top:5px;
+  letter-spacing:1px;
+}
+
+/* PRODUTOS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  padding:40px;
+}
+
+/* CARD */
+.card{
+  text-align:left;
+}
+
+.image-wrapper{
+  position:relative;
+  display:block;
+}
+
+.img1, .img2{
+  width:100%;
+  transition:0.5s;
+}
+
+/* HOVER ZARA */
+.img2{
+  position:absolute;
+  inset:0;
+  opacity:0;
+}
+
+.image-wrapper:hover .img2{
+  opacity:1;
+}
+
+.image-wrapper:hover .img1{
+  opacity:0;
+}
+
+/* TEXTO */
+.title{
+  font-size:12px;
+  margin-top:10px;
+}
+
+.price{
+  font-size:13px;
+}
+
+.old{
+  text-decoration:line-through;
+  color:#aaa;
+  margin-right:5px;
+}
+
+.new{
+  color:#8B1E3F;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .categories{
+    grid-template-columns:1fr;
+  }
+
+  .hero-text{
+    left:20px;
+    bottom:20px;
+  }
+
+  .hero-text h1{
+    font-size:28px;
+  }
+}
+
+</style>
