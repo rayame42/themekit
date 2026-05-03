@@ -1,61 +1,50 @@
 <section class="home-ultra">
 
-<!-- TOP STRIP (luxo discreto) -->
+<!-- TOPBAR -->
 <div class="topbar">
-Frete grátis • 6x sem juros • 15% OFF
+{{ section.settings.top_text }}
 </div>
 
-<!-- HERO EDITORIAL -->
-<div class="hero">
+<!-- HERO -->
+<div class="hero" style="background-image: url({{ section.settings.hero_image | image_url }});">
   <div class="overlay"></div>
 
   <div class="hero-text">
-    <span class="tag">NOVA COLEÇÃO</span>
-    <h1>Elegância que se sente.</h1>
-    <a href="/collections/all">Explorar</a>
+    <span class="tag">{{ section.settings.hero_tag }}</span>
+    <h1>{{ section.settings.hero_title }}</h1>
+    <a href="{{ section.settings.hero_link }}">{{ section.settings.hero_button }}</a>
   </div>
 </div>
 
-<!-- CATEGORIAS CLEAN -->
+<!-- CATEGORIAS -->
 <div class="categories">
-  <a href="/collections/conjuntos">
-    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
-    <span>Conjuntos</span>
+
+  <a href="{{ section.settings.cat1_link }}">
+    <img src="{{ section.settings.cat1_img | image_url }}">
+    <span>{{ section.settings.cat1_text }}</span>
   </a>
 
-  <a href="/collections/body">
-    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
-    <span>Body</span>
+  <a href="{{ section.settings.cat2_link }}">
+    <img src="{{ section.settings.cat2_img | image_url }}">
+    <span>{{ section.settings.cat2_text }}</span>
   </a>
 
-  <a href="/collections/camisolas">
-    <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
-    <span>Camisolas</span>
+  <a href="{{ section.settings.cat3_link }}">
+    <img src="{{ section.settings.cat3_img | image_url }}">
+    <span>{{ section.settings.cat3_text }}</span>
   </a>
+
 </div>
 
-<!-- VITRINE PREMIUM -->
+<!-- PRODUTOS -->
 <div class="products">
 
 {% for product in collections.all.products limit: 8 %}
 <div class="card">
 
-  <div class="img-box">
-
-    <a href="{{ product.url }}">
-      <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
-      {% if product.images.size > 1 %}
-      <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
-      {% endif %}
-    </a>
-
-    <!-- QUICK ADD -->
-    <form method="post" action="/cart/add" class="quick">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <button>Adicionar</button>
-    </form>
-
-  </div>
+  <a href="{{ product.url }}">
+    <img src="{{ product.featured_image | image_url: width: 600 }}">
+  </a>
 
   <p class="title">{{ product.title }}</p>
 
@@ -71,195 +60,51 @@ Frete grátis • 6x sem juros • 15% OFF
 
 </div>
 
-<!-- PROVA SOCIAL ELEGANTE -->
-<div class="social-proof">
-  Mais de 2.000 clientes apaixonadas ✦ Avaliações 5 estrelas ✦ Qualidade premium
-</div>
-
 </section>
 
 <style>
-
-/* BASE */
-.home-ultra{
-  font-family: Helvetica, Arial;
-  color:#111;
-}
-
-/* TOPBAR */
-.topbar{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  font-size:11px;
-  padding:8px;
-  letter-spacing:2px;
-}
-
-/* HERO */
-.hero{
-  height:90vh;
-  background:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
-  position:relative;
-}
-
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.25);
-}
-
-.hero-text{
-  position:absolute;
-  bottom:80px;
-  left:80px;
-  color:#fff;
-}
-
-.tag{
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-.hero-text h1{
-  font-size:48px;
-  font-weight:300;
-  margin:10px 0;
-}
-
-.hero-text a{
-  border-bottom:1px solid #fff;
-  font-size:13px;
-}
-
-/* CATEGORIAS */
-.categories{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:10px;
-}
-
-.categories img{
-  width:100%;
-}
-
-.categories span{
-  display:block;
-  text-align:center;
-  font-size:12px;
-  margin-top:6px;
-  letter-spacing:1px;
-}
-
-/* PRODUTOS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:25px;
-  padding:60px;
-}
-
-/* CARD */
-.card{
-  text-align:left;
-}
-
-.img-box{
-  position:relative;
-}
-
-/* IMAGENS */
-.img1, .img2{
-  width:100%;
-  transition:0.5s;
-}
-
-.img2{
-  position:absolute;
-  inset:0;
-  opacity:0;
-}
-
-.img-box:hover .img2{
-  opacity:1;
-}
-
-.img-box:hover .img1{
-  opacity:0;
-}
-
-/* QUICK ADD */
-.quick{
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  right:10px;
-  opacity:0;
-  transition:0.3s;
-}
-
-.quick button{
-  width:100%;
-  background:#fff;
-  border:none;
-  padding:10px;
-  font-size:12px;
-  cursor:pointer;
-}
-
-.img-box:hover .quick{
-  opacity:1;
-}
-
-/* TEXTO */
-.title{
-  font-size:12px;
-  margin-top:10px;
-}
-
-.price{
-  font-size:13px;
-}
-
-.old{
-  text-decoration:line-through;
-  color:#aaa;
-  margin-right:5px;
-}
-
-.new{
-  color:#8B1E3F;
-}
-
-/* PROVA SOCIAL */
-.social-proof{
-  text-align:center;
-  font-size:12px;
-  padding:40px;
-  letter-spacing:1px;
-  color:#666;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    padding:20px;
-  }
-
-  .categories{
-    grid-template-columns:1fr;
-  }
-
-  .hero-text{
-    left:20px;
-    bottom:20px;
-  }
-
-  .hero-text h1{
-    font-size:28px;
-  }
-}
-
+.topbar{background:#000;color:#fff;text-align:center;padding:8px;font-size:12px}
+.hero{height:90vh;background-size:cover;background-position:center;position:relative}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,0.3)}
+.hero-text{position:absolute;bottom:60px;left:60px;color:#fff}
+.hero-text h1{font-size:42px;font-weight:300}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}
+.categories img{width:100%}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px}
+.old{text-decoration:line-through;color:#aaa}
+.new{color:#8B1E3F}
 </style>
+
+{% schema %}
+{
+  "name": "Home Jade",
+  "settings": [
+
+    { "type": "text", "id": "top_text", "label": "Texto topo", "default": "Frete grátis • 6x sem juros • 15% OFF" },
+
+    { "type": "image_picker", "id": "hero_image", "label": "Imagem Hero" },
+    { "type": "text", "id": "hero_tag", "label": "Texto pequeno", "default": "Nova coleção" },
+    { "type": "text", "id": "hero_title", "label": "Título", "default": "Elegância que se sente." },
+    { "type": "text", "id": "hero_button", "label": "Botão", "default": "Explorar" },
+    { "type": "url", "id": "hero_link", "label": "Link botão" },
+
+    { "type": "image_picker", "id": "cat1_img", "label": "Imagem Categoria 1" },
+    { "type": "text", "id": "cat1_text", "label": "Texto Categoria 1", "default": "Conjuntos" },
+    { "type": "url", "id": "cat1_link", "label": "Link Categoria 1" },
+
+    { "type": "image_picker", "id": "cat2_img", "label": "Imagem Categoria 2" },
+    { "type": "text", "id": "cat2_text", "label": "Texto Categoria 2", "default": "Body" },
+    { "type": "url", "id": "cat2_link", "label": "Link Categoria 2" },
+
+    { "type": "image_picker", "id": "cat3_img", "label": "Imagem Categoria 3" },
+    { "type": "text", "id": "cat3_text", "label": "Texto Categoria 3", "default": "Camisolas" },
+    { "type": "url", "id": "cat3_link", "label": "Link Categoria 3" }
+
+  ],
+  "presets": [
+    {
+      "name": "Home Jade"
+    }
+  ]
+}
+{% endschema %}
