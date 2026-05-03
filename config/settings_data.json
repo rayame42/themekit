@@ -53,21 +53,19 @@
           "categoria_zr43E3"
         ],
         "custom_css": [
-          "/* ===== EMAIL ===== */h2{font-size:36px !important; font-weight:300 !important; letter-spacing:1px !important;}",
-          "input{border-radius:40px !important; padding:16px 20px !important;}",
-          "button{border-radius:40px !important; background:#2b0000 !important; color:#fff !important;}",
-          "/* ===== FOOTER ===== */[class*=\"footer\"]{background:#2b0000 !important; color:#fff !important;}",
-          "[class*=\"footer\"] a{color:#ddd !important;}",
-          "[class*=\"footer\"] a:hover{color:#fff !important;}"
+          "/* ===== EMAIL ===== */h2 {font-size: 36px !important; font-weight: 300 !important; letter-spacing: 1px !important;}",
+          "input {border-radius: 40px !important; padding: 16px 20px !important;}",
+          "button {border-radius: 40px !important; background: #2b0000 !important; color: #fff !important;}",
+          " /* ===== FOOTER ===== */[class*=\"footer\"] {background: #2b0000 !important; color: #fff !important;}",
+          "[class*=\"footer\"] a {color: #ddd !important;}",
+          "[class*=\"footer\"] a:hover {color: #fff !important;}"
         ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero": "shopify://shop_images/SELENE_a97150aa-72e5-4ed8-addb-e35580c014d8.jpg",
           "title": "Seu momento. Sua essência.",
           "button": "Explorar coleção",
-          "link": "shopify://collections",
-          "motion_title": "BEST SELLERS | TOP 05",
-          "motion_subtitle": "Essas são as peças que deixaram marca."
+          "link": "shopify://collections"
         }
       },
       "header": {
@@ -76,6 +74,67 @@
           "logo_text": "Jade Intimates",
           "menu": "main-menu"
         }
+      },
+      "best-seller-motion": {
+        "type": "best-seller-motion",
+        "settings": {
+          "title": "BEST SELLERS | TOP 05",
+          "subtitle": "As peças mais desejadas da coleção."
+        }
+      },
+      "atendimento-cliente": {
+        "type": "atendimento-cliente",
+        "blocks": {
+          "item_XHgNNe": {
+            "type": "item",
+            "settings": {
+              "title": "Terms of Service",
+              "link": "shopify://policies/terms-of-service"
+            }
+          },
+          "item_jaWQFw": {
+            "type": "item",
+            "settings": {
+              "title": "Shipping Policy",
+              "link": "shopify://policies/shipping-policy"
+            }
+          },
+          "item_VWfNH4": {
+            "type": "item",
+            "settings": {
+              "title": "Refund Policy",
+              "link": "shopify://policies/refund-policy"
+            }
+          },
+          "item_R8Gbgf": {
+            "type": "item",
+            "settings": {
+              "title": "Privacy Policy",
+              "link": "shopify://policies/privacy-policy"
+            }
+          },
+          "item_3zdePj": {
+            "type": "item",
+            "settings": {
+              "title": "Contact Information",
+              "link": "shopify://policies/contact-information"
+            }
+          }
+        },
+        "block_order": [
+          "item_XHgNNe",
+          "item_jaWQFw",
+          "item_VWfNH4",
+          "item_R8Gbgf",
+          "item_3zdePj"
+        ],
+        "settings": {
+          "title": "Atendimento ao Cliente"
+        }
+      },
+      "newsletter-custom": {
+        "type": "newsletter-custom",
+        "settings": {}
       }
     },
     "content_for_index": [],
