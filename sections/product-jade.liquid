@@ -1,32 +1,39 @@
-<div class="info">
-  <h1>{{ product.title }}</h1>
+.desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 25px;
+  max-width: 420px;
+}
 
-  <div class="price">
-    {{ product.price | money }}
-  </div>
+/* BOTÕES */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  <p class="desc">
-    Feito para destacar suas curvas com elegância e sensualidade. 
-    Toque macio, caimento perfeito e detalhes que fazem você se sentir única.
-  </p>
+.btn.primary {
+  background: #8B1E3F;
+  color: #fff;
+  border: none;
+}
 
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-    <button type="submit" class="btn-primary">
-      Adicionar ao carrinho
-    </button>
-  </form>
+.btn.primary:hover {
+  background: #6f1832;
+}
 
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-    <input type="hidden" name="return_to" value="/checkout">
-    <button type="submit" class="btn-secondary">
-      Comprar agora
-    </button>
-  </form>
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #8B1E3F;
+  color: #8B1E3F;
+}
 
-  <div class="meta">
-    🔥 Últimas unidades disponíveis<br>
-    ✔ Frete rápido • ✔ Troca fácil
-  </div>
-</div>
+.btn.secondary:hover {
+  background: #8B1E3F;
+  color: #fff;
+}
