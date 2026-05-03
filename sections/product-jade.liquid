@@ -4,12 +4,12 @@
     <!-- GALERIA -->
     <div class="gallery">
       <div class="main-image">
-        <img src="{{ product.featured_image | image_url: width: 900 }}">
+        <img id="mainImage" src="{{ product.featured_image | image_url: width: 900 }}">
       </div>
 
       <div class="thumbs">
         {% for image in product.images %}
-          <img src="{{ image | image_url: width: 300 }}">
+          <img src="{{ image | image_url: width: 300 }}" onclick="trocarImagem(this)">
         {% endfor %}
       </div>
     </div>
@@ -26,18 +26,28 @@
         {{ product.description | strip_html }}
       </p>
 
-      <!-- VARIANTES BONITAS -->
+      <!-- VARIANTES -->
       <form method="post" action="/cart/add" id="product-form">
         <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
 
         <!-- COR -->
         <div class="option-group">
           <p>Cor</p>
-          <div class="options">
+          <div class="color-options">
             {% for value in product.options_with_values[0].values %}
-              <button type="button" class="option-btn" onclick="selectOption(0, '{{ value }}')">
-                {{ value }}
-              </button>
+              <div 
+                class="color-btn"
+                data-value="{{ value }}"
+                style="
+                  background:
+                  {% if value == 'Preto' %} #000
+                  {% elsif value == 'Vermelho' %} #8B1E3F
+                  {% elsif value == 'Rosa' %} #e8a1b0
+                  {% else %} #ccc
+                  {% endif %}
+                "
+                onclick="selectOption(0, '{{ value }}', this)">
+              </div>
             {% endfor %}
           </div>
         </div>
@@ -45,9 +55,9 @@
         <!-- TAMANHO -->
         <div class="option-group">
           <p>Tamanho</p>
-          <div class="options">
+          <div class="size-options">
             {% for value in product.options_with_values[1].values %}
-              <button type="button" class="option-btn" onclick="selectOption(1, '{{ value }}')">
+              <button type="button" class="size-btn" onclick="selectOption(1, '{{ value }}', this)">
                 {{ value }}
               </button>
             {% endfor %}
@@ -82,6 +92,7 @@
   align-items: start;
 }
 
+/* GALERIA */
 .main-image img {
   width: 100%;
   border-radius: 10px;
@@ -106,50 +117,77 @@
   opacity: 1;
 }
 
+/* TEXTO */
+.info {
+  max-width: 420px;
+}
+
 .info h1 {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 400;
-  margin-bottom: 15px;
+  line-height: 1.3;
+  margin-bottom: 10px;
 }
 
 .price {
-  font-size: 22px;
+  font-size: 20px;
   color: #8B1E3F;
   margin-bottom: 20px;
 }
 
 .desc {
   font-size: 14px;
-  color: #444;
-  margin-bottom: 30px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 35px;
 }
 
 /* VARIANTES */
 .option-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .option-group p {
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.options {
+/* CORES */
+.color-options {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
-.option-btn {
+.color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.color-btn.active {
+  border: 2px solid #000;
+}
+
+/* TAMANHO */
+.size-options {
+  display: flex;
+  gap: 10px;
+}
+
+.size-btn {
   padding: 8px 14px;
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 4px;
+  font-size: 13px;
 }
 
-.option-btn.active {
-  border: 2px solid #8B1E3F;
+.size-btn.active {
+  border: 2px solid #000;
 }
 
 /* BOTÃO */
@@ -159,16 +197,19 @@
   color: #fff;
   padding: 16px;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 6px;
-  cursor: pointer;
+  margin-top: 15px;
 }
 
+/* META */
 .meta {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 12px;
   color: #777;
+  line-height: 1.6;
 }
 
 /* MOBILE */
@@ -182,18 +223,14 @@
 <script>
 let selectedOptions = [];
 
-function selectOption(index, value) {
+function selectOption(index, value, el) {
   selectedOptions[index] = value;
 
-  const groups = document.querySelectorAll('.options');
-  const buttons = groups[index].querySelectorAll('button');
+  const parent = el.parentElement;
+  const buttons = parent.querySelectorAll('*');
 
-  buttons.forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.innerText === value) {
-      btn.classList.add('active');
-    }
-  });
+  buttons.forEach(btn => btn.classList.remove('active'));
+  el.classList.add('active');
 
   updateVariant();
 }
@@ -208,5 +245,9 @@ function updateVariant() {
   if (found) {
     document.getElementById('variant-id').value = found.id;
   }
+}
+
+function trocarImagem(el){
+  document.getElementById("mainImage").src = el.src;
 }
 </script>
