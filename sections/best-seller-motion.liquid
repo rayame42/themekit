@@ -1,231 +1,182 @@
-<section class="motion-section">
+<section class="lux-section">
 
-  <div class="motion-container">
+  <div class="lux-container">
 
-    <!-- PRINCIPAL -->
-    <div class="main-img">
-      {% if section.settings.main_image %}
-        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
-      {% endif %}
+    <!-- COLAGEM -->
+    <div class="lux-images">
+
+      <div class="img main">
+        <img src="{{ section.settings.main_image | image_url: width: 900 }}">
+      </div>
+
+      <div class="img img1">
+        <img src="{{ section.settings.img1 | image_url: width: 500 }}">
+      </div>
+
+      <div class="img img2">
+        <img src="{{ section.settings.img2 | image_url: width: 500 }}">
+      </div>
+
+      <div class="img img3">
+        <img src="{{ section.settings.img3 | image_url: width: 500 }}">
+      </div>
+
+      <div class="img img4">
+        <img src="{{ section.settings.img4 | image_url: width: 500 }}">
+      </div>
+
     </div>
 
-    <!-- LATERAIS -->
-    <div class="side left-top">
-      {% if section.settings.img1 %}
-        <img src="{{ section.settings.img1 | image_url: width: 400 }}">
-      {% endif %}
+    <!-- TEXTO -->
+    <div class="lux-text">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+
+      <a href="{{ section.settings.link }}" class="lux-btn">
+        EXPLORAR →
+      </a>
     </div>
 
-    <div class="side right-top">
-      {% if section.settings.img2 %}
-        <img src="{{ section.settings.img2 | image_url: width: 400 }}">
-      {% endif %}
-    </div>
-
-    <div class="side left-bottom">
-      {% if section.settings.img3 %}
-        <img src="{{ section.settings.img3 | image_url: width: 400 }}">
-      {% endif %}
-    </div>
-
-    <div class="side right-bottom">
-      {% if section.settings.img4 %}
-        <img src="{{ section.settings.img4 | image_url: width: 400 }}">
-      {% endif %}
-    </div>
-
-  </div>
-
-  <div class="motion-text">
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.subtitle }}</p>
   </div>
 
 </section>
 
 <style>
 
-.motion-section{
-  background:#2b0000;
-  padding:100px 20px;
-  text-align:center;
-  color:#fff;
+/* FUNDO CLEAN (luxo mesmo) */
+.lux-section{
+  background:#f5f5f5;
+  padding:120px 20px;
 }
 
-/* CONTAINER */
-.motion-container{
+/* GRID */
+.lux-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:80px;
+}
+
+/* IMAGENS */
+.lux-images{
   position:relative;
-  max-width:500px;
-  margin:80px auto;
-  overflow:visible;
+  height:500px;
+}
+
+/* BASE */
+.img{
+  position:absolute;
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+}
+
+.img img{
+  width:100%;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
 }
 
 /* PRINCIPAL */
-.main-img{
-  position:relative;
-  z-index:1;
-  animation:fadeMain 1s ease forwards;
-}
-
-.main-img img{
-  width:240px;
-  height:340px;
-  object-fit:cover;
-  border-radius:20px;
-  display:block;
-  margin:auto;
-  box-shadow:0 30px 80px rgba(0,0,0,0.5);
-}
-
-/* LATERAIS (NA FRENTE E PRÓXIMAS) */
-.side{
-  position:absolute;
-  z-index:999;
-  opacity:0;
-}
-
-.side img{
-  width:130px;
-  height:180px;
-  object-fit:cover;
-  border-radius:15px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.35);
-  transition:0.4s;
-}
-
-/* POSIÇÕES (COLADAS NA PRINCIPAL) */
-.left-top{
-  top:10px;
-  left:-70px;
-  animation:popLeftTop 0.8s ease forwards;
+.main{
+  width:300px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:3;
   animation-delay:0.3s;
 }
 
-.right-top{
-  top:10px;
-  right:-70px;
-  animation:popRightTop 0.8s ease forwards;
-  animation-delay:0.5s;
+/* LATERAIS */
+.img1{
+  width:180px;
+  left:0;
+  top:0;
+  z-index:2;
+  animation-delay:0.6s;
 }
 
-.left-bottom{
-  bottom:10px;
-  left:-80px;
-  animation:popLeftBottom 0.8s ease forwards;
-  animation-delay:0.7s;
+.img2{
+  width:160px;
+  right:0;
+  top:40px;
+  animation-delay:0.8s;
 }
 
-.right-bottom{
-  bottom:10px;
-  right:-80px;
-  animation:popRightBottom 0.8s ease forwards;
-  animation-delay:0.9s;
+.img3{
+  width:170px;
+  left:40px;
+  bottom:0;
+  animation-delay:1s;
 }
 
-/* HOVER PREMIUM */
-.side img:hover{
-  transform:scale(1.1) translateY(-5px);
-}
-
-/* ANIMAÇÃO PRINCIPAL */
-@keyframes fadeMain{
-  from{
-    opacity:0;
-    transform:scale(0.85);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-/* EFEITO SAINDO DA PRINCIPAL */
-@keyframes popLeftTop{
-  from{
-    opacity:0;
-    transform:translate(80px,80px) scale(0.5);
-    filter:blur(6px);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-    filter:blur(0);
-  }
-}
-
-@keyframes popRightTop{
-  from{
-    opacity:0;
-    transform:translate(-80px,80px) scale(0.5);
-    filter:blur(6px);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-    filter:blur(0);
-  }
-}
-
-@keyframes popLeftBottom{
-  from{
-    opacity:0;
-    transform:translate(80px,-80px) scale(0.5);
-    filter:blur(6px);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-    filter:blur(0);
-  }
-}
-
-@keyframes popRightBottom{
-  from{
-    opacity:0;
-    transform:translate(-80px,-80px) scale(0.5);
-    filter:blur(6px);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-    filter:blur(0);
-  }
+.img4{
+  width:180px;
+  right:20px;
+  bottom:20px;
+  animation-delay:1.2s;
 }
 
 /* TEXTO */
-.motion-text{
-  margin-top:70px;
-}
-
-.motion-text h2{
-  font-size:28px;
+.lux-text h2{
+  font-size:34px;
   letter-spacing:2px;
-  margin-bottom:10px;
-  font-weight:300;
+  font-weight:400;
+  margin-bottom:20px;
 }
 
-.motion-text p{
-  font-size:14px;
-  opacity:0.8;
+.lux-text p{
+  font-size:16px;
+  color:#555;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+/* BOTÃO */
+.lux-btn{
+  display:inline-block;
+  background:#111;
+  color:#fff;
+  padding:14px 28px;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:1px;
+  transition:0.3s;
+}
+
+.lux-btn:hover{
+  background:#2b0000;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(0.95);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 /* MOBILE */
 @media(max-width:768px){
 
-  .main-img img{
-    width:200px;
-    height:280px;
+  .lux-container{
+    grid-template-columns:1fr;
+    text-align:center;
   }
 
-  .side img{
-    width:90px;
-    height:130px;
+  .lux-images{
+    height:400px;
   }
 
-  .left-top{ left:-50px; }
-  .right-top{ right:-50px; }
-  .left-bottom{ left:-60px; }
-  .right-bottom{ right:-60px; }
+  .main{
+    width:220px;
+  }
 
 }
 
@@ -233,18 +184,22 @@
 
 {% schema %}
 {
-  "name": "Best Seller Motion",
+  "name": "Best Seller Premium",
   "settings": [
     { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem 1 (esquerda topo)" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem 2 (direita topo)" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem 3 (esquerda baixo)" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem 4 (direita baixo)" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
+    { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
+    { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
+    { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
+
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 10" },
+
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Peças que deixam marca — nas fotos, na memória e na pele." },
+
+    { "type": "url", "id": "link", "label": "Link do botão" }
   ],
   "presets": [
-    { "name": "Best Seller Motion" }
+    { "name": "Best Seller Premium" }
   ]
 }
 {% endschema %}
