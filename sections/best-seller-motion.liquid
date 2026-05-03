@@ -1,0 +1,109 @@
+<section class="best-seller">
+
+  <div class="container">
+
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.subtitle }}</p>
+
+    <div class="grid">
+
+      {% assign collection = collections[section.settings.collection] %}
+
+      {% for product in collection.products limit: 4 %}
+        <a href="{{ product.url }}" class="card">
+
+          <img src="{{ product.featured_image | image_url: width: 600 }}">
+
+          <span>{{ product.title }}</span>
+          <strong>{{ product.price | money }}</strong>
+
+        </a>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.best-seller{
+  padding:80px 20px;
+  text-align:center;
+}
+
+/* TÍTULO */
+.best-seller h2{
+  font-size:32px;
+  letter-spacing:3px;
+  font-weight:300;
+  text-transform:uppercase;
+}
+
+.best-seller p{
+  font-size:14px;
+  opacity:0.6;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  text-decoration:none;
+  color:#111;
+}
+
+.card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
+
+.card span{
+  display:block;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.card strong{
+  font-size:14px;
+  color:#8B1E3F;
+}
+
+/* HOVER */
+.card img{
+  transition:0.4s;
+}
+
+.card:hover img{
+  transform:scale(1.05);
+}
+
+@media(max-width:768px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Best Seller",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." },
+    { "type": "collection", "id": "collection", "label": "Coleção" }
+  ],
+  "presets": [
+    { "name": "Best Seller" }
+  ]
+}
+{% endschema %}
