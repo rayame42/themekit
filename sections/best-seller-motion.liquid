@@ -1,28 +1,42 @@
-<section class="best-editorial">
+<section class="motion-section">
 
-  <div class="editorial-container">
-
-    <!-- ESQUERDA -->
-    <div class="left">
-      {% if section.settings.img1 != blank %}
-        <img src="{{ section.settings.img1 | image_url: width: 600 }}">
-      {% endif %}
-
-      {% if section.settings.img2 != blank %}
-        <img src="{{ section.settings.img2 | image_url: width: 600 }}">
-      {% endif %}
-    </div>
+  <div class="motion-container">
 
     <!-- PRINCIPAL -->
-    <div class="center">
+    <div class="main-img">
       {% if section.settings.main_image != blank %}
-        <img src="{{ section.settings.main_image | image_url: width: 900 }}">
+        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
       {% endif %}
     </div>
+
+    <!-- LATERAIS -->
+    {% if section.settings.img1 != blank %}
+      <div class="side left-top">
+        <img src="{{ section.settings.img1 | image_url: width: 400 }}">
+      </div>
+    {% endif %}
+
+    {% if section.settings.img2 != blank %}
+      <div class="side right-top">
+        <img src="{{ section.settings.img2 | image_url: width: 400 }}">
+      </div>
+    {% endif %}
+
+    {% if section.settings.img3 != blank %}
+      <div class="side left-bottom">
+        <img src="{{ section.settings.img3 | image_url: width: 400 }}">
+      </div>
+    {% endif %}
+
+    {% if section.settings.img4 != blank %}
+      <div class="side right-bottom">
+        <img src="{{ section.settings.img4 | image_url: width: 400 }}">
+      </div>
+    {% endif %}
 
   </div>
 
-  <div class="text">
+  <div class="motion-text">
     <h2>{{ section.settings.title }}</h2>
     <p>{{ section.settings.subtitle }}</p>
   </div>
@@ -32,65 +46,105 @@
 <style>
 
 /* FUNDO */
-.best-editorial{
+.motion-section{
   background:#2b0000;
-  padding:100px 20px;
+  padding:110px 20px;
   text-align:center;
   color:#fff;
 }
 
-/* GRID */
-.editorial-container{
-  display:grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap:30px;
-  max-width:1000px;
-  margin:auto;
-  align-items:center;
+/* CONTAINER */
+.motion-container{
+  position:relative;
+  max-width:600px;
+  margin:0 auto 80px;
 }
 
-/* ESQUERDA */
-.left{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+/* PRINCIPAL (MENOR E MAIS BONITA) */
+.main-img{
+  position:relative;
+  z-index:1;
 }
 
-.left img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:16px;
-  transition:0.4s;
-}
-
-/* CENTRO */
-.center img{
-  width:100%;
-  height:540px;
+.main-img img{
+  width:240px;
+  height:340px;
   object-fit:cover;
   border-radius:20px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.5);
-  transition:0.4s;
+  margin:auto;
+  display:block;
+  box-shadow:0 25px 70px rgba(0,0,0,0.5);
 }
 
-/* HOVER PREMIUM */
-.left img:hover,
-.center img:hover{
-  transform:scale(1.03);
+/* LATERAIS (NA FRENTE) */
+.side{
+  position:absolute;
+  z-index:10;
+  opacity:0;
+}
+
+/* POSIÇÕES AJUSTADAS (menos exagero) */
+.left-top{
+  top:10px;
+  left:-100px;
+  animation:showLeftTop 0.8s ease forwards;
+}
+
+.right-top{
+  top:10px;
+  right:-100px;
+  animation:showRightTop 0.8s ease forwards;
+}
+
+.left-bottom{
+  bottom:10px;
+  left:-120px;
+  animation:showLeftBottom 0.8s ease forwards;
+}
+
+.right-bottom{
+  bottom:10px;
+  right:-120px;
+  animation:showRightBottom 0.8s ease forwards;
+}
+
+/* TAMANHO MAIS PROPORCIONAL */
+.side img{
+  width:130px;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ANIMAÇÕES MAIS SUAVES */
+@keyframes showLeftTop{
+  from{opacity:0; transform:translate(-30px,30px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showRightTop{
+  from{opacity:0; transform:translate(30px,30px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showLeftBottom{
+  from{opacity:0; transform:translate(-30px,-30px);}
+  to{opacity:1; transform:translate(0,0);}
+}
+
+@keyframes showRightBottom{
+  from{opacity:0; transform:translate(30px,-30px);}
+  to{opacity:1; transform:translate(0,0);}
 }
 
 /* TEXTO */
-.text{
-  margin-top:60px;
-}
-
-.text h2{
+.motion-text h2{
   font-size:28px;
   letter-spacing:2px;
 }
 
-.text p{
+.motion-text p{
   font-size:14px;
   opacity:0.8;
 }
@@ -98,34 +152,21 @@
 /* MOBILE */
 @media(max-width:768px){
 
-  .editorial-container{
-    grid-template-columns:1fr;
+  .main-img img{
+    width:200px;
+    height:280px;
   }
 
-  .center img{
-    height:400px;
+  .side img{
+    width:90px;
+    height:120px;
   }
 
-  .left img{
-    height:180px;
-  }
+  .left-top{ left:-60px; }
+  .right-top{ right:-60px; }
+  .left-bottom{ left:-70px; }
+  .right-bottom{ right:-70px; }
 
 }
 
 </style>
-
-{% schema %}
-{
-  "name": "Best Seller Editorial",
-  "settings": [
-    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem lateral 1" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem lateral 2" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
-  ],
-  "presets": [
-    { "name": "Best Seller Editorial" }
-  ]
-}
-{% endschema %}
