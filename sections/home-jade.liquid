@@ -16,35 +16,15 @@
 </div>
 
 <!-- CATEGORIAS -->
+<div class="categories">
+  {% for block in section.blocks %}
+    <a href="{{ block.settings.link }}">
+      <img src="{{ block.settings.img | image_url: width: 800 }}">
+      <span>{{ block.settings.title }}</span>
+    </a>
+  {% endfor %}
 </div>
 
-<style>
-.categories-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  padding:20px;
-}
-
-.category-item img{
-  width:100%;
-}
-
-.category-item span{
-  display:block;
-  text-align:center;
-  font-size:12px;
-  margin-top:5px;
-  letter-spacing:1px;
-}
-
-@media(max-width:768px){
-  .categories-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-</style>
-</div>
 <!-- PRODUTOS -->
 <div class="products">
   {% for product in collections[section.settings.collection].products limit: 8 %}
@@ -121,20 +101,9 @@
 
 .hero-text a{
   display:inline-block;
-  margin-top:12px;
-  font-size:12px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:#fff; /* ← aqui muda a cor */
-  text-decoration:none; /* remove o azul padrão */
-  border-bottom:1px solid rgba(255,255,255,0.6);
-  padding-bottom:4px;
-  transition:0.3s;
-}
-
-.hero-text a:hover{
-  border-color:#fff;
-  opacity:0.8;
+  margin-top:10px;
+  border-bottom:1px solid #fff;
+  font-size:13px;
 }
 
 /* CATEGORIAS */
@@ -232,10 +201,37 @@
 </style>
 
 {% schema %}
-
 {
   "name": "Home Zara",
   "settings": [
+    {
+      "type": "text",
+      "id": "topbar",
+      "label": "Texto topo",
+      "default": "Frete grátis • 6x sem juros • 15% OFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero",
+      "label": "Imagem do Hero"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "NOVA COLEÇÃO"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Texto do botão",
+      "default": "COMPRAR"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link botão"
+    },
     {
       "type": "collection",
       "id": "collection",
@@ -253,7 +249,7 @@
       ]
     }
   ],
-  "max_blocks": 6,
+  "max_blocks": 3,
   "presets": [
     {
       "name": "Home Zara"
