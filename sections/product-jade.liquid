@@ -55,4 +55,35 @@
 
 .option-btn.active {
   border: 2px solid #8B1E3F;
+}<script>
+let selectedOptions = [];
+
+function selectOption(index, value) {
+  selectedOptions[index] = value;
+
+  // highlight botão
+  const groups = document.querySelectorAll('.options');
+  const buttons = groups[index].querySelectorAll('button');
+
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.innerText === value) {
+      btn.classList.add('active');
+    }
+  });
+
+  updateVariant();
 }
+
+function updateVariant() {
+  const variants = {{ product.variants | json }};
+  
+  const found = variants.find(v => {
+    return selectedOptions.every((opt, i) => v.options[i] === opt);
+  });
+
+  if (found) {
+    document.getElementById('variant-id').value = found.id;
+  }
+}
+</script>
