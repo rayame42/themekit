@@ -16,13 +16,34 @@
 </div>
 
 <!-- CATEGORIAS -->
-<div class="categories-grid">
-  {% for block in section.blocks %}
-    <a href="{{ block.settings.link }}" class="category-item">
-      <img src="{{ block.settings.image | image_url: width: 600 }}">
-      <span>{{ block.settings.title }}</span>
-    </a>
-  {% endfor %}
+</div>
+
+<style>
+.categories-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  padding:20px;
+}
+
+.category-item img{
+  width:100%;
+}
+
+.category-item span{
+  display:block;
+  text-align:center;
+  font-size:12px;
+  margin-top:5px;
+  letter-spacing:1px;
+}
+
+@media(max-width:768px){
+  .categories-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
 </div>
 .categories-grid{
   display:grid;
