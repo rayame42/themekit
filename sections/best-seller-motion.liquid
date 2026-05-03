@@ -2,7 +2,7 @@
 
   <div class="lux-container">
 
-    <!-- COLAGEM -->
+    <!-- IMAGENS -->
     <div class="lux-images">
 
       <div class="img main">
@@ -43,85 +43,87 @@
 
 <style>
 
-/* FUNDO CLEAN (luxo mesmo) */
 .lux-section{
   background:#f5f5f5;
-  padding:120px 20px;
+  padding:100px 20px;
 }
 
-/* GRID */
+/* GRID MAIS ORGANIZADO */
 .lux-container{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1.2fr 1fr;
   align-items:center;
-  gap:80px;
+  gap:60px;
 }
 
-/* IMAGENS */
+/* ÁREA DAS IMAGENS */
 .lux-images{
   position:relative;
-  height:500px;
+  height:520px;
 }
 
 /* BASE */
 .img{
   position:absolute;
   opacity:0;
-  animation:fadeUp 1s ease forwards;
+  animation:fadeUp 0.8s ease forwards;
 }
 
 .img img{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
   object-fit:cover;
-  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
-/* PRINCIPAL */
+/* PRINCIPAL (CENTRAL MAIS CONTROLADA) */
 .main{
-  width:300px;
+  width:280px;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
   z-index:3;
-  animation-delay:0.3s;
+  animation-delay:0.2s;
 }
 
-/* LATERAIS */
+/* LATERAIS ORGANIZADAS */
 .img1{
-  width:180px;
-  left:0;
-  top:0;
-  z-index:2;
-  animation-delay:0.6s;
+  width:160px;
+  left:20px;
+  top:20px;
+  animation-delay:0.4s;
 }
 
 .img2{
-  width:160px;
-  right:0;
-  top:40px;
-  animation-delay:0.8s;
+  width:150px;
+  right:20px;
+  top:60px;
+  animation-delay:0.6s;
 }
 
 .img3{
-  width:170px;
+  width:160px;
   left:40px;
-  bottom:0;
-  animation-delay:1s;
+  bottom:20px;
+  animation-delay:0.8s;
 }
 
 .img4{
-  width:180px;
-  right:20px;
-  bottom:20px;
-  animation-delay:1.2s;
+  width:160px;
+  right:30px;
+  bottom:30px;
+  animation-delay:1s;
 }
 
-/* TEXTO */
+/* TEXTO (NÃO CORTA MAIS) */
+.lux-text{
+  max-width:420px;
+}
+
 .lux-text h2{
-  font-size:34px;
+  font-size:32px;
   letter-spacing:2px;
   font-weight:400;
   margin-bottom:20px;
@@ -150,11 +152,11 @@
   background:#2b0000;
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÃO SUAVE */
 @keyframes fadeUp{
   from{
     opacity:0;
-    transform:translateY(40px) scale(0.95);
+    transform:translateY(30px) scale(0.95);
   }
   to{
     opacity:1;
@@ -162,7 +164,7 @@
   }
 }
 
-/* MOBILE */
+/* MOBILE ARRUMADO */
 @media(max-width:768px){
 
   .lux-container{
@@ -171,7 +173,7 @@
   }
 
   .lux-images{
-    height:400px;
+    height:420px;
   }
 
   .main{
@@ -191,11 +193,8 @@
     { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
     { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
     { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
-
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 10" },
-
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
     { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Peças que deixam marca — nas fotos, na memória e na pele." },
-
     { "type": "url", "id": "link", "label": "Link do botão" }
   ],
   "presets": [
