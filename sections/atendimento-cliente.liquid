@@ -1,0 +1,118 @@
+<section class="atendimento">
+
+  <div class="atendimento-container">
+
+    <h2>{{ section.settings.title }}</h2>
+
+    <div class="accordion">
+
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="item">
+          <span>{{ block.settings.title }}</span>
+          <span class="arrow">+</span>
+        </a>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.atendimento{
+  background:#f7f7f7;
+  padding:80px 20px;
+}
+
+.atendimento-container{
+  max-width:900px;
+  margin:auto;
+}
+
+.atendimento h2{
+  font-size:28px;
+  margin-bottom:30px;
+  font-weight:400;
+}
+
+.accordion{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  text-decoration:none;
+  color:#111;
+  background:#fff;
+  transition:0.3s;
+}
+
+.item:hover{
+  background:#2b0000;
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+.arrow{
+  font-size:18px;
+  transition:0.3s;
+}
+
+.item:hover .arrow{
+  transform:rotate(45deg);
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Atendimento ao Cliente",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Atendimento ao Cliente"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link da página"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Atendimento ao Cliente",
+      "blocks": [
+        { "type": "link", "settings": { "title": "Envio e Frete" } },
+        { "type": "link", "settings": { "title": "Políticas de Reembolso" } },
+        { "type": "link", "settings": { "title": "Fale Conosco" } },
+        { "type": "link", "settings": { "title": "Sobre Nós" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
