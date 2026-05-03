@@ -1,135 +1,33 @@
-<section class="product-premium">
-  <div class="wrap">
+<form method="post" action="/cart/add" id="product-form">
+  <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
 
-    <!-- GALERIA -->
-    <div class="gallery">
-      <img id="main-product-image" src="{{ product.featured_image | image_url: width: 900 }}">
-
-      <div class="thumbs">
-        {% for image in product.images %}
-          <img 
-            src="{{ image | image_url: width: 200 }}" 
-            onclick="document.getElementById('main-product-image').src = this.src"
-          >
-        {% endfor %}
-      </div>
-    </div>
-
-    <!-- INFO -->
-    <div class="info">
-      <h1>{{ product.title }}</h1>
-
-      <div class="price">
-        {{ product.price | money }}
-      </div>
-
-      <div class="desc">
-        {{ product.description }}
-      </div>
-
-      <!-- VARIANTES -->
-      <form method="post" action="/cart/add">
-        <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
-
-        {% if product.variants.size > 1 %}
-          <select name="id" id="variant-select">
-            {% for variant in product.variants %}
-              <option value="{{ variant.id }}">
-                {{ variant.title }}
-              </option>
-            {% endfor %}
-          </select>
-        {% endif %}
-
-        <button type="submit" class="btn">
-          Adicionar ao carrinho
+  <!-- CORES -->
+  <div class="option-group">
+    <p>Cor</p>
+    <div class="options">
+      {% assign colors = product.options_with_values[0].values %}
+      {% for value in colors %}
+        <button type="button" class="option-btn" onclick="selectOption(0, '{{ value }}')">
+          {{ value }}
         </button>
-      </form>
-
-      <div class="meta">
-        🔥 Últimas unidades disponíveis<br>
-        ✔ Frete rápido • ✔ Troca fácil
-      </div>
+      {% endfor %}
     </div>
-
   </div>
-</section>
 
-<style>
-.product-premium {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-}
+  <!-- TAMANHOS -->
+  <div class="option-group">
+    <p>Tamanho</p>
+    <div class="options">
+      {% assign sizes = product.options_with_values[1].values %}
+      {% for value in sizes %}
+        <button type="button" class="option-btn" onclick="selectOption(1, '{{ value }}')">
+          {{ value }}
+        </button>
+      {% endfor %}
+    </div>
+  </div>
 
-.wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-}
-
-/* GALERIA */
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.thumbs {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.thumbs img {
-  width: 70px;
-  height: 90px;
-  object-fit: cover;
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.thumbs img:hover {
-  opacity: 1;
-}
-
-/* INFO */
-.info h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.price {
-  color: #8B1E3F;
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-.desc {
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-/* SELECT */
-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-/* BOTÃO */
-.btn {
-  width: 100%;
-  background: #8B1E3F;
-  color: white;
-  padding: 15px;
-  border: none;
-  cursor: pointer;
-}
-
-/* MOBILE */
-@media(max-width: 768px){
-  .wrap {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+  <button type="submit" class="btn">
+    Adicionar ao carrinho
+  </button>
+</form>
