@@ -1,264 +1,181 @@
-<section class="home-ultra">
+<section class="home-editorial">
 
-<!-- TOP STRIP (luxo discreto) -->
-<div class="topbar">
-Frete grátis • 6x sem juros • 15% OFF
-</div>
-
-<!-- HERO EDITORIAL -->
-<div class="hero">
-  <div class="overlay"></div>
-
-  <div class="hero-text">
-    <span class="tag">NOVA COLEÇÃO</span>
-    <h1>Elegância que se sente.</h1>
-    <a href="/collections/all">Explorar</a>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    Frete grátis • 6x sem juros • 15% OFF em toda loja
   </div>
-</div>
 
-<!-- CATEGORIAS CLEAN -->
-<div class="categories">
-  <a href="/collections/conjuntos">
-    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
-    <span>Conjuntos</span>
-  </a>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="overlay"></div>
 
-  <a href="/collections/body">
-    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
-    <span>Body</span>
-  </a>
+    <div class="content">
+      <h1>Mais do que lingerie.<br>Uma experiência.</h1>
+      <p>Sinta-se desejada, confiante e poderosa.</p>
+      <a href="/collections/all" class="btn">Explorar coleção</a>
+    </div>
+  </div>
 
-  <a href="/collections/camisolas">
-    <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
-    <span>Camisolas</span>
-  </a>
-</div>
-
-<!-- VITRINE PREMIUM -->
-<div class="products">
-
-{% for product in collections.all.products limit: 8 %}
-<div class="card">
-
-  <div class="img-box">
-
-    <a href="{{ product.url }}">
-      <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
-      {% if product.images.size > 1 %}
-      <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
-      {% endif %}
+  <!-- CATEGORIAS -->
+  <div class="categories">
+    <a href="/collections/all">
+      <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
+      <span>Conjuntos</span>
     </a>
 
-    <!-- QUICK ADD -->
-    <form method="post" action="/cart/add" class="quick">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <button>Adicionar</button>
-    </form>
+    <a href="/collections/all">
+      <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
+      <span>Body</span>
+    </a>
 
+    <a href="/collections/all">
+      <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
+      <span>Camisolas</span>
+    </a>
   </div>
 
-  <p class="title">{{ product.title }}</p>
+  <!-- PRODUTOS -->
+  <div class="products">
+    <h2>Mais desejados</h2>
 
-  <div class="price">
-    {% if product.compare_at_price > product.price %}
-      <span class="old">{{ product.compare_at_price | money }}</span>
-    {% endif %}
-    <span class="new">{{ product.price | money }}</span>
+    <div class="grid">
+      {% for product in collections.all.products limit: 4 %}
+        <a href="{{ product.url }}" class="card">
+          <img src="{{ product.featured_image | image_url: width: 600 }}">
+
+          <p class="title">{{ product.title }}</p>
+
+          <div class="price">
+            {% if product.compare_at_price > product.price %}
+              <span class="old">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="new">{{ product.price | money }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </div>
-
-</div>
-{% endfor %}
-
-</div>
-
-<!-- PROVA SOCIAL ELEGANTE -->
-<div class="social-proof">
-  Mais de 2.000 clientes apaixonadas ✦ Avaliações 5 estrelas ✦ Qualidade premium
-</div>
 
 </section>
 
 <style>
 
 /* BASE */
-.home-ultra{
-  font-family: Helvetica, Arial;
-  color:#111;
+.home-editorial {
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial;
 }
 
 /* TOPBAR */
-.topbar{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  font-size:11px;
-  padding:8px;
-  letter-spacing:2px;
+.topbar {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
 }
 
 /* HERO */
-.hero{
-  height:90vh;
-  background:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
-  position:relative;
+.hero {
+  height: 80vh;
+  background: url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
+  position: relative;
 }
 
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.25);
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
 }
 
-.hero-text{
-  position:absolute;
-  bottom:80px;
-  left:80px;
-  color:#fff;
+.content {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  color: #fff;
 }
 
-.tag{
-  font-size:12px;
-  letter-spacing:2px;
+.content h1 {
+  font-size: 40px;
+  font-weight: 300;
 }
 
-.hero-text h1{
-  font-size:48px;
-  font-weight:300;
-  margin:10px 0;
+.content p {
+  margin: 10px 0 20px;
 }
 
-.hero-text a{
-  border-bottom:1px solid #fff;
-  font-size:13px;
+.btn {
+  background: #8B1E3F;
+  color: #fff;
+  padding: 12px 25px;
+  text-decoration: none;
 }
 
 /* CATEGORIAS */
-.categories{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:10px;
+.categories {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  margin: 60px 0;
 }
 
-.categories img{
-  width:100%;
+.categories img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
 }
 
-.categories span{
-  display:block;
-  text-align:center;
-  font-size:12px;
-  margin-top:6px;
-  letter-spacing:1px;
+.categories span {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
 }
 
 /* PRODUTOS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:25px;
-  padding:60px;
+.products h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* CARD */
-.card{
-  text-align:left;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
 }
 
-.img-box{
-  position:relative;
+.card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
 }
 
-/* IMAGENS */
-.img1, .img2{
-  width:100%;
-  transition:0.5s;
+.title {
+  font-size: 13px;
 }
 
-.img2{
-  position:absolute;
-  inset:0;
-  opacity:0;
+.price {
+  font-size: 13px;
 }
 
-.img-box:hover .img2{
-  opacity:1;
+.old {
+  text-decoration: line-through;
+  color: #999;
 }
 
-.img-box:hover .img1{
-  opacity:0;
-}
-
-/* QUICK ADD */
-.quick{
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  right:10px;
-  opacity:0;
-  transition:0.3s;
-}
-
-.quick button{
-  width:100%;
-  background:#fff;
-  border:none;
-  padding:10px;
-  font-size:12px;
-  cursor:pointer;
-}
-
-.img-box:hover .quick{
-  opacity:1;
-}
-
-/* TEXTO */
-.title{
-  font-size:12px;
-  margin-top:10px;
-}
-
-.price{
-  font-size:13px;
-}
-
-.old{
-  text-decoration:line-through;
-  color:#aaa;
-  margin-right:5px;
-}
-
-.new{
-  color:#8B1E3F;
-}
-
-/* PROVA SOCIAL */
-.social-proof{
-  text-align:center;
-  font-size:12px;
-  padding:40px;
-  letter-spacing:1px;
-  color:#666;
+.new {
+  color: #8B1E3F;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    padding:20px;
+  .grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .categories{
-    grid-template-columns:1fr;
-  }
-
-  .hero-text{
-    left:20px;
-    bottom:20px;
-  }
-
-  .hero-text h1{
-    font-size:28px;
+  .categories {
+    grid-template-columns: 1fr;
   }
 }
 
