@@ -130,6 +130,15 @@ summary{
 }
 
 
+/* ===== CATEGORIAS DESKTOP ===== */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  padding:30px 40px;
+}
+
+
 /* ===== MOBILE ===== */
 @media(max-width:768px){
 
@@ -157,6 +166,26 @@ summary{
   [class*="footer"] .container{
     grid-template-columns:1fr;
     gap:30px;
+  }
+
+  /* ===== CATEGORIAS MOBILE SLIDER ===== */
+  .categories{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding:20px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .categories a{
+    min-width:48%;
+    flex:0 0 auto;
+    scroll-snap-align:start;
+  }
+
+  .categories::-webkit-scrollbar{
+    display:none;
   }
 
 }
