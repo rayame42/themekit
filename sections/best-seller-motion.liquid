@@ -1,40 +1,41 @@
 <section class="motion-section">
 
-<div class="motion-container">
+  <div class="motion-container">
 
-  <!-- IMAGEM PRINCIPAL -->
-  <div class="main-img">
-    <img src="{{ section.settings.main_image | image_url: width: 900 }}">
+    <!-- IMAGEM PRINCIPAL -->
+    <div class="main-img">
+      <img src="{{ section.settings.main_image | image_url: width: 900 }}">
+    </div>
+
+    <!-- LATERAIS -->
+    <div class="side s1">
+      <img src="{{ section.settings.img1 | image_url: width: 500 }}">
+    </div>
+
+    <div class="side s2">
+      <img src="{{ section.settings.img2 | image_url: width: 500 }}">
+    </div>
+
+    <div class="side s3">
+      <img src="{{ section.settings.img3 | image_url: width: 500 }}">
+    </div>
+
+    <div class="side s4">
+      <img src="{{ section.settings.img4 | image_url: width: 500 }}">
+    </div>
+
   </div>
 
-  <!-- LATERAIS -->
-  <div class="side left-top">
-    <img src="{{ section.settings.img1 | image_url: width: 500 }}">
+  <div class="motion-text">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.subtitle }}</p>
   </div>
-
-  <div class="side right-top">
-    <img src="{{ section.settings.img2 | image_url: width: 500 }}">
-  </div>
-
-  <div class="side left-bottom">
-    <img src="{{ section.settings.img3 | image_url: width: 500 }}">
-  </div>
-
-  <div class="side right-bottom">
-    <img src="{{ section.settings.img4 | image_url: width: 500 }}">
-  </div>
-
-</div>
-
-<div class="motion-text">
-  <h2>{{ section.settings.title }}</h2>
-  <p>{{ section.settings.subtitle }}</p>
-</div>
 
 </section>
 
 <style>
 
+/* FUNDO */
 .motion-section{
   background:#2b0000;
   padding:100px 20px;
@@ -45,21 +46,19 @@
 /* CONTAINER */
 .motion-container{
   position:relative;
-  max-width:500px;
+  width:320px;
   margin:80px auto;
-  overflow:visible;
 }
 
-/* IMAGEM PRINCIPAL */
+/* PRINCIPAL */
 .main-img{
   position:relative;
   z-index:1;
-  animation:fadeMain 1s ease forwards;
 }
 
 .main-img img{
-  width:260px; /* 🔥 menor */
-  height:360px;
+  width:220px;
+  height:300px;
   object-fit:cover;
   border-radius:20px;
   display:block;
@@ -67,104 +66,38 @@
   box-shadow:0 20px 60px rgba(0,0,0,0.4);
 }
 
-/* LATERAIS (POR CIMA) */
+/* LATERAIS (NA FRENTE) */
 .side{
   position:absolute;
-  z-index:10; /* 🔥 FICA NA FRENTE */
+  z-index:10;
   opacity:0;
+  animation:fadeUp 0.8s ease forwards;
 }
 
-/* POSIÇÕES */
-.left-top{
-  top:20px;
-  left:-140px;
-  animation:showLeftTop 1s ease forwards;
-  animation-delay:0.4s;
-}
-
-.right-top{
-  top:20px;
-  right:-140px;
-  animation:showRightTop 1s ease forwards;
-  animation-delay:0.6s;
-}
-
-.left-bottom{
-  bottom:20px;
-  left:-160px;
-  animation:showLeftBottom 1s ease forwards;
-  animation-delay:0.8s;
-}
-
-.right-bottom{
-  bottom:20px;
-  right:-160px;
-  animation:showRightBottom 1s ease forwards;
-  animation-delay:1s;
-}
-
-/* TAMANHO DAS LATERAIS */
+/* TAMANHO */
 .side img{
-  width:140px;
-  height:190px;
+  width:130px;
+  height:180px;
   object-fit:cover;
   border-radius:15px;
   box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-/* ANIMAÇÕES WOW */
-@keyframes fadeMain{
-  from{
-    opacity:0;
-    transform:scale(0.9);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
+/* POSIÇÕES */
+.s1{ top:-20px; left:-120px; animation-delay:0.2s; }
+.s2{ top:-20px; right:-120px; animation-delay:0.4s; }
+.s3{ bottom:-20px; left:-130px; animation-delay:0.6s; }
+.s4{ bottom:-20px; right:-130px; animation-delay:0.8s; }
 
-@keyframes showLeftTop{
+/* ANIMAÇÃO */
+@keyframes fadeUp{
   from{
     opacity:0;
-    transform:translate(-60px,60px) scale(0.9);
+    transform:translateY(30px);
   }
   to{
     opacity:1;
-    transform:translate(0,0) scale(1);
-  }
-}
-
-@keyframes showRightTop{
-  from{
-    opacity:0;
-    transform:translate(60px,60px) scale(0.9);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-  }
-}
-
-@keyframes showLeftBottom{
-  from{
-    opacity:0;
-    transform:translate(-60px,-60px) scale(0.9);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
-  }
-}
-
-@keyframes showRightBottom{
-  from{
-    opacity:0;
-    transform:translate(60px,-60px) scale(0.9);
-  }
-  to{
-    opacity:1;
-    transform:translate(0,0) scale(1);
+    transform:translateY(0);
   }
 }
 
@@ -174,7 +107,7 @@
 }
 
 .motion-text h2{
-  font-size:28px;
+  font-size:26px;
   letter-spacing:2px;
   margin-bottom:10px;
 }
@@ -187,9 +120,13 @@
 /* MOBILE */
 @media(max-width:768px){
 
+  .motion-container{
+    width:260px;
+  }
+
   .main-img img{
-    width:200px;
-    height:280px;
+    width:180px;
+    height:250px;
   }
 
   .side img{
@@ -197,18 +134,29 @@
     height:130px;
   }
 
-  .left-top{ left:-70px; }
-  .right-top{ right:-70px; }
-  .left-bottom{ left:-80px; }
-  .right-bottom{ right:-80px; }
+  .s1{ left:-70px; }
+  .s2{ right:-70px; }
+  .s3{ left:-80px; }
+  .s4{ right:-80px; }
 
 }
-.main-img img{
-  width:260px !important;
-  height:360px !important;
-}
 
-.side{
-  z-index:999 !important;
-}
 </style>
+
+{% schema %}
+{
+  "name": "Best Seller Motion",
+  "settings": [
+    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
+    { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
+    { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
+    { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças que marcaram presença." }
+  ],
+  "presets": [
+    { "name": "Best Seller Motion" }
+  ]
+}
+{% endschema %}
