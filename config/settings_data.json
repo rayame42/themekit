@@ -20,6 +20,13 @@
           "link": "shopify://collections",
           "collection": ""
         }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "Jade Intimates",
+          "menu": "main-menu"
+        }
       }
     },
     "content_for_index": [],
