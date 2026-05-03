@@ -1,180 +1,179 @@
 <section class="home-premium">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Mais do que lingerie.<br>Uma experiência.</h1>
-      <p>Sinta-se desejada, confiante e poderosa — todos os dias.</p>
-      <a href="/collections/all" class="btn-primary">Descobrir coleção</a>
-    </div>
-  </div>
+<!-- BARRA TOPO -->
+<div class="topbar">
+  Frete grátis para todo Brasil • 6x sem juros • 15% OFF em toda loja
+</div>
 
-  <!-- CATEGORIAS -->
-  <div class="categories">
-    <a href="/collections/all">
-      <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
-      <span>Conjuntos</span>
-    </a>
-    <a href="/collections/all">
-      <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
-      <span>Body</span>
-    </a>
-    <a href="/collections/all">
-      <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
-      <span>Camisolas</span>
-    </a>
+<!-- HERO -->
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>Mais do que lingerie.<br>Uma experiência.</h1>
+    <p>Sinta-se desejada, confiante e poderosa — todos os dias.</p>
+    <a href="/collections/all" class="btn">Descobrir coleção</a>
   </div>
+</div>
 
-  <!-- DESTAQUES -->
-  <div class="featured">
-    <h2>Mais desejados</h2>
+<!-- CATEGORIAS -->
+<div class="categories">
+  <a href="/collections/conjuntos">
+    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
+    <span>Conjuntos</span>
+  </a>
+  <a href="/collections/body">
+    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990">
+    <span>Body</span>
+  </a>
+  <a href="/collections/camisolas">
+    <img src="https://images.unsplash.com/photo-1593032465171-8f8c9dc6251d">
+    <span>Camisolas</span>
+  </a>
+</div>
 
-    <div class="products">
-      {% for product in collections.all.products limit: 4 %}
-        <a href="{{ product.url }}" class="product-card">
-          <img src="{{ product.featured_image | image_url: width: 500 }}">
-          <div class="info">
-            <p>{{ product.title }}</p>
-            <span>{{ product.price | money }}</span>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
+<!-- PRODUTOS -->
+<div class="products-section">
+  <h2>Mais desejados</h2>
+
+  <div class="products">
+    {% for product in collections.all.products limit: 4 %}
+      <a href="{{ product.url }}" class="card">
+        <img src="{{ product.featured_image | image_url: width: 600 }}">
+
+        <p class="title">{{ product.title }}</p>
+
+        <div class="price">
+          {% if product.compare_at_price > product.price %}
+            <span class="old">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+          <span class="new">{{ product.price | money }}</span>
+        </div>
+      </a>
+    {% endfor %}
   </div>
-
-  <!-- BANNER -->
-  <div class="banner">
-    <h2>Frete grátis + 6x sem juros</h2>
-  </div>
+</div>
 
 </section>
 
 <style>
-.home-premium {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+/* TOPO */
+.topbar{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+  letter-spacing:1px;
 }
 
 /* HERO */
-.hero {
-  height: 85vh;
-  background: url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero{
+  height:85vh;
+  background:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03') center/cover;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
 }
 
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: #fff;
-  max-width: 600px;
+.content{
+  position:relative;
+  text-align:center;
+  color:#fff;
 }
 
-.hero h1 {
-  font-size: 48px;
-  font-weight: 400;
-  margin-bottom: 15px;
+.content h1{
+  font-size:46px;
+  font-weight:300;
+  margin-bottom:15px;
 }
 
-.hero p {
-  font-size: 16px;
-  margin-bottom: 25px;
+.content p{
+  margin-bottom:25px;
 }
 
-.btn-primary {
-  background: #8B1E3F;
-  color: #fff;
-  padding: 14px 28px;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.btn-primary:hover {
-  background: #6f1832;
+.btn{
+  background:#8B1E3F;
+  color:#fff;
+  padding:14px 28px;
+  text-decoration:none;
+  border-radius:6px;
 }
 
 /* CATEGORIAS */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  padding: 60px 20px;
+.categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:40px 20px;
 }
 
-.categories a {
-  position: relative;
-  display: block;
+.categories img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
 }
 
-.categories img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.categories span {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: #fff;
-  font-size: 18px;
+.categories span{
+  position:absolute;
+  color:#fff;
+  bottom:10px;
+  left:10px;
 }
 
 /* PRODUTOS */
-.featured {
-  padding: 60px 20px;
-  text-align: center;
+.products-section{
+  padding:60px 20px;
+  text-align:center;
 }
 
-.featured h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
 }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+.card img{
+  width:100%;
 }
 
-.product-card img {
-  width: 100%;
+.title{
+  font-size:14px;
+  margin-top:10px;
 }
 
-.product-card .info {
-  margin-top: 10px;
+/* PREÇO PREMIUM */
+.price{
+  margin-top:5px;
 }
 
-.product-card p {
-  font-size: 14px;
+.old{
+  text-decoration:line-through;
+  color:#999;
+  margin-right:8px;
+  font-size:13px;
 }
 
-.product-card span {
-  color: #8B1E3F;
-}
-
-/* BANNER */
-.banner {
-  background: #8B1E3F;
-  color: #fff;
-  text-align: center;
-  padding: 30px;
-  margin-top: 40px;
+.new{
+  color:#8B1E3F;
+  font-weight:bold;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-  .hero h1 { font-size: 28px; }
-  .categories { grid-template-columns: 1fr; }
-  .products { grid-template-columns: 1fr 1fr; }
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+  .categories{
+    grid-template-columns:1fr;
+  }
 }
+
 </style>
