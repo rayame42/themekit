@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": {
+      "type": "hero-jade"
+    }
+  },
+  "order": ["main"]
+}
