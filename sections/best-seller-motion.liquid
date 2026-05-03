@@ -1,29 +1,27 @@
-<section class="lux-section">
+<section class="lux-clean">
 
-  <div class="lux-container">
+  <div class="lux-wrapper">
 
     <!-- IMAGENS -->
-    <div class="lux-images">
+    <div class="lux-grid">
 
-      <!-- PRINCIPAL -->
-      <div class="img main">
-        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
-      </div>
-
-      <!-- LATERAIS -->
-      <div class="img img1">
+      <div class="small">
         <img src="{{ section.settings.img1 | image_url: width: 400 }}">
       </div>
 
-      <div class="img img2">
+      <div class="small">
         <img src="{{ section.settings.img2 | image_url: width: 400 }}">
       </div>
 
-      <div class="img img3">
+      <div class="main">
+        <img src="{{ section.settings.main_image | image_url: width: 800 }}">
+      </div>
+
+      <div class="small">
         <img src="{{ section.settings.img3 | image_url: width: 400 }}">
       </div>
 
-      <div class="img img4">
+      <div class="small">
         <img src="{{ section.settings.img4 | image_url: width: 400 }}">
       </div>
 
@@ -33,9 +31,12 @@
     <div class="lux-text">
       <h2>{{ section.settings.title }}</h2>
       <p>{{ section.settings.subtitle }}</p>
-      <a href="{{ section.settings.button_link }}" class="btn">
-        {{ section.settings.button_text }}
-      </a>
+
+      {% if section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
     </div>
 
   </div>
@@ -45,99 +46,57 @@
 <style>
 
 /* FUNDO */
-.lux-section{
-  background:#f4f4f4;
+.lux-clean{
+  background:#f5f5f5;
   padding:100px 20px;
 }
 
-/* GRID */
-.lux-container{
-  max-width:1200px;
+/* CONTAINER */
+.lux-wrapper{
+  max-width:1100px;
   margin:auto;
   display:grid;
   grid-template-columns:1fr 1fr;
-  align-items:center;
   gap:60px;
+  align-items:center;
 }
 
-/* ÁREA DAS IMAGENS */
-.lux-images{
-  position:relative;
-  height:600px;
+/* GRID DE IMAGENS */
+.lux-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
-/* BASE */
-.img{
-  position:absolute;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,0.15);
-  opacity:0;
-  transform:scale(0.9);
-  animation:fadeUp 0.8s ease forwards;
-}
-
-.img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* PRINCIPAL */
+/* IMAGEM PRINCIPAL */
 .main{
-  width:320px;
-  height:420px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%, -50%) scale(0.9);
-  z-index:5;
-  animation-delay:0.2s;
+  grid-column:span 2;
 }
 
-/* LATERAIS (ORGANIZADAS) */
-
-.img1{
-  width:160px;
-  top:40px;
-  left:40px;
-  animation-delay:0.4s;
+.main img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+  animation:fade 0.8s ease;
 }
 
-.img2{
-  width:150px;
-  top:60px;
-  right:20px;
-  animation-delay:0.6s;
+/* IMAGENS PEQUENAS */
+.small img{
+  width:100%;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.3s;
 }
 
-.img3{
-  width:150px;
-  bottom:40px;
-  left:60px;
-  animation-delay:0.8s;
-}
-
-.img4{
-  width:160px;
-  bottom:10px;
-  right:10px;
-  animation-delay:1s;
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+.small img:hover{
+  transform:scale(1.05);
 }
 
 /* TEXTO */
 .lux-text h2{
   font-size:32px;
-  font-weight:400;
   letter-spacing:2px;
+  font-weight:400;
   margin-bottom:15px;
 }
 
@@ -164,43 +123,85 @@
   background:#2b0000;
 }
 
+/* ANIMAÇÃO */
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 /* MOBILE */
 @media(max-width:768px){
-
-  .lux-container{
+  .lux-wrapper{
     grid-template-columns:1fr;
     text-align:center;
   }
-
-  .lux-images{
-    height:500px;
-  }
-
-  .main{
-    width:260px;
-    height:340px;
-  }
-
 }
 
 </style>
 
 {% schema %}
 {
-  "name": "Best Seller Premium",
+  "name": "Best Seller Clean",
   "settings": [
-    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem 1 (topo esquerda)" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem 2 (topo direita)" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem 3 (baixo esquerda)" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem 4 (baixo direita)" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Peças que deixaram marca — nas fotos, na memória e na cama." },
-    { "type": "text", "id": "button_text", "label": "Texto botão", "default": "EXPLORAR →" },
-    { "type": "url", "id": "button_link", "label": "Link botão" }
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Imagem principal"
+    },
+    {
+      "type": "image_picker",
+      "id": "img1",
+      "label": "Imagem 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img2",
+      "label": "Imagem 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "img3",
+      "label": "Imagem 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "img4",
+      "label": "Imagem 4"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "BEST SELLERS | TOP 05"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Peças que deixam marca — nas fotos, na memória e na pele."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão",
+      "default": "EXPLORAR →"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    }
   ],
   "presets": [
-    { "name": "Best Seller Premium" }
+    {
+      "name": "Best Seller Clean"
+    }
   ]
 }
 {% endschema %}
