@@ -2,6 +2,12 @@
 
   <div class="container">
 
+    <!-- HEADER -->
+    <div class="cat-header">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+
     <div class="slider-wrapper">
 
       <div class="arrow left" onclick="slideCat(-1)">‹</div>
@@ -26,38 +32,71 @@
 
 /* BASE */
 .cat-slider{
-  padding:40px 0;
+  padding:60px 0;
 }
 
 .container{
   max-width:1200px;
   margin:auto;
+  padding:0 20px;
+}
+
+/* HEADER */
+.cat-header{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.cat-header h2{
+  font-size:30px;
+  font-weight:300;
+  letter-spacing:1px;
+}
+
+.cat-header p{
+  font-size:14px;
+  color:#666;
+  margin-top:8px;
 }
 
 /* DESKTOP */
 .slider{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:14px;
+}
+
+.item{
+  text-decoration:none;
+  color:#111;
 }
 
 .item img{
   width:100%;
   height:260px;
   object-fit:cover;
-  border-radius:12px;
+  border-radius:14px;
+  transition:0.4s;
+}
+
+.item img:hover{
+  transform:scale(1.03);
 }
 
 .item span{
   display:block;
   text-align:center;
-  margin-top:8px;
-  font-size:12px;
+  margin-top:10px;
+  font-size:11px;
   letter-spacing:2px;
 }
 
 /* MOBILE */
 @media(max-width:768px){
+
+  .cat-header h2{
+    font-size:22px;
+  }
 
   .slider-wrapper{
     position:relative;
@@ -72,8 +111,8 @@
   }
 
   .slider a{
-    min-width:50%;
-    flex:0 0 50%;
+    min-width:48%;
+    flex:0 0 48%;
   }
 
   .slider::-webkit-scrollbar{
@@ -83,10 +122,10 @@
   /* SETAS */
   .arrow{
     position:absolute;
-    top:50%;
+    top:45%;
     transform:translateY(-50%);
-    width:34px;
-    height:34px;
+    width:32px;
+    height:32px;
     background:#2b0000;
     color:#fff;
     border-radius:50%;
@@ -95,6 +134,7 @@
     justify-content:center;
     z-index:10;
     cursor:pointer;
+    font-size:18px;
   }
 
   .arrow.left{ left:5px; }
@@ -102,12 +142,19 @@
 
 }
 
+/* ESCONDER SETAS NO DESKTOP */
+@media(min-width:769px){
+  .arrow{
+    display:none;
+  }
+}
+
 </style>
 
 <script>
 function slideCat(dir){
   const slider = document.querySelector('.cat-slider .slider');
-  const amount = slider.offsetWidth / 2;
+  const amount = slider.offsetWidth * 0.8;
 
   slider.scrollBy({
     left: dir * amount,
@@ -119,6 +166,20 @@ function slideCat(dir){
 {% schema %}
 {
   "name": "Categorias Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Explore por categoria"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Descrição",
+      "default": "Peças que despertam desejo, elegância e presença."
+    }
+  ],
   "blocks": [
     {
       "type": "cat",
