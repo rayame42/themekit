@@ -30,13 +30,13 @@
 </div>
 
 <!-- CATEGORIAS -->
-<div class="categories">
-  {% for block in section.blocks %}
-    <a href="{{ block.settings.link }}">
-      <img src="{{ block.settings.img | image_url: width: 800 }}">
-      <span>{{ block.settings.title }}</span>
-    </a>
-  {% endfor %}
+<div class="categories-wrapper">
+
+  <div class="arrow left" onclick="slideCategories(-1)">‹</div>
+  <div class="arrow right" onclick="slideCategories(1)">›</div>
+
+  <div class="categories">
+      </div>
 </div>
 
 </section>
