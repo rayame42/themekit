@@ -95,7 +95,7 @@
           "item_3zdePj"
         ],
         "custom_css": [
-          "@media(max-width:768px){details{width:100% !important; margin-bottom:12px !important; } summary{width:100% !important; padding:16px !important; font-size:14px !important; border-radius:10px !important; }}"
+          "@media (max-width: 768px) {details {width: 100% !important; margin-bottom: 12px !important; } summary {width: 100% !important; padding: 16px !important; font-size: 14px !important; border-radius: 10px !important; }}"
         ],
         "settings": {
           "title": "Atendimento ao Cliente"
@@ -177,9 +177,8 @@
           "cat_PjFUQ6"
         ],
         "custom_css": [
-          ".item {position: relative; display: block; color: #111; text-decoration: none;}",
-          ".item img {width: 100%; height: 260px; object-fit: cover; border-radius: 14px; display: block;}",
-          ".item span {position: relative; z-index: 2; display: block; text-align: center; margin-top: 12px; font-size: 11px; letter-spacing: 2px;}"
+          ".arrow{display:none!important}",
+          ".categories .arrow{display:flex!important}"
         ],
         "settings": {
           "title": "Explore por categoria",
