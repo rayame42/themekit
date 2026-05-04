@@ -8,17 +8,15 @@
 <!-- HERO -->
 <div class="hero">
 
-  <!-- DESKTOP -->
   <img 
     src="{{ section.settings.hero_desktop | image_url: width: 2000 }}" 
     class="hero-img desktop"
-    alt="Banner desktop">
+    alt="Banner">
 
-  <!-- MOBILE -->
   <img 
     src="{{ section.settings.hero_mobile | image_url: width: 1000 }}" 
     class="hero-img mobile"
-    alt="Banner mobile">
+    alt="Banner">
 
   <div class="overlay"></div>
 
@@ -32,7 +30,7 @@
 <!-- CATEGORIAS -->
 <div class="categories">
   {% for block in section.blocks %}
-    <a href="{{ block.settings.link }}">
+    <a href="{{ block.settings.link }}" class="item">
       <img src="{{ block.settings.img | image_url: width: 800 }}">
       <span>{{ block.settings.title }}</span>
     </a>
@@ -63,17 +61,15 @@
 /* HERO */
 .hero{
   position:relative;
-  height:85vh;
+  height:80vh;
   overflow:hidden;
 }
 
-/* IMAGENS */
 .hero-img{
   position:absolute;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
   top:0;
   left:0;
 }
@@ -95,13 +91,11 @@
   bottom:60px;
   left:60px;
   color:#fff;
-  max-width:420px;
 }
 
 .hero-text h1{
   font-size:48px;
   font-weight:300;
-  line-height:1.2;
 }
 
 .hero-text a{
@@ -109,7 +103,6 @@
   margin-top:14px;
   font-size:12px;
   letter-spacing:2px;
-  text-transform:uppercase;
   color:#fff;
   text-decoration:none;
   border-bottom:1px solid rgba(255,255,255,0.6);
@@ -123,20 +116,24 @@
   padding:40px;
 }
 
-.categories img{
+.item{
+  text-decoration:none;
+  color:#111;
+}
+
+.item img{
   width:100%;
   height:240px;
   object-fit:cover;
-  border-radius:6px;
+  border-radius:8px;
 }
 
-.categories span{
+.item span{
   display:block;
   text-align:center;
-  font-size:11px;
   margin-top:10px;
+  font-size:11px;
   letter-spacing:2px;
-  color:#111;
 }
 
 /* MOBILE */
@@ -154,18 +151,13 @@
     display:block;
   }
 
-  .hero-img{
-    object-position:center top;
-  }
-
   .hero-text{
     left:20px;
     bottom:25px;
-    max-width:260px;
   }
 
   .hero-text h1{
-    font-size:28px;
+    font-size:26px;
   }
 
   .categories{
@@ -176,3 +168,72 @@
 }
 
 </style>
+
+{% schema %}
+{
+  "name": "Home Jade",
+  "settings": [
+    {
+      "type": "text",
+      "id": "topbar",
+      "label": "Texto topo",
+      "default": "Frete grátis • 6x sem juros • 15% OFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_desktop",
+      "label": "Imagem Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_mobile",
+      "label": "Imagem Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Seu momento. Sua essência."
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Botão",
+      "default": "Explorar coleção"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link do botão"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoria",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Imagem"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Jade"
+    }
+  ]
+}
+{% endschema %}
