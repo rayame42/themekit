@@ -13,10 +13,6 @@
             {{ block.settings.title }}
           </span>
 
-          <span class="arrow">
-            →
-          </span>
-
         </a>
       {% endfor %}
 
@@ -33,6 +29,7 @@
   background:#ffffff;
   padding:80px 20px;
 }
+
 /* CONTAINER */
 .atendimento-container{
   max-width:800px;
@@ -58,7 +55,7 @@
 /* ITEM */
 .item{
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-start; /* 🔥 evita centralização bugada */
   align-items:center;
   padding:20px 24px;
   border:1px solid rgba(0,0,0,0.08);
@@ -91,13 +88,6 @@
   letter-spacing:0.5px;
 }
 
-/* SETA */
-.arrow{
-  font-size:14px;
-  opacity:0.5;
-  transition:all 0.3s ease;
-}
-
 /* HOVER */
 .item:hover{
   background:#2b0000;
@@ -108,11 +98,6 @@
 
 .item:hover::before{
   transform:scaleY(1);
-}
-
-.item:hover .arrow{
-  transform:translateX(6px);
-  opacity:1;
 }
 
 /* MOBILE */
@@ -162,13 +147,7 @@
   ],
   "presets": [
     {
-      "name": "Atendimento ao Cliente",
-      "blocks": [
-        { "type": "item", "settings": { "title": "Envio e Frete" } },
-        { "type": "item", "settings": { "title": "Políticas de Reembolso" } },
-        { "type": "item", "settings": { "title": "Fale Conosco" } },
-        { "type": "item", "settings": { "title": "Sobre Nós" } }
-      ]
+      "name": "Atendimento ao Cliente"
     }
   ]
 }
