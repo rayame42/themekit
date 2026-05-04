@@ -1,42 +1,27 @@
-<section class="lux-final">
+<section class="best-seller-pro">
 
-  <div class="wrap">
+  <div class="container">
 
-    <!-- IMAGENS -->
-    <div class="images">
+    <h2>{{ section.settings.title }}</h2>
+    <p class="subtitle">{{ section.settings.subtitle }}</p>
 
-      <div class="main">
-        <img src="{{ section.settings.main_image | image_url: width: 900 }}">
-      </div>
+    <!-- SLIDER -->
+    <div class="slider" id="bestSlider">
 
-      <div class="img">
-        <img src="{{ section.settings.img1 | image_url: width: 500 }}">
-      </div>
+      {% for block in section.blocks %}
+        <div class="card">
 
-      <div class="img">
-        <img src="{{ section.settings.img2 | image_url: width: 500 }}">
-      </div>
+          <img src="{{ block.settings.img | image_url: width: 800 }}">
 
-      <div class="img">
-        <img src="{{ section.settings.img3 | image_url: width: 500 }}">
-      </div>
+          <div class="overlay">
+            <a href="{{ block.settings.link }}" class="buy">
+              Comprar →
+            </a>
+          </div>
 
-      <div class="img">
-        <img src="{{ section.settings.img4 | image_url: width: 500 }}">
-      </div>
+        </div>
+      {% endfor %}
 
-    </div>
-
-    <!-- TEXTO -->
-    <div class="text">
-      <h2>{{ section.settings.title }}</h2>
-      <p>{{ section.settings.subtitle }}</p>
-
-      {% if section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="btn">
-          {{ section.settings.button_text }}
-        </a>
-      {% endif %}
     </div>
 
   </div>
@@ -46,168 +31,166 @@
 <style>
 
 /* FUNDO */
-.lux-final{
+.best-seller-pro{
+  padding:80px 20px;
   background:#f5f5f5;
-  padding:100px 20px;
 }
 
 /* CONTAINER */
-.wrap{
+.container{
   max-width:1200px;
   margin:auto;
+  text-align:center;
+}
+
+/* TITULO */
+.best-seller-pro h2{
+  font-size:30px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  font-size:14px;
+  color:#666;
+  margin-bottom:30px;
+}
+
+/* SLIDER */
+.slider{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:60px;
+  gap:16px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
 }
 
-/* DESKTOP IMAGENS */
-.images{
+.slider::-webkit-scrollbar{
+  display:none;
+}
+
+/* CARD */
+.card{
   position:relative;
-  width:520px;
-  height:500px;
-}
-
-/* PRINCIPAL */
-.main{
-  position:absolute;
-  width:320px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  z-index:3;
-}
-
-.main img{
-  width:100%;
-  border-radius:20px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.25);
-}
-
-/* LATERAIS */
-.img{
-  position:absolute;
-  width:150px;
-}
-
-.img img{
-  width:100%;
+  min-width:260px;
+  flex:0 0 260px;
   border-radius:16px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  overflow:hidden;
 }
 
-/* POSIÇÕES */
-.img:nth-child(2){ top:40px; left:-20px; }
-.img:nth-child(3){ top:40px; right:-20px; }
-.img:nth-child(4){ bottom:40px; left:-20px; }
-.img:nth-child(5){ bottom:40px; right:-20px; }
-
-/* TEXTO */
-.text{
-  max-width:420px;
+.card img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  transition:0.4s;
 }
 
-.text h2{
-  font-size:34px;
-  letter-spacing:2px;
-  font-weight:400;
-  margin-bottom:15px;
-}
-
-.text p{
-  font-size:16px;
-  color:#555;
-  margin-bottom:25px;
-}
-
-/* BOTÃO */
-.btn{
-  background:#111;
-  color:#fff;
-  padding:14px 30px;
-  text-decoration:none;
-  font-size:13px;
-  letter-spacing:2px;
+/* OVERLAY */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.0);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:20px;
   transition:0.3s;
 }
 
-.btn:hover{
-  background:#2b0000;
+/* BOTÃO */
+.buy{
+  background:#fff;
+  color:#000;
+  padding:10px 20px;
+  font-size:12px;
+  letter-spacing:2px;
+  text-decoration:none;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.3s;
 }
 
-/* ===== MOBILE (AGORA FICA BONITO) ===== */
+/* HOVER */
+.card:hover img{
+  transform:scale(1.05);
+}
+
+.card:hover .overlay{
+  background:rgba(0,0,0,0.25);
+}
+
+.card:hover .buy{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
 @media(max-width:768px){
 
-  .wrap{
-    flex-direction:column;
-    gap:30px;
-    text-align:center;
-  }
-
-  /* TRANSFORMA EM CARROSSEL */
-  .images{
-    position:relative;
-    width:100%;
-    height:auto;
-    display:flex;
-    overflow-x:auto;
-    gap:12px;
-    padding:10px;
-  }
-
-  .images::-webkit-scrollbar{
-    display:none;
-  }
-
-  /* REMOVE POSIÇÃO ABSOLUTA */
-  .main,
-  .img{
-    position:relative !important;
-    transform:none !important;
-    width:75%;
+  .card{
+    min-width:75%;
     flex:0 0 75%;
   }
 
-  .main img,
-  .img img{
-    width:100%;
-    border-radius:16px;
+  .card img{
+    height:320px;
   }
 
-  /* TEXTO */
-  .text h2{
-    font-size:24px;
-  }
-
-  .text p{
-    font-size:14px;
-  }
-
-  .btn{
-    width:100%;
-    display:block;
+  .buy{
+    opacity:1;
+    transform:none;
   }
 
 }
 
 </style>
 
+<script>
+
+/* AUTO SLIDE (ZARA STYLE) */
+const slider = document.getElementById("bestSlider");
+
+let scrollAmount = 0;
+
+setInterval(() => {
+  if (!slider) return;
+
+  scrollAmount += 280;
+
+  if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+    scrollAmount = 0;
+  }
+
+  slider.scrollTo({
+    left: scrollAmount,
+    behavior: "smooth"
+  });
+
+}, 2500);
+
+</script>
+
 {% schema %}
 {
-  "name": "Best Seller Final",
+  "name": "Best Seller PRO",
   "settings": [
-    { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 04" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." },
-    { "type": "text", "id": "button_text", "label": "Texto do botão", "default": "EXPLORAR →" },
-    { "type": "url", "id": "button_link", "label": "Link do botão" }
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." }
   ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Produto",
+      "settings": [
+        { "type": "image_picker", "id": "img", "label": "Imagem" },
+        { "type": "url", "id": "link", "label": "Link produto" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
   "presets": [
-    { "name": "Best Seller Final" }
+    {
+      "name": "Best Seller PRO"
+    }
   ]
 }
 {% endschema %}
