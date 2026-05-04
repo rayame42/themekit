@@ -199,5 +199,17 @@ summary{
 
 {{ content_for_layout }}
 
+<script>
+function slideCategories(direction){
+  const container = document.querySelector('.categories');
+  const scrollAmount = container.offsetWidth / 2;
+
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+</script>
+
 </body>
 </html>
