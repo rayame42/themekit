@@ -53,13 +53,13 @@
           "categoria_zr43E3"
         ],
         "custom_css": [
-          "h2{font-size:28px!important;font-weight:300!important}",
-          "input{border-radius:40px!important;padding:14px!important}",
-          "button{border-radius:40px!important;background:#2b0000!important;color:#fff!important;width:100%}",
-          "[class*=\"footer\"]{background:#2b0000!important;color:#fff!important;padding:40px 20px!important}",
-          "[class*=\"footer\"] a{color:#ccc!important}",
-          "[class*=\"footer\"] a:hover{color:#fff!important}",
-          "@media(min-width:768px){button{width:auto}[class*=\"footer\"]{padding:60px 40px!important}}"
+          "h2 {font-size: 28px !important; font-weight: 300 !important;}",
+          "input {border-radius: 40px !important; padding: 14px !important;}",
+          "button {border-radius: 40px !important; background: #2b0000 !important; color: #fff !important; width: 100%;}",
+          "[class*=\"footer\"] {background: #2b0000 !important; color: #fff !important; padding: 40px 20px !important;}",
+          "[class*=\"footer\"] a {color: #ccc !important;}",
+          "[class*=\"footer\"] a:hover {color: #fff !important;}",
+          "@media (min-width: 768px) {button {width: auto; } [class*=\"footer\"] {padding: 60px 40px !important; }}"
         ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
@@ -178,6 +178,23 @@
           "whatsapp": "(21) 96677-6897",
           "email": "contato@jadeintimates.com.br"
         }
+      },
+      "categories-slider": {
+        "type": "categories-slider",
+        "blocks": {
+          "cat_PjFUQ6": {
+            "type": "cat",
+            "settings": {
+              "img": "shopify://shop_images/SELENE_1_16f40b78-4f27-454f-a0a4-afac2dbfd4a4.jpg",
+              "title": "CONJUNTOS",
+              "link": "shopify://collections/conjuntos"
+            }
+          }
+        },
+        "block_order": [
+          "cat_PjFUQ6"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [],
