@@ -135,9 +135,7 @@
           "item_3zdePj"
         ],
         "custom_css": [
-          "details summary::-webkit-details-marker {display: none;}",
-          "details summary::marker {display: none;}",
-          "details summary {list-style: none;}"
+          "@media(max-width:768px){.atendimento h2{font-size:20px;text-align:center}}"
         ],
         "settings": {
           "title": "Atendimento ao Cliente"
@@ -150,7 +148,7 @@
       "footer-custom": {
         "type": "footer-custom",
         "custom_css": [
-          "@media(max-width:768px){.accordion{display:grid;grid-template-columns:1fr 1fr;gap:4px!important}.atendimento{padding:50px 16px}.atendimento h2{font-size:22px;margin-bottom:24px}.item{padding:14px 12px;border-radius:10px}.item-title{font-size:13px}}"
+          "@media (max-width: 768px) {.accordion {display: grid; grid-template-columns: 1fr 1fr; gap: 4px !important; } .atendimento {padding: 50px 16px; } .atendimento h2 {font-size: 22px; margin-bottom: 24px; } .item {padding: 14px 12px; border-radius: 10px; } .item-title {font-size: 13px; }}"
         ],
         "settings": {
           "col1_title": "Loja",
