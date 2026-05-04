@@ -5,7 +5,6 @@
     <!-- COLUNA 1 -->
     <div class="footer-col">
       <h3>{{ section.settings.col1_title }}</h3>
-
       <a href="{{ section.settings.link1 }}">{{ section.settings.text1 }}</a>
       <a href="{{ section.settings.link2 }}">{{ section.settings.text2 }}</a>
       <a href="{{ section.settings.link3 }}">{{ section.settings.text3 }}</a>
@@ -17,7 +16,6 @@
     <!-- COLUNA 2 -->
     <div class="footer-col">
       <h3>{{ section.settings.col2_title }}</h3>
-
       <a href="{{ section.settings.social1 }}">{{ section.settings.social1_text }}</a>
       <a href="{{ section.settings.social2 }}">{{ section.settings.social2_text }}</a>
       <a href="{{ section.settings.social3 }}">{{ section.settings.social3_text }}</a>
@@ -26,7 +24,6 @@
     <!-- COLUNA 3 -->
     <div class="footer-col">
       <h3>{{ section.settings.col3_title }}</h3>
-
       <p>{{ section.settings.atendimento }}</p>
       <p><strong>Whatsapp:</strong> {{ section.settings.whatsapp }}</p>
       <p><strong>E-mail:</strong> {{ section.settings.email }}</p>
@@ -36,37 +33,33 @@
 
 </section>
 
-
 <style>
 .footer-premium{
-  background: linear-gradient(180deg,#2b0000 0%, #1a0000 100%);
+  background:linear-gradient(180deg,#2b0000 0%,#1a0000 100%);
   color:#fff;
-  padding:100px 20px 60px;
+  padding:60px 20px 40px;
 }
 
-/* CONTAINER CENTRALIZADO (ISSO RESOLVE O PROBLEMA) */
 .footer-container{
   max-width:1100px;
   margin:auto;
-  padding:0 40px; /* 🔥 respiro lateral */
+  padding:0 20px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:80px;
+  gap:40px;
 }
 
-/* TITULOS */
 .footer-col h3{
-  margin-bottom:20px;
+  margin-bottom:16px;
   font-size:14px;
   letter-spacing:2px;
   text-transform:uppercase;
   font-weight:500;
 }
 
-/* LINKS */
 .footer-col a{
   display:block;
-  margin-bottom:12px;
+  margin-bottom:10px;
   color:#cfcfcf;
   text-decoration:none;
   font-size:14px;
@@ -78,31 +71,27 @@
   transform:translateX(6px);
 }
 
-/* TEXTOS */
 .footer-col p{
   font-size:14px;
   line-height:1.8;
   opacity:0.85;
 }
 
-/* ESPAÇAMENTO INTERNO ENTRE LINHAS */
 .footer-col{
   padding-right:10px;
 }
 
-/* ================= MOBILE ================= */
-
 @media(max-width:768px){
+
+  .footer-premium{
+    padding:40px 16px 30px;
+  }
 
   .footer-container{
     grid-template-columns:1fr;
-    gap:20px;
+    gap:16px;
     text-align:center;
-    padding:0 20px; /* 🔥 menor no mobile */
-  }
-
-  .footer-premium{
-    padding:60px 20px;
+    padding:0 10px;
   }
 
   .footer-col a:hover{
@@ -116,55 +105,33 @@
 {
   "name": "Footer Premium",
   "settings": [
-
     { "type": "text", "id": "col1_title", "label": "Título coluna 1", "default": "Loja" },
-
     { "type": "text", "id": "text1", "label": "Texto 1", "default": "Início" },
     { "type": "url", "id": "link1", "label": "Link 1" },
-
     { "type": "text", "id": "text2", "label": "Texto 2", "default": "Catálogo" },
     { "type": "url", "id": "link2", "label": "Link 2" },
-
     { "type": "text", "id": "text3", "label": "Texto 3", "default": "Conjuntos" },
     { "type": "url", "id": "link3", "label": "Link 3" },
-
     { "type": "text", "id": "text4", "label": "Texto 4", "default": "Body" },
     { "type": "url", "id": "link4", "label": "Link 4" },
-
     { "type": "text", "id": "text5", "label": "Texto 5", "default": "Camisolas" },
     { "type": "url", "id": "link5", "label": "Link 5" },
-
     { "type": "text", "id": "text6", "label": "Texto 6", "default": "Corset" },
     { "type": "url", "id": "link6", "label": "Link 6" },
-
-
-
     { "type": "text", "id": "col2_title", "label": "Título coluna 2", "default": "Conecte-se" },
-
     { "type": "text", "id": "social1_text", "label": "Social 1", "default": "Facebook" },
     { "type": "url", "id": "social1", "label": "Link Facebook" },
-
     { "type": "text", "id": "social2_text", "label": "Social 2", "default": "Instagram" },
     { "type": "url", "id": "social2", "label": "Link Instagram" },
-
     { "type": "text", "id": "social3_text", "label": "Social 3", "default": "TikTok" },
     { "type": "url", "id": "social3", "label": "Link TikTok" },
-
-
-
     { "type": "text", "id": "col3_title", "label": "Título coluna 3", "default": "Central de Atendimento" },
-
     { "type": "textarea", "id": "atendimento", "label": "Texto atendimento", "default": "Atendimento via Whatsapp: Segunda à sexta (exceto fins de semana e feriados)." },
-
     { "type": "text", "id": "whatsapp", "label": "Whatsapp", "default": "(21) 96677-6897" },
-
     { "type": "text", "id": "email", "label": "E-mail", "default": "contato@jadeintimates.com.br" }
-
   ],
   "presets": [
-    {
-      "name": "Footer Premium"
-    }
+    { "name": "Footer Premium" }
   ]
 }
 {% endschema %}
