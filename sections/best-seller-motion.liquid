@@ -5,27 +5,24 @@
     <!-- IMAGENS -->
     <div class="images">
 
-      <!-- PRINCIPAL -->
       <div class="main">
         <img src="{{ section.settings.main_image | image_url: width: 900 }}">
       </div>
 
-      <!-- ESQUERDA -->
-      <div class="img left-top">
-        <img src="{{ section.settings.img1 | image_url: width: 400 }}">
+      <div class="img">
+        <img src="{{ section.settings.img1 | image_url: width: 500 }}">
       </div>
 
-      <div class="img left-bottom">
-        <img src="{{ section.settings.img3 | image_url: width: 400 }}">
+      <div class="img">
+        <img src="{{ section.settings.img2 | image_url: width: 500 }}">
       </div>
 
-      <!-- DIREITA -->
-      <div class="img right-top">
-        <img src="{{ section.settings.img2 | image_url: width: 400 }}">
+      <div class="img">
+        <img src="{{ section.settings.img3 | image_url: width: 500 }}">
       </div>
 
-      <div class="img right-bottom">
-        <img src="{{ section.settings.img4 | image_url: width: 400 }}">
+      <div class="img">
+        <img src="{{ section.settings.img4 | image_url: width: 500 }}">
       </div>
 
     </div>
@@ -51,7 +48,7 @@
 /* FUNDO */
 .lux-final{
   background:#f5f5f5;
-  padding:120px 20px;
+  padding:100px 20px;
 }
 
 /* CONTAINER */
@@ -64,7 +61,7 @@
   gap:60px;
 }
 
-/* IMAGENS */
+/* DESKTOP IMAGENS */
 .images{
   position:relative;
   width:520px;
@@ -87,11 +84,10 @@
   box-shadow:0 30px 80px rgba(0,0,0,0.25);
 }
 
-/* LATERAIS BASE */
+/* LATERAIS */
 .img{
   position:absolute;
   width:150px;
-  z-index:5;
 }
 
 .img img{
@@ -100,35 +96,11 @@
   box-shadow:0 15px 40px rgba(0,0,0,0.15);
 }
 
-/* POSIÇÕES (PRÓXIMAS DA PRINCIPAL) */
-
-/* esquerda */
-.left-top{
-  top:60px;
-  left:-20px;
-}
-
-.left-bottom{
-  bottom:60px;
-  left:-20px;
-}
-
-/* direita */
-.right-top{
-  top:60px;
-  right:-20px;
-}
-
-.right-bottom{
-  bottom:60px;
-  right:-20px;
-}
-
-/* HOVER PREMIUM */
-.img:hover{
-  transform:scale(1.08);
-  transition:0.3s;
-}
+/* POSIÇÕES */
+.img:nth-child(2){ top:40px; left:-20px; }
+.img:nth-child(3){ top:40px; right:-20px; }
+.img:nth-child(4){ bottom:40px; left:-20px; }
+.img:nth-child(5){ bottom:40px; right:-20px; }
 
 /* TEXTO */
 .text{
@@ -163,17 +135,57 @@
   background:#2b0000;
 }
 
-/* MOBILE */
+/* ===== MOBILE (AGORA FICA BONITO) ===== */
 @media(max-width:768px){
 
   .wrap{
     flex-direction:column;
+    gap:30px;
     text-align:center;
   }
 
+  /* TRANSFORMA EM CARROSSEL */
   .images{
+    position:relative;
     width:100%;
-    height:480px;
+    height:auto;
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding:10px;
+  }
+
+  .images::-webkit-scrollbar{
+    display:none;
+  }
+
+  /* REMOVE POSIÇÃO ABSOLUTA */
+  .main,
+  .img{
+    position:relative !important;
+    transform:none !important;
+    width:75%;
+    flex:0 0 75%;
+  }
+
+  .main img,
+  .img img{
+    width:100%;
+    border-radius:16px;
+  }
+
+  /* TEXTO */
+  .text h2{
+    font-size:24px;
+  }
+
+  .text p{
+    font-size:14px;
+  }
+
+  .btn{
+    width:100%;
+    display:block;
   }
 
 }
@@ -185,12 +197,12 @@
   "name": "Best Seller Final",
   "settings": [
     { "type": "image_picker", "id": "main_image", "label": "Imagem principal" },
-    { "type": "image_picker", "id": "img1", "label": "Imagem esquerda topo" },
-    { "type": "image_picker", "id": "img2", "label": "Imagem direita topo" },
-    { "type": "image_picker", "id": "img3", "label": "Imagem esquerda baixo" },
-    { "type": "image_picker", "id": "img4", "label": "Imagem direita baixo" },
-    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 05" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Peças que deixam marca — nas fotos, na memória e na pele." },
+    { "type": "image_picker", "id": "img1", "label": "Imagem 1" },
+    { "type": "image_picker", "id": "img2", "label": "Imagem 2" },
+    { "type": "image_picker", "id": "img3", "label": "Imagem 3" },
+    { "type": "image_picker", "id": "img4", "label": "Imagem 4" },
+    { "type": "text", "id": "title", "label": "Título", "default": "BEST SELLERS | TOP 04" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "As peças mais desejadas da coleção." },
     { "type": "text", "id": "button_text", "label": "Texto do botão", "default": "EXPLORAR →" },
     { "type": "url", "id": "button_link", "label": "Link do botão" }
   ],
