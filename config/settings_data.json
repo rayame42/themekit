@@ -144,7 +144,7 @@
       "newsletter-custom": {
         "type": "newsletter-custom",
         "custom_css": [
-          "@media(max-width:768px){.newsletter-block{padding:50px 16px}.newsletter-block h2{font-size:22px}.newsletter-block .form{display:flex;flex-direction:column;align-items:center;gap:10px}.newsletter-block input{width:100%}.newsletter-block button{width:100%}}"
+          "@media (max-width: 768px) {.newsletter-block {padding: 50px 16px; } .newsletter-block h2 {font-size: 22px; } .newsletter-block .form {display: flex; flex-direction: column; align-items: center; gap: 10px; } .newsletter-block input {width: 100%; } .newsletter-block button {width: 100%; }}"
         ],
         "settings": {}
       },
@@ -231,6 +231,17 @@
         "settings": {
           "title": "Explore por categoria",
           "subtitle": "Peças que despertam desejo, elegância e presença."
+        }
+      },
+      "selos-confianca": {
+        "type": "selos-confianca",
+        "settings": {
+          "envio1": "shopify://shop_images/SELENE.png",
+          "envio2": "shopify://shop_images/SaveClip.App_653765502_17999809496877414_4454328147656201766_n.jpg",
+          "envio3": "shopify://shop_images/SaveClip.App_655915437_18117993619653188_4822264918318037777_n.jpg",
+          "seg1": "shopify://shop_images/SELENE.png",
+          "seg2": "shopify://shop_images/SaveClip.App_653765502_17999809496877414_4454328147656201766_n.jpg",
+          "seg3": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg"
         }
       }
     },
