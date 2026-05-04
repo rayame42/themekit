@@ -76,7 +76,7 @@
           "produto_rgMxxk"
         ],
         "custom_css": [
-          "@media(max-width:768px){.best-grid{display:flex!important;flex-direction:column}.best-main img{height:420px!important;object-fit:cover}.best-side{display:flex!important;overflow-x:auto;gap:12px}.best-card{min-width:75%!important;flex:0 0 75%}.best-card img{height:320px!important}}"
+          "@media(max-width:768px){.wrap{flex-direction:column!important}.images{display:flex!important;overflow:auto;height:auto}.main,.img{position:static!important;width:75%!important;flex:0 0 75%}.main img,.img img{height:340px!important}}"
         ],
         "settings": {
           "kicker": "CURADORIA JADE",
