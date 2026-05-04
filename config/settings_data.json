@@ -31,14 +31,63 @@
       },
       "best-seller-motion": {
         "type": "best-seller-motion",
+        "blocks": {
+          "produto_JDcMdz": {
+            "type": "produto",
+            "settings": {
+              "img": "shopify://shop_images/SaveClip.App_655915437_18117993619653188_4822264918318037777_n.jpg",
+              "title": "Peça destaque",
+              "cta": "Comprar →",
+              "link": ""
+            }
+          },
+          "produto_YFBCT9": {
+            "type": "produto",
+            "settings": {
+              "img": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg",
+              "title": "Peça destaque",
+              "cta": "Comprar →",
+              "link": ""
+            }
+          },
+          "produto_PBJEwW": {
+            "type": "produto",
+            "settings": {
+              "img": "shopify://shop_images/2_32cc6d6e-cb04-4b7e-b850-4d311b058e81.jpg",
+              "title": "Peça destaque",
+              "cta": "Comprar →",
+              "link": ""
+            }
+          },
+          "produto_rgMxxk": {
+            "type": "produto",
+            "settings": {
+              "img": "shopify://shop_images/SELENE.png",
+              "title": "Peça destaque",
+              "cta": "Comprar →",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "produto_JDcMdz",
+          "produto_YFBCT9",
+          "produto_PBJEwW",
+          "produto_rgMxxk"
+        ],
         "custom_css": [
           ".text {max-width: 320px; display: flex; flex-direction: column; justify-content: center;}",
           ".text h2 {line-height: 1.2; margin-bottom: 12px; letter-spacing: 3px;}",
           ".text p {margin-bottom: 20px;}"
         ],
         "settings": {
+          "kicker": "CURADORIA JADE",
           "title": "BEST SELLERS | TOP 04",
-          "subtitle": "As peças mais desejadas da coleção."
+          "subtitle": "As peças mais desejadas da coleção.",
+          "main_image": "shopify://shop_images/SELENE_1_02c80cd2-c481-4db6-9122-a5937cd67c4f.jpg",
+          "main_link": "",
+          "main_label": "Mais desejado",
+          "main_cta": "Explorar agora →"
         }
       },
       "atendimento-cliente": {
