@@ -1,34 +1,20 @@
-<section class="best-editorial">
+<section class="atendimento">
 
-  <div class="best-container">
+  <div class="atendimento-container">
 
-    <div class="best-head">
-      <span>{{ section.settings.kicker }}</span>
-      <h2>{{ section.settings.title }}</h2>
-      <p>{{ section.settings.subtitle }}</p>
-    </div>
+    <h2>{{ section.settings.title }}</h2>
 
-    <div class="best-grid">
+    <div class="accordion">
 
-      <a href="{{ section.settings.main_link }}" class="best-main">
-        <img src="{{ section.settings.main_image | image_url: width: 1200 }}" alt="">
-        <div class="best-overlay">
-          <small>{{ section.settings.main_label }}</small>
-          <strong>{{ section.settings.main_cta }}</strong>
-        </div>
-      </a>
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="item" {{ block.shopify_attributes }}>
+          
+          <span class="item-title">
+            {{ block.settings.title }}
+          </span>
 
-      <div class="best-side">
-        {% for block in section.blocks %}
-          <a href="{{ block.settings.link }}" class="best-card" {{ block.shopify_attributes }}>
-            <img src="{{ block.settings.img | image_url: width: 700 }}" alt="">
-            <div class="best-card-text">
-              <span>{{ block.settings.title }}</span>
-              <small>{{ block.settings.cta }}</small>
-            </div>
-          </a>
-        {% endfor %}
-      </div>
+        </a>
+      {% endfor %}
 
     </div>
 
@@ -37,276 +23,119 @@
 </section>
 
 <style>
-.best-editorial{
-  background:#f7f7f7;
-  padding:110px 20px;
+
+/* FUNDO */
+.atendimento{
+  background:#ffffff;
+  padding:80px 20px;
 }
 
-.best-container{
-  max-width:1180px;
+/* CONTAINER */
+.atendimento-container{
+  max-width:800px;
   margin:auto;
 }
 
-.best-head{
-  text-align:center;
-  margin-bottom:55px;
-}
-
-.best-head span{
-  font-size:11px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#7a6a6a;
-}
-
-.best-head h2{
-  font-size:42px;
+/* TÍTULO */
+.atendimento h2{
+  font-size:32px;
   font-weight:300;
-  letter-spacing:2px;
-  margin:12px 0;
+  letter-spacing:1px;
+  margin-bottom:40px;
+  color:#111;
 }
 
-.best-head p{
-  font-size:15px;
-  color:#666;
+/* LISTA */
+.accordion{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-.best-grid{
-  display:grid;
-  grid-template-columns:1.25fr .9fr;
-  gap:22px;
-  align-items:stretch;
-}
-
-.best-main,
-.best-card{
+/* ITEM */
+.item{
+  display:flex;
+  justify-content:flex-start; /* 🔥 evita centralização bugada */
+  align-items:center;
+  padding:20px 24px;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:12px;
+  text-decoration:none;
+  color:#111;
+  background:#fff;
+  transition:all 0.3s ease;
   position:relative;
   overflow:hidden;
-  border-radius:22px;
-  display:block;
-  text-decoration:none;
-  color:#fff;
-  background:#ddd;
 }
 
-.best-main img,
-.best-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .7s ease;
-}
-
-.best-main{
-  min-height:620px;
-}
-
-.best-side{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.best-card{
-  min-height:300px;
-}
-
-.best-overlay,
-.best-card-text{
-  position:absolute;
-  left:24px;
-  right:24px;
-  bottom:24px;
-  z-index:2;
-}
-
-.best-main::after,
-.best-card::after{
+/* LINHA LATERAL PREMIUM */
+.item::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.62),rgba(0,0,0,.05),transparent);
+  left:0;
+  top:0;
+  height:100%;
+  width:3px;
+  background:#2b0000;
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:0.3s;
 }
 
-.best-overlay small,
-.best-card-text small{
-  display:block;
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  opacity:.9;
-  margin-top:7px;
+/* TEXTO */
+.item-title{
+  font-size:15px;
+  letter-spacing:0.5px;
 }
 
-.best-overlay strong,
-.best-card-text span{
-  font-size:18px;
-  letter-spacing:1px;
-  font-weight:400;
+/* HOVER */
+.item:hover{
+  background:#2b0000;
+  color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
-.best-main:hover img,
-.best-card:hover img{
-  transform:scale(1.06);
+.item:hover::before{
+  transform:scaleY(1);
 }
 
-/* MOBILE PREMIUM */
+/* MOBILE */
 @media(max-width:768px){
 
-  .best-editorial{
-    padding:70px 16px;
+  .atendimento h2{
+    font-size:24px;
   }
 
-  .best-head{
-    margin-bottom:32px;
+  .item{
+    padding:16px;
   }
 
-  .best-head span{
-    font-size:10px;
-    letter-spacing:2px;
-  }
-
-  .best-head h2{
-    font-size:28px;
-    line-height:1.15;
-  }
-
-  .best-head p{
-    font-size:13px;
-    line-height:1.5;
-  }
-
-  .best-grid{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-  }
-
-  .best-main{
-    min-height:auto;
-    height:auto;
-    border-radius:20px;
-    margin-bottom:0;
-  }
-
-  .best-main img{
-    height:420px;
-    object-fit:cover;
-    object-position:center top;
-  }
-
-  .best-side{
-    display:flex;
-    overflow-x:auto;
-    gap:14px;
-    padding:0 2px 8px;
-    scroll-snap-type:x mandatory;
-  }
-
-  .best-side::-webkit-scrollbar{
-    display:none;
-  }
-
-  .best-card{
-    min-width:78%;
-    min-height:auto;
-    height:auto;
-    scroll-snap-align:start;
-    border-radius:18px;
-  }
-
-  .best-card img{
-    height:340px;
-    object-fit:cover;
-  }
-
-  .best-overlay,
-  .best-card-text{
-    left:18px;
-    right:18px;
-    bottom:18px;
-  }
-
-  .best-overlay strong,
-  .best-card-text span{
-    font-size:15px;
-  }
-
-  .best-overlay small,
-  .best-card-text small{
-    font-size:10px;
-    letter-spacing:1.8px;
-  }
 }
+
 </style>
 
 {% schema %}
 {
-  "name": "Best Seller Editorial",
+  "name": "Atendimento ao Cliente",
   "settings": [
-    {
-      "type": "text",
-      "id": "kicker",
-      "label": "Texto pequeno acima",
-      "default": "CURADORIA JADE"
-    },
     {
       "type": "text",
       "id": "title",
       "label": "Título",
-      "default": "BEST SELLERS | TOP 04"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtítulo",
-      "default": "Peças que deixam marca — nas fotos, na memória e na pele."
-    },
-    {
-      "type": "image_picker",
-      "id": "main_image",
-      "label": "Imagem principal"
-    },
-    {
-      "type": "url",
-      "id": "main_link",
-      "label": "Link da imagem principal"
-    },
-    {
-      "type": "text",
-      "id": "main_label",
-      "label": "Texto na imagem principal",
-      "default": "Mais desejado"
-    },
-    {
-      "type": "text",
-      "id": "main_cta",
-      "label": "CTA imagem principal",
-      "default": "Explorar agora →"
+      "default": "Atendimento ao Cliente"
     }
   ],
   "blocks": [
     {
-      "type": "produto",
-      "name": "Produto",
+      "type": "item",
+      "name": "Item",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "img",
-          "label": "Imagem"
-        },
         {
           "type": "text",
           "id": "title",
           "label": "Título",
-          "default": "Peça destaque"
-        },
-        {
-          "type": "text",
-          "id": "cta",
-          "label": "CTA",
-          "default": "Comprar →"
+          "default": "Nome da página"
         },
         {
           "type": "url",
@@ -316,10 +145,9 @@
       ]
     }
   ],
-  "max_blocks": 4,
   "presets": [
     {
-      "name": "Best Seller Editorial"
+      "name": "Atendimento ao Cliente"
     }
   ]
 }
