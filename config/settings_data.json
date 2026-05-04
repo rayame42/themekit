@@ -12,55 +12,7 @@
     "sections": {
       "home-jade": {
         "type": "home-jade",
-        "blocks": {
-          "categoria_DT9YAf": {
-            "type": "categoria",
-            "settings": {
-              "img": "shopify://shop_images/lift-image_f301684e-df6e-44c7-ae69-bb6795b76f25.webp",
-              "title": "BODY",
-              "link": "shopify://collections/body"
-            }
-          },
-          "categoria_XkcnwE": {
-            "type": "categoria",
-            "settings": {
-              "img": "shopify://shop_images/SELENE_3_5630888d-ca04-44e8-b7e9-23dac1a2163a.jpg",
-              "title": "CONJUNTOS",
-              "link": "shopify://collections/conjuntos"
-            }
-          },
-          "categoria_mVG6ma": {
-            "type": "categoria",
-            "settings": {
-              "img": "shopify://shop_images/lift-image_10_15290e5c-0792-43e4-a108-778bcf76e0ce.webp",
-              "title": "CAMISOLAS",
-              "link": "shopify://collections/camisolas"
-            }
-          },
-          "categoria_zr43E3": {
-            "type": "categoria",
-            "settings": {
-              "img": "shopify://shop_images/Kiana-Sheer-Corset-3.webp",
-              "title": "CORSET",
-              "link": "shopify://collections/corset"
-            }
-          }
-        },
-        "block_order": [
-          "categoria_DT9YAf",
-          "categoria_XkcnwE",
-          "categoria_mVG6ma",
-          "categoria_zr43E3"
-        ],
-        "custom_css": [
-          "h2 {font-size: 28px !important; font-weight: 300 !important;}",
-          "input {border-radius: 40px !important; padding: 14px !important;}",
-          "button {border-radius: 40px !important; background: #2b0000 !important; color: #fff !important; width: 100%;}",
-          "[class*=\"footer\"] {background: #2b0000 !important; color: #fff !important; padding: 40px 20px !important;}",
-          "[class*=\"footer\"] a {color: #ccc !important;}",
-          "[class*=\"footer\"] a:hover {color: #fff !important;}",
-          "@media (min-width: 768px) {button {width: auto; } [class*=\"footer\"] {padding: 60px 40px !important; }}"
-        ],
+        "custom_css": [],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero_desktop": "shopify://shop_images/5_01274dc5-4351-4560-9f53-f6af5ab4c5fe.jpg",
