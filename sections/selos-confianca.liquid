@@ -1,0 +1,103 @@
+<section class="selos">
+  <div class="selos-container">
+
+    <div class="selos-grupo">
+      <span>Pagamento</span>
+      <div class="selos-row">
+        {% for type in shop.enabled_payment_types %}
+          {{ type | payment_type_svg_tag: class: 'selo-payment' }}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.envio1 or section.settings.envio2 or section.settings.envio3 %}
+    <div class="selos-grupo">
+      <span>Envio</span>
+      <div class="selos-row">
+        {% if section.settings.envio1 %}<img src="{{ section.settings.envio1 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+        {% if section.settings.envio2 %}<img src="{{ section.settings.envio2 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+        {% if section.settings.envio3 %}<img src="{{ section.settings.envio3 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.settings.seg1 or section.settings.seg2 or section.settings.seg3 %}
+    <div class="selos-grupo">
+      <span>Segurança</span>
+      <div class="selos-row">
+        {% if section.settings.seg1 %}<img src="{{ section.settings.seg1 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+        {% if section.settings.seg2 %}<img src="{{ section.settings.seg2 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+        {% if section.settings.seg3 %}<img src="{{ section.settings.seg3 | image_url: width: 100 }}" class="selo-logo">{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+.selos{
+  background:#f5f5f5;
+  padding:24px 20px;
+  border-top:1px solid #e5e5e5;
+}
+.selos-container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:24px 40px;
+  align-items:center;
+}
+.selos-grupo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.selos-grupo span{
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#999;
+  white-space:nowrap;
+}
+.selos-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+}
+.selo-payment{
+  height:22px;
+  width:auto;
+  border-radius:3px;
+}
+.selo-logo{
+  height:28px;
+  width:auto;
+  object-fit:contain;
+}
+@media(max-width:768px){
+  .selos{ padding:20px 16px; }
+  .selos-container{ gap:16px 24px; }
+  .selos-grupo{ flex-direction:column; gap:6px; text-align:center; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Selos e Pagamento",
+  "settings": [
+    { "type": "header", "content": "Meios de Envio" },
+    { "type": "image_picker", "id": "envio1", "label": "Logo envio 1" },
+    { "type": "image_picker", "id": "envio2", "label": "Logo envio 2" },
+    { "type": "image_picker", "id": "envio3", "label": "Logo envio 3" },
+    { "type": "header", "content": "Segurança" },
+    { "type": "image_picker", "id": "seg1", "label": "Selo segurança 1" },
+    { "type": "image_picker", "id": "seg2", "label": "Selo segurança 2" },
+    { "type": "image_picker", "id": "seg3", "label": "Selo segurança 3" }
+  ],
+  "presets": [{ "name": "Selos e Pagamento" }]
+}
+{% endschema %}
