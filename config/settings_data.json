@@ -12,12 +12,7 @@
     "sections": {
       "home-jade": {
         "type": "home-jade",
-        "custom_css": [
-          "/* REMOVE ESPAÇO ABAIXO DO HERO */.hero{margin-bottom:0 !important; padding-bottom:0 !important;}",
-          "/* REMOVE ESPAÇO DA SECTION */.home-zara{margin-bottom:0 !important;}",
-          "/* REMOVE ESPAÇO GLOBAL ENTRE SEÇÕES */section{margin-bottom:0 !important;}",
-          "/* GARANTE QUE NÃO TENHA ALTURA EXTRA */.hero{height:100vh; max-height:100vh;}"
-        ],
+        "custom_css": [],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero_desktop": "shopify://shop_images/5_01274dc5-4351-4560-9f53-f6af5ab4c5fe.jpg",
