@@ -177,8 +177,10 @@
           "cat_PjFUQ6"
         ],
         "custom_css": [
-          ".arrow{display:none!important}",
-          ".categories .arrow{display:flex!important}"
+          ".item{display:flex;flex-direction:column}",
+          ".item span{order:2;margin-top:10px!important}",
+          ".item img{order:1}",
+          "details summary svg,details summary .icon,details summary::after{display:none!important}"
         ],
         "settings": {
           "title": "Explore por categoria",
