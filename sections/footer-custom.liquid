@@ -2,7 +2,6 @@
 
   <div class="footer-container">
 
-    <!-- COLUNA 1 -->
     <div class="footer-col">
       <h3>{{ section.settings.col1_title }}</h3>
       <a href="{{ section.settings.link1 }}">{{ section.settings.text1 }}</a>
@@ -13,7 +12,6 @@
       <a href="{{ section.settings.link6 }}">{{ section.settings.text6 }}</a>
     </div>
 
-    <!-- COLUNA 2 -->
     <div class="footer-col">
       <h3>{{ section.settings.col2_title }}</h3>
       <a href="{{ section.settings.social1 }}">{{ section.settings.social1_text }}</a>
@@ -21,13 +19,65 @@
       <a href="{{ section.settings.social3 }}">{{ section.settings.social3_text }}</a>
     </div>
 
-    <!-- COLUNA 3 -->
     <div class="footer-col">
       <h3>{{ section.settings.col3_title }}</h3>
       <p>{{ section.settings.atendimento }}</p>
       <p><strong>Whatsapp:</strong> {{ section.settings.whatsapp }}</p>
       <p><strong>E-mail:</strong> {{ section.settings.email }}</p>
     </div>
+
+  </div>
+
+  <div class="footer-bottom">
+
+    <!-- PAGAMENTO -->
+    <div class="footer-bottom-group">
+      <p class="footer-bottom-title">Formas de pagamento</p>
+      <div class="footer-icons payment-icons">
+        {% for type in shop.enabled_payment_types %}
+          {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ENVIO -->
+    {% if section.settings.envio1 or section.settings.envio2 or section.settings.envio3 %}
+    <div class="footer-bottom-group">
+      <p class="footer-bottom-title">Meios de envio</p>
+      <div class="footer-icons">
+        {% if section.settings.envio1 %}
+          <img src="{{ section.settings.envio1 | image_url: width: 120 }}" alt="Envio" class="footer-logo">
+        {% endif %}
+        {% if section.settings.envio2 %}
+          <img src="{{ section.settings.envio2 | image_url: width: 120 }}" alt="Envio" class="footer-logo">
+        {% endif %}
+        {% if section.settings.envio3 %}
+          <img src="{{ section.settings.envio3 | image_url: width: 120 }}" alt="Envio" class="footer-logo">
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- SEGURANÇA -->
+    {% if section.settings.seg1 or section.settings.seg2 or section.settings.seg3 or section.settings.seg4 %}
+    <div class="footer-bottom-group">
+      <p class="footer-bottom-title">Segurança</p>
+      <div class="footer-icons">
+        {% if section.settings.seg1 %}
+          <img src="{{ section.settings.seg1 | image_url: width: 120 }}" alt="Segurança" class="footer-logo">
+        {% endif %}
+        {% if section.settings.seg2 %}
+          <img src="{{ section.settings.seg2 | image_url: width: 120 }}" alt="Segurança" class="footer-logo">
+        {% endif %}
+        {% if section.settings.seg3 %}
+          <img src="{{ section.settings.seg3 | image_url: width: 120 }}" alt="Segurança" class="footer-logo">
+        {% endif %}
+        {% if section.settings.seg4 %}
+          <img src="{{ section.settings.seg4 | image_url: width: 120 }}" alt="Segurança" class="footer-logo">
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
 
   </div>
 
@@ -81,6 +131,57 @@
   padding-right:10px;
 }
 
+/* BOTTOM */
+.footer-bottom{
+  max-width:1100px;
+  margin:40px auto 0;
+  padding:30px 20px 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.footer-bottom-group{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+.footer-bottom-title{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:0.6;
+  margin:0;
+}
+
+.footer-icons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+.payment-icon{
+  height:28px;
+  width:auto;
+  background:#fff;
+  border-radius:4px;
+  padding:3px 6px;
+}
+
+.footer-logo{
+  height:36px;
+  width:auto;
+  object-fit:contain;
+  background:#fff;
+  border-radius:6px;
+  padding:4px 8px;
+}
+
 @media(max-width:768px){
 
   .footer-premium{
@@ -96,6 +197,11 @@
 
   .footer-col a:hover{
     transform:none;
+  }
+
+  .footer-bottom{
+    margin-top:30px;
+    padding-top:24px;
   }
 
 }
@@ -128,7 +234,16 @@
     { "type": "text", "id": "col3_title", "label": "Título coluna 3", "default": "Central de Atendimento" },
     { "type": "textarea", "id": "atendimento", "label": "Texto atendimento", "default": "Atendimento via Whatsapp: Segunda à sexta (exceto fins de semana e feriados)." },
     { "type": "text", "id": "whatsapp", "label": "Whatsapp", "default": "(21) 96677-6897" },
-    { "type": "text", "id": "email", "label": "E-mail", "default": "contato@jadeintimates.com.br" }
+    { "type": "text", "id": "email", "label": "E-mail", "default": "contato@jadeintimates.com.br" },
+    { "type": "header", "content": "Meios de Envio" },
+    { "type": "image_picker", "id": "envio1", "label": "Logo envio 1" },
+    { "type": "image_picker", "id": "envio2", "label": "Logo envio 2" },
+    { "type": "image_picker", "id": "envio3", "label": "Logo envio 3" },
+    { "type": "header", "content": "Segurança" },
+    { "type": "image_picker", "id": "seg1", "label": "Selo segurança 1" },
+    { "type": "image_picker", "id": "seg2", "label": "Selo segurança 2" },
+    { "type": "image_picker", "id": "seg3", "label": "Selo segurança 3" },
+    { "type": "image_picker", "id": "seg4", "label": "Selo segurança 4" }
   ],
   "presets": [
     { "name": "Footer Premium" }
