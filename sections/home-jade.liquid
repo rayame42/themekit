@@ -6,9 +6,8 @@
 </div>
 
 <!-- HERO -->
-.hero{
-  min-height:calc(100vh - 80px);
-}
+<div class="hero">
+
   <!-- DESKTOP -->
   <img 
     src="{{ section.settings.hero_desktop | image_url: width: 2000 }}" 
@@ -31,20 +30,20 @@
 </div>
 
 <!-- CATEGORIAS -->
-<div class="categories-wrapper">
-
-  <div class="arrow left" onclick="slideCategories(-1)">‹</div>
-  <div class="arrow right" onclick="slideCategories(1)">›</div>
-
-  <div class="categories">
-      </div>
+<div class="categories">
+  {% for block in section.blocks %}
+    <a href="{{ block.settings.link }}">
+      <img src="{{ block.settings.img | image_url: width: 800 }}">
+      <span>{{ block.settings.title }}</span>
+    </a>
+  {% endfor %}
 </div>
 
 </section>
 
 <style>
 
-/* ===== BASE ===== */
+/* BASE */
 .home-zara{
   max-width:1300px;
   margin:auto;
@@ -114,11 +113,6 @@
   color:#fff;
   text-decoration:none;
   border-bottom:1px solid rgba(255,255,255,0.6);
-  transition:0.3s;
-}
-
-.hero-text a:hover{
-  opacity:0.7;
 }
 
 /* CATEGORIAS */
@@ -134,11 +128,6 @@
   height:240px;
   object-fit:cover;
   border-radius:6px;
-  transition:0.3s;
-}
-
-.categories img:hover{
-  transform:scale(1.03);
 }
 
 .categories span{
@@ -150,16 +139,11 @@
   color:#111;
 }
 
-.categories a{
-  text-decoration:none;
-  color:#111;
-}
-
-/* ===== MOBILE AJUSTADO ===== */
+/* MOBILE */
 @media(max-width:768px){
 
   .hero{
-    height:55vh; /* 🔥 DIMINUIU O TAMANHO */
+    height:55vh;
   }
 
   .hero-img.desktop{
@@ -171,7 +155,7 @@
   }
 
   .hero-img{
-    object-position:center top; /* 🔥 MELHOR ENQUADRAMENTO */
+    object-position:center top;
   }
 
   .hero-text{
@@ -192,35 +176,3 @@
 }
 
 </style>
-
-{% schema %}
-{
-  "name": "Home Jade",
-  "settings": [
-    { "type": "text", "id": "topbar", "label": "Texto topo", "default": "Frete grátis • 6x sem juros • 15% OFF" },
-
-    { "type": "image_picker", "id": "hero_desktop", "label": "Imagem Hero Desktop" },
-    { "type": "image_picker", "id": "hero_mobile", "label": "Imagem Hero Mobile" },
-
-    { "type": "text", "id": "title", "label": "Título", "default": "Seu momento. Sua essência." },
-    { "type": "text", "id": "button", "label": "Botão", "default": "Explorar coleção" },
-    { "type": "url", "id": "link", "label": "Link botão" }
-  ],
-  "blocks": [
-    {
-      "type": "categoria",
-      "name": "Categoria",
-      "settings": [
-        { "type": "image_picker", "id": "img", "label": "Imagem" },
-        { "type": "text", "id": "title", "label": "Título" },
-        { "type": "url", "id": "link", "label": "Link" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Home Jade"
-    }
-  ]
-}
-{% endschema %}
