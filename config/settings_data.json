@@ -151,7 +151,8 @@
       "footer-custom": {
         "type": "footer-custom",
         "custom_css": [
-          "@media (max-width: 768px) {.accordion {display: grid; grid-template-columns: 1fr 1fr; gap: 4px !important; } .atendimento {padding: 50px 16px; } .atendimento h2 {font-size: 22px; margin-bottom: 24px; } .item {padding: 14px 12px; border-radius: 10px; } .item-title {font-size: 13px; }}"
+          ".footer-premium {padding: 10px 16px;}",
+          ".footer-container {gap: 16px; padding: 0 5px;}"
         ],
         "settings": {
           "col1_title": "Loja",
