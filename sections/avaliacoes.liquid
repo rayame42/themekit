@@ -8,7 +8,8 @@
     </div>
 
     <div class="avaliacoes-widget">
-      {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_widget', concierge_install: true %}
+      <div data-id="{{ shop.id }}" id="judgeme-reviews"></div>
+      <script src="https://cdn.judge.me/reviews/reviews_widget.js" defer></script>
     </div>
 
   </div>
