@@ -37,15 +37,8 @@
           ".text p {margin-bottom: 20px;}"
         ],
         "settings": {
-          "main_image": "shopify://shop_images/ChatGPT_Image_7_de_jan._de_2026_12_24_55_afab005f-f517-403e-9bc4-14b56877fcad.png",
-          "img1": "shopify://shop_images/SELENE_1162240f-28e2-4bec-85d2-f93c62cedf18.jpg",
-          "img2": "shopify://shop_images/SELENE_1_ec5e1089-4fb3-4d12-a612-b9a36d8625d9.jpg",
-          "img3": "shopify://shop_images/SELENE_3_fa7b8b39-9eb6-4861-ba68-797c8b0a3287.jpg",
-          "img4": "shopify://shop_images/SELENE_1_ec5e1089-4fb3-4d12-a612-b9a36d8625d9.jpg",
           "title": "BEST SELLERS | TOP 04",
-          "subtitle": "As peças mais desejadas da coleção.",
-          "button_text": "EXPLORAR →",
-          "button_link": "shopify://collections/mais-vendidos"
+          "subtitle": "As peças mais desejadas da coleção."
         }
       },
       "atendimento-cliente": {
@@ -95,9 +88,9 @@
           "item_3zdePj"
         ],
         "custom_css": [
-          "details summary::-webkit-details-marker{display:none}",
-          "details summary::marker{display:none}",
-          "details summary{list-style:none}"
+          "details summary::-webkit-details-marker {display: none;}",
+          "details summary::marker {display: none;}",
+          "details summary {list-style: none;}"
         ],
         "settings": {
           "title": "Atendimento ao Cliente"
@@ -208,11 +201,6 @@
         "disabled": false,
         "settings": {}
       },
-      "15181020662106344915": {
-        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
       "12948015482042402483": {
         "type": "shopify://apps/mercado-pago-antifraud-plus/blocks/embed-block/b19ea721-f94a-4308-bee5-0057c043bac5",
         "disabled": false,
@@ -224,6 +212,11 @@
         "settings": {
           "position": "right"
         }
+      },
+      "15181020662106344915": {
+        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {}
       }
     }
   }
