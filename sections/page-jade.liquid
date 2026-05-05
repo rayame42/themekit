@@ -1,0 +1,106 @@
+<section class="page-jade">
+  <div class="page-container">
+    <h1>{{ page.title }}</h1>
+    <div class="page-content">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+<style>
+.page-jade{
+  max-width:800px;
+  margin:80px auto;
+  padding:0 20px;
+}
+
+.page-jade h1{
+  font-size:36px;
+  font-weight:300;
+  letter-spacing:2px;
+  color:#111;
+  margin-bottom:40px;
+  padding-bottom:20px;
+  border-bottom:1px solid #eee;
+}
+
+.page-content{
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+}
+
+.page-content p{
+  margin-bottom:16px;
+}
+
+.page-content h2{
+  font-size:22px;
+  font-weight:500;
+  margin:32px 0 12px;
+  color:#111;
+}
+
+.page-content h3{
+  font-size:18px;
+  font-weight:500;
+  margin:24px 0 10px;
+  color:#111;
+}
+
+.page-content strong{
+  color:#111;
+  font-weight:600;
+}
+
+.page-content a{
+  color:#8B1E3F;
+  text-decoration:underline;
+}
+
+.page-content ul,
+.page-content ol{
+  padding-left:20px;
+  margin-bottom:16px;
+}
+
+.page-content li{
+  margin-bottom:8px;
+}
+
+.page-content table{
+  width:100%;
+  border-collapse:collapse;
+  margin:20px 0;
+  font-size:14px;
+}
+
+.page-content table th,
+.page-content table td{
+  padding:10px 12px;
+  border:1px solid #eee;
+  text-align:left;
+}
+
+.page-content table th{
+  background:#f7f7f7;
+  font-weight:600;
+  color:#111;
+}
+
+@media(max-width:768px){
+  .page-jade{
+    margin:50px auto;
+  }
+  .page-jade h1{
+    font-size:26px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Página",
+  "presets": [{ "name": "Página" }]
+}
+{% endschema %}
