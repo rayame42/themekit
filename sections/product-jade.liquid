@@ -80,6 +80,13 @@
     </div>
   </div>
 
+  <!-- AVALIAÇÕES DO PRODUTO -->
+  <div class="produto-avaliacoes">
+    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-auto-install="false">
+      {{ product.metafields.judgeme.widget }}
+    </div>
+  </div>
+
   <!-- PRODUTOS RELACIONADOS -->
   <div class="relacionados">
     <h2>Você também pode gostar</h2>
@@ -124,6 +131,7 @@
 .desc strong{display:block;margin-top:20px;margin-bottom:6px;font-weight:600}
 .desc table{width:100%;margin-top:10px;border-collapse:collapse;font-size:13px}
 .desc table td,.desc table th{padding:6px;border-bottom:1px solid #eee;text-align:left}
+.produto-avaliacoes{margin-top:60px;padding-top:40px;border-top:1px solid #eee}
 .relacionados{margin-top:60px;padding-top:40px;border-top:1px solid #eee}
 .relacionados h2{font-size:22px;font-weight:300;margin-bottom:24px;color:#111}
 .relacionados-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -146,8 +154,6 @@ let corHexAtual = '#2b0000';
 
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
-
-  // Remove active e reseta estilos do grupo
   el.parentElement.querySelectorAll('*').forEach(b => {
     b.classList.remove('active');
     if(b.classList.contains('size-btn')){
@@ -160,7 +166,6 @@ function selectOption(index, value, el) {
   if(index === 0){
     corHexAtual = el.dataset.hex || '#2b0000';
     document.getElementById('cor-selecionada').textContent = value;
-    // Atualiza tamanho já selecionado com nova cor
     document.querySelectorAll('.size-btn.active').forEach(btn => {
       btn.style.background = corHexAtual;
       btn.style.borderColor = corHexAtual;
@@ -169,7 +174,6 @@ function selectOption(index, value, el) {
 
   if(index === 1){
     document.getElementById('tamanho-selecionado').textContent = value;
-    // Aplica cor diretamente no botão clicado
     el.style.background = corHexAtual;
     el.style.borderColor = corHexAtual;
   }
