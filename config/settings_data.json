@@ -13,7 +13,7 @@
       "home-jade": {
         "type": "home-jade",
         "custom_css": [
-          "@media(max-width:768px){.hero{height:55vh; } .hero-img.desktop{display:none !important; } .hero-img.mobile{display:block !important; } .hero-text{left:20px; bottom:25px; } .hero-text h1{font-size:26px; }}"
+          "@media (max-width: 768px) {.hero {height: 55vh; } .hero-img.desktop {display: none !important; } .hero-img.mobile {display: block !important; } .hero-text {left: 20px; bottom: 25px; } .hero-text h1 {font-size: 26px; }}"
         ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
@@ -26,6 +26,10 @@
       },
       "header": {
         "type": "header",
+        "custom_css": [
+          ".cart-icon{position:relative;}",
+          ".cart-count{position:absolute; top:-8px; right:-8px; background:#2b0000; color:#fff; font-size:10px; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:600;}"
+        ],
         "settings": {
           "logo_text": "Jade Intimates",
           "menu": "main-menu"
