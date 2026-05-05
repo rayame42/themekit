@@ -8,7 +8,7 @@
     </div>
 
     <div class="avaliacoes-widget">
-      <div class="jdgm-widget jdgm-all-reviews-widget" data-id="{{ shop.id }}"></div>
+      {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_widget', concierge_install: true %}
     </div>
 
   </div>
