@@ -195,7 +195,7 @@
           "cat_LDpkxA": {
             "type": "cat",
             "settings": {
-              "img": "shopify://shop_images/lift-image_13.webp",
+              "img": "shopify://shop_images/SELENE_3_640e3834-7548-4bde-b53f-5e50b7ea920d.jpg",
               "title": "CAMISOLAS",
               "link": "shopify://collections/camisolas"
             }
@@ -251,6 +251,18 @@
           ".price-old{font-size:16px;color:#999;text-decoration:line-through;margin-right:8px}",
           ".price-atual{font-size:22px;color:#8B1E3F;font-weight:600}"
         ],
+        "settings": {}
+      },
+      "404-jade": {
+        "type": "404-jade",
+        "settings": {}
+      },
+      "faixa-beneficios": {
+        "type": "faixa-beneficios",
+        "settings": {}
+      },
+      "avaliacoes": {
+        "type": "avaliacoes",
         "settings": {}
       }
     },
