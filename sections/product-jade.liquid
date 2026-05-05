@@ -55,7 +55,7 @@
         {% endif %}
 
         <div class="btn-group">
-          <button type="submit" class="btn btn-cart">Adicionar ao carrinho</button>
+          <button type="button" class="btn btn-cart" onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
           <button type="button" class="btn btn-buy" onclick="comprarAgora()">Comprar agora</button>
         </div>
 
@@ -113,6 +113,8 @@
 <script>
 let selectedOptions = [];
 
+const totalOptions = {{ product.options.size }};
+
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
   el.parentElement.querySelectorAll('*').forEach(b => b.classList.remove('active'));
@@ -128,7 +130,22 @@ function updateVariant() {
   }
 }
 
+function validarOpcoes() {
+  const preenchidos = selectedOptions.filter(Boolean).length;
+  if(preenchidos < totalOptions){
+    alert('Por favor, selecione cor e tamanho antes de continuar.');
+    return false;
+  }
+  return true;
+}
+
+function adicionarCarrinho() {
+  if(!validarOpcoes()) return;
+  document.getElementById('product-form').submit();
+}
+
 function comprarAgora() {
+  if(!validarOpcoes()) return;
   const variantId = document.getElementById('variant-id').value;
   fetch('/cart/add.js', {
     method: 'POST',
