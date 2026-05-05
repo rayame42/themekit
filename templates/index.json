@@ -8,6 +8,53 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "home-jade": {
+      "type": "home-jade",
+      "settings": {}
+    },
+    "faixa-beneficios": {
+      "type": "faixa-beneficios",
+      "settings": {}
+    },
+    "categories-slider": {
+      "type": "categories-slider",
+      "settings": {}
+    },
+    "best-seller-motion": {
+      "type": "best-seller-motion",
+      "settings": {}
+    },
+    "avaliacoes": {
+      "type": "avaliacoes",
+      "settings": {}
+    },
+    "atendimento-cliente": {
+      "type": "atendimento-cliente",
+      "settings": {}
+    },
+    "newsletter-custom": {
+      "type": "newsletter-custom",
+      "settings": {}
+    },
+    "footer-custom": {
+      "type": "footer-custom",
+      "settings": {}
+    },
+    "selos-confianca": {
+      "type": "selos-confianca",
+      "settings": {}
+    }
+  },
+  "order": [
+    "home-jade",
+    "faixa-beneficios",
+    "categories-slider",
+    "best-seller-motion",
+    "avaliacoes",
+    "atendimento-cliente",
+    "newsletter-custom",
+    "footer-custom",
+    "selos-confianca"
+  ]
 }
