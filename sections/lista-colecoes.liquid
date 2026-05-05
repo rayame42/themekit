@@ -1,0 +1,42 @@
+<section class="lista-colecoes">
+  <div class="lista-header">
+    <h1>Coleções</h1>
+  </div>
+
+  <div class="lista-grid">
+    {% for collection in collections %}
+      {% unless collection.handle == 'frontpage' or collection.handle == 'mais-vendidos' %}
+        <a href="{{ collection.url }}" class="lista-card">
+          {% if collection.image %}
+            <img src="{{ collection.image | image_url: width: 600 }}" alt="{{ collection.title }}">
+          {% endif %}
+          <div class="lista-overlay">
+            <span>{{ collection.title }}</span>
+          </div>
+        </a>
+      {% endunless %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.lista-colecoes{max-width:1200px;margin:0 auto;padding:40px 20px}
+.lista-header h1{font-size:32px;font-weight:300;margin-bottom:30px}
+.lista-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lista-card{position:relative;display:block;border-radius:12px;overflow:hidden;text-decoration:none}
+.lista-card img{width:100%;height:380px;object-fit:cover;display:block;transition:transform 0.4s}
+.lista-card:hover img{transform:scale(1.04)}
+.lista-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);display:flex;align-items:flex-end;padding:20px}
+.lista-overlay span{color:#fff;font-size:18px;letter-spacing:1px;text-transform:uppercase}
+@media(max-width:768px){
+  .lista-grid{grid-template-columns:repeat(2,1fr)}
+  .lista-card img{height:220px}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Lista de Coleções",
+  "presets": [{ "name": "Lista de Coleções" }]
+}
+{% endschema %}
