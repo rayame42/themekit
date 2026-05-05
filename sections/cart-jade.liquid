@@ -193,7 +193,6 @@ form{
   text-transform:uppercase!important;
   cursor:pointer!important;
   margin-bottom:12px!important;
-  border-radius:6px!important;
 }
 
 .btn-continuar{
@@ -234,7 +233,17 @@ function changeQty(key, newQty) {
     body: JSON.stringify({id: key, quantity: newQty})
   })
   .then(r => r.json())
-  .then(() => location.reload())
+  .then(cart => {
+    const item = cart.items.find(i => i.key === key);
+    const keyId = key.replace(':', '-');
+    if(item){
+      document.getElementById('qty-' + keyId).textContent = item.quantity;
+    } else {
+      document.getElementById('item-' + keyId).remove();
+    }
+    const total = (cart.total_price / 100).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+    document.getElementById('cart-total').textContent = total;
+  })
   .catch(err => console.error(err));
 }
 </script>
