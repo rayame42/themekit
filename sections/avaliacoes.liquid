@@ -2,9 +2,9 @@
   <div class="avaliacoes-container">
 
     <div class="avaliacoes-head">
-      <span>CLIENTES JADE</span>
-      <h2>O que dizem sobre nós</h2>
-      <p>Avaliações reais de quem já viveu a experiência.</p>
+      <span>{{ section.settings.kicker }}</span>
+      <h2>{{ section.settings.titulo }}</h2>
+      <p>{{ section.settings.subtitulo }}</p>
     </div>
 
     <div class="avaliacoes-widget">
@@ -30,6 +30,26 @@
 {% schema %}
 {
   "name": "Avaliações",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Texto pequeno",
+      "default": "CLIENTES JADE"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "O que dizem sobre nós"
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "default": "Avaliações reais de quem já viveu a experiência."
+    }
+  ],
   "presets": [{ "name": "Avaliações" }]
 }
 {% endschema %}
