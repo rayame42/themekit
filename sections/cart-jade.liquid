@@ -14,7 +14,7 @@
 
         <div class="carrinho-itens">
           {% for item in cart.items %}
-          <div class="carrinho-item">
+          <div class="carrinho-item" id="item-{{ item.key | replace: ':', '-' }}">
 
             <a href="{{ item.url }}">
               <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title }}">
@@ -26,9 +26,9 @@
               <p class="item-preco">{{ item.price | money }}</p>
 
               <div class="item-qty">
-                <button type="button" onclick="changeQty({{ item.key | json }}, -1)">−</button>
-                <span id="qty-{{ item.key }}">{{ item.quantity }}</span>
-                <button type="button" onclick="changeQty({{ item.key | json }}, 1)">+</button>
+                <button type="button" class="qty-btn" onclick="changeQty('{{ item.key }}', {{ item.quantity | minus: 1 }})">−</button>
+                <span id="qty-{{ item.key | replace: ':', '-' }}">{{ item.quantity }}</span>
+                <button type="button" class="qty-btn" onclick="changeQty('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
               </div>
 
               <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="item-remover">Remover</a>
@@ -41,7 +41,7 @@
         <div class="carrinho-resumo">
           <div class="resumo-linha">
             <span>Subtotal</span>
-            <span>{{ cart.total_price | money }}</span>
+            <span id="cart-total">{{ cart.total_price | money }}</span>
           </div>
           <p class="resumo-frete">✔ Frete grátis para todo o Brasil</p>
           <button type="submit" name="checkout" class="btn-checkout">
@@ -71,7 +71,6 @@
   color:#111;
 }
 
-/* VAZIO */
 .carrinho-vazio{
   text-align:center;
   padding:80px 0;
@@ -83,7 +82,6 @@
   margin-bottom:24px;
 }
 
-/* LAYOUT */
 form{
   display:grid;
   grid-template-columns:1fr 340px;
@@ -91,7 +89,6 @@ form{
   align-items:start;
 }
 
-/* ITENS */
 .carrinho-item{
   display:grid;
   grid-template-columns:120px 1fr;
@@ -127,7 +124,6 @@ form{
   margin-bottom:12px;
 }
 
-/* QUANTIDADE */
 .item-qty{
   display:flex;
   align-items:center;
@@ -135,15 +131,20 @@ form{
   margin-bottom:12px;
 }
 
-.item-qty button{
-  width:28px;
-  height:28px;
-  border:1px solid #ccc;
-  background:#fff;
-  cursor:pointer;
-  border-radius:4px;
-  font-size:16px;
-  line-height:1;
+.qty-btn{
+  width:28px!important;
+  height:28px!important;
+  border:1px solid #ccc!important;
+  background:#fff!important;
+  color:#111!important;
+  cursor:pointer!important;
+  border-radius:4px!important;
+  font-size:16px!important;
+  line-height:1!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
 }
 
 .item-qty span{
@@ -158,7 +159,6 @@ form{
   text-decoration:underline;
 }
 
-/* RESUMO */
 .carrinho-resumo{
   background:#f7f7f7;
   border-radius:12px;
@@ -182,17 +182,18 @@ form{
 }
 
 .btn-checkout{
-  width:100%;
-  background:#2b0000;
-  color:#fff;
-  padding:16px;
-  border:none;
-  border-radius:6px;
-  font-size:14px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  cursor:pointer;
-  margin-bottom:12px;
+  width:100%!important;
+  background:#2b0000!important;
+  color:#fff!important;
+  padding:16px!important;
+  border:none!important;
+  border-radius:6px!important;
+  font-size:14px!important;
+  letter-spacing:1px!important;
+  text-transform:uppercase!important;
+  cursor:pointer!important;
+  margin-bottom:12px!important;
+  border-radius:6px!important;
 }
 
 .btn-continuar{
@@ -216,42 +217,25 @@ form{
   margin-top:8px;
 }
 
-.btn-continuar-link:hover{
-  color:#111;
-}
-
 @media(max-width:768px){
-  form{
-    grid-template-columns:1fr;
-  }
-  .carrinho-resumo{
-    position:static;
-  }
-  .carrinho-item{
-    grid-template-columns:90px 1fr;
-  }
-  .carrinho-item img{
-    width:90px;
-    height:110px;
-  }
+  form{ grid-template-columns:1fr; }
+  .carrinho-resumo{ position:static; }
+  .carrinho-item{ grid-template-columns:90px 1fr; }
+  .carrinho-item img{ width:90px; height:110px; }
 }
 </style>
 
 <script>
-function changeQty(key, delta) {
-  fetch('/cart.js')
-    .then(r => r.json())
-    .then(cart => {
-      const item = cart.items.find(i => i.key === key);
-      if (!item) return;
-      const newQty = Math.max(0, item.quantity + delta);
-      return fetch('/cart/change.js', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id: key, quantity: newQty})
-      });
-    })
-    .then(() => location.reload());
+function changeQty(key, newQty) {
+  if(newQty < 0) newQty = 0;
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: key, quantity: newQty})
+  })
+  .then(r => r.json())
+  .then(() => location.reload())
+  .catch(err => console.error(err));
 }
 </script>
 
