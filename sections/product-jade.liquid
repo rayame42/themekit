@@ -56,8 +56,8 @@
         </div>
 
         <!-- GUIA DE MEDIDAS -->
-        {% if product.metafields.custom.size_guide_url != blank %}
-          <a href="{{ product.metafields.custom.size_guide_url }}" target="_blank" class="size-guide-link">
+        {% if product.metafields.custom.guia_de_medidas != blank %}
+          <a href="{{ product.metafields.custom.guia_de_medidas }}" target="_blank" class="size-guide-link">
             ↔ Guia de medidas
           </a>
         {% endif %}
@@ -104,7 +104,6 @@
   align-items: start;
 }
 
-/* GALERIA */
 .main-image img {
   width: 100%;
   border-radius: 10px;
@@ -125,14 +124,9 @@
   cursor: pointer;
 }
 
-.thumbs img:hover {
-  opacity: 1;
-}
+.thumbs img:hover { opacity: 1; }
 
-/* TEXTO */
-.info {
-  max-width: 420px;
-}
+.info { max-width: 420px; }
 
 .info h1 {
   font-size: 30px;
@@ -147,10 +141,7 @@
   margin-bottom: 20px;
 }
 
-/* VARIANTES */
-.option-group {
-  margin-bottom: 25px;
-}
+.option-group { margin-bottom: 25px; }
 
 .option-group p {
   font-size: 13px;
@@ -158,7 +149,6 @@
   margin-bottom: 10px;
 }
 
-/* CORES */
 .color-options {
   display: flex;
   gap: 10px;
@@ -172,11 +162,8 @@
   cursor: pointer;
 }
 
-.color-btn.active {
-  border: 2px solid #000;
-}
+.color-btn.active { border: 2px solid #000; }
 
-/* TAMANHO */
 .size-options {
   display: flex;
   gap: 10px;
@@ -198,7 +185,6 @@
   color: #fff;
 }
 
-/* GUIA DE MEDIDAS */
 .size-guide-link {
   display: inline-block;
   font-size: 13px;
@@ -207,7 +193,6 @@
   margin-bottom: 24px;
 }
 
-/* BOTÕES */
 .btn-group {
   display: flex;
   flex-direction: column;
@@ -227,6 +212,7 @@
   text-align: center;
   text-decoration: none;
   display: block;
+  box-sizing: border-box;
 }
 
 .btn-cart {
@@ -240,7 +226,6 @@
   border: 2px solid #8B1E3F;
 }
 
-/* META */
 .meta {
   margin-top: 20px;
   font-size: 12px;
@@ -249,7 +234,6 @@
   margin-bottom: 32px;
 }
 
-/* DESCRIÇÃO */
 .desc-title {
   font-size: 16px;
   font-weight: 600;
@@ -288,15 +272,12 @@
   text-align: left;
 }
 
-/* MOBILE */
 @media(max-width: 768px){
   .wrap {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .info {
-    max-width: 100%;
-  }
+  .info { max-width: 100%; }
 }
 </style>
 
