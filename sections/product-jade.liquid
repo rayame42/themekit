@@ -15,6 +15,10 @@
     <div class="info">
       <h1>{{ product.title }}</h1>
 
+      <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+        {{ product.metafields.judgeme.badge }}
+      </div>
+
       <div class="price">
         {% if product.compare_at_price > product.price %}
           <span class="price-old">{{ product.compare_at_price | money }}</span>
