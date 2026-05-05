@@ -25,7 +25,7 @@
       </div>
 
       <form method="post" action="/cart/add" id="product-form">
-        <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
+        <input type="hidden" name="id" id="variant-id" value="">
 
         <div class="option-group">
           <p>Cor</p>
@@ -39,14 +39,16 @@
           </div>
         </div>
 
+        {% if product.options.size > 1 %}
         <div class="option-group">
           <p>Tamanho</p>
           <div class="size-options">
             {% for value in product.options_with_values[1].values %}
-              <button type="button" class="size-btn" onclick="selectOption(1, '{{ value }}', this)">{{ value }}</button>
+              <button type="button" class="size-btn" data-value="{{ value }}" onclick="selectOption(1, '{{ value }}', this)">{{ value }}</button>
             {% endfor %}
           </div>
         </div>
+        {% endif %}
 
         {% if product.metafields.custom.guia_de_medidas != blank %}
           <a href="{{ product.metafields.custom.guia_de_medidas }}" target="_blank" class="size-guide-link">
@@ -54,9 +56,11 @@
           </a>
         {% endif %}
 
+        <div id="stock-msg" class="stock-msg" style="display:none"></div>
+
         <div class="btn-group">
-          <button type="button" class="btn btn-cart" onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
-          <button type="button" class="btn btn-buy" onclick="comprarAgora()">Comprar agora</button>
+          <button type="button" class="btn btn-cart" id="btn-cart" onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
+          <button type="button" class="btn btn-buy" id="btn-buy" onclick="comprarAgora()">Comprar agora</button>
         </div>
 
       </form>
@@ -86,17 +90,20 @@
 .price-atual{font-size:22px;color:#8B1E3F;font-weight:600}
 .option-group{margin-bottom:25px}
 .option-group p{font-size:13px;font-weight:600;margin-bottom:10px}
-.color-options{display:flex;gap:10px}
+.color-options{display:flex;gap:10px;flex-wrap:wrap}
 .color-btn{width:28px;height:28px;border-radius:50%;border:1px solid #ccc;cursor:pointer}
 .color-btn.active{border:2px solid #000}
 .size-options{display:flex;gap:10px;flex-wrap:wrap}
 .size-btn{padding:8px 14px;border:1px solid #ccc;background:#fff;cursor:pointer;border-radius:4px;font-size:13px}
 .size-btn.active{border:2px solid #000;background:#000;color:#fff}
+.size-btn.esgotado{opacity:0.35;text-decoration:line-through;cursor:not-allowed}
 .size-guide-link{display:inline-block;font-size:13px;color:#555;text-decoration:underline;margin-bottom:24px}
+.stock-msg{font-size:13px;color:#c0392b;margin-bottom:12px;padding:10px;background:#fdf0f0;border-radius:6px}
 .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .btn{width:100%;padding:16px;border:none;font-size:14px;letter-spacing:1px;text-transform:uppercase;border-radius:6px;cursor:pointer;text-align:center;text-decoration:none;display:block;box-sizing:border-box}
 .btn-cart{background:#8B1E3F;color:#fff}
 .btn-buy{background:#fff;color:#8B1E3F;border:2px solid #8B1E3F}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
 .meta{margin-top:20px;font-size:12px;color:#777;line-height:1.6;margin-bottom:32px}
 .desc-title{font-size:16px;font-weight:600;color:#111;padding-bottom:12px;border-bottom:1px solid #eee;margin-bottom:16px}
 .desc{font-size:14px;line-height:1.8;color:#555}
@@ -111,28 +118,57 @@
 </style>
 
 <script>
-let selectedOptions = [];
-
+const variants = {{ product.variants | json }};
 const totalOptions = {{ product.options.size }};
+let selectedOptions = new Array(totalOptions).fill(null);
 
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
   el.parentElement.querySelectorAll('*').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   updateVariant();
+  atualizarSizes();
+}
+
+function atualizarSizes() {
+  const sizeBtns = document.querySelectorAll('.size-btn');
+  sizeBtns.forEach(btn => {
+    const sizeValue = btn.dataset.value;
+    const testOptions = [...selectedOptions];
+    testOptions[1] = sizeValue;
+    const v = variants.find(v => v.options.every((opt, i) => testOptions[i] === null || opt === testOptions[i]));
+    if(v && !v.available){
+      btn.classList.add('esgotado');
+    } else {
+      btn.classList.remove('esgotado');
+    }
+  });
 }
 
 function updateVariant() {
-  const variants = {{ product.variants | json }};
-  const found = variants.find(v => selectedOptions.every((opt, i) => v.options[i] === opt));
-  if (found) {
+  const found = variants.find(v => v.options.every((opt, i) => opt === selectedOptions[i]));
+  const stockMsg = document.getElementById('stock-msg');
+  const btnCart = document.getElementById('btn-cart');
+  const btnBuy = document.getElementById('btn-buy');
+
+  if(found){
     document.getElementById('variant-id').value = found.id;
+    if(!found.available){
+      stockMsg.style.display = 'block';
+      stockMsg.textContent = 'Esta variante está esgotada.';
+      btnCart.disabled = true;
+      btnBuy.disabled = true;
+    } else {
+      stockMsg.style.display = 'none';
+      btnCart.disabled = false;
+      btnBuy.disabled = false;
+    }
   }
 }
 
 function validarOpcoes() {
-  const preenchidos = selectedOptions.filter(Boolean).length;
-  if(preenchidos < totalOptions){
+  const naoSelecionados = selectedOptions.some(o => o === null);
+  if(naoSelecionados){
     alert('Por favor, selecione cor e tamanho antes de continuar.');
     return false;
   }
@@ -152,9 +188,7 @@ function comprarAgora() {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({id: parseInt(variantId), quantity: 1})
   })
-  .then(() => {
-    window.location.href = '/checkout';
-  })
+  .then(() => { window.location.href = '/checkout'; })
   .catch(err => console.error(err));
 }
 
