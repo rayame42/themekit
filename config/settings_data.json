@@ -35,7 +35,7 @@
           "produto_JDcMdz": {
             "type": "produto",
             "settings": {
-              "img": "shopify://shop_images/SaveClip.App_655915437_18117993619653188_4822264918318037777_n.jpg",
+              "img": "shopify://shop_images/SELENE_1_f630c95d-80ea-4ecf-82c6-0dd28c03091c.jpg",
               "title": "Peça destaque",
               "cta": "Comprar →",
               "link": ""
@@ -82,7 +82,7 @@
           "kicker": "CURADORIA JADE",
           "title": "BEST SELLERS | TOP 04",
           "subtitle": "As peças mais desejadas da coleção.",
-          "main_image": "shopify://shop_images/SELENE_1_02c80cd2-c481-4db6-9122-a5937cd67c4f.jpg",
+          "main_image": "shopify://shop_images/Design_sem_nome_7.jpg",
           "main_link": "",
           "main_label": "Mais desejado",
           "main_cta": "Explorar agora →"
@@ -263,6 +263,10 @@
       },
       "avaliacoes": {
         "type": "avaliacoes",
+        "settings": {}
+      },
+      "main-collection-product-grid": {
+        "type": "main-collection-product-grid",
         "settings": {}
       }
     },
