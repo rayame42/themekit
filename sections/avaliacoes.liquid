@@ -1,32 +1,4 @@
-<section class="avaliacoes">
-  <div class="avaliacoes-container">
-
-    <div class="avaliacoes-head">
-      <span>CLIENTES JADE</span>
-      <h2>O que dizem sobre nós</h2>
-      <p>Avaliações reais de quem já viveu a experiência.</p>
-    </div>
-
-    <div class="avaliacoes-widget">
-      <div id="jdgm-all-reviews" class="jdgm-widget jdgm-all-reviews-widget"></div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-.avaliacoes{background:#f7f7f7;padding:80px 20px}
-.avaliacoes-container{max-width:1100px;margin:0 auto}
-.avaliacoes-head{text-align:center;margin-bottom:45px}
-.avaliacoes-head span{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#7a6a6a}
-.avaliacoes-head h2{font-size:36px;font-weight:300;letter-spacing:2px;margin:12px 0;color:#111}
-.avaliacoes-head p{font-size:14px;color:#888;margin:0}
-.avaliacoes-widget{width:100%;min-height:200px}
-@media(max-width:768px){
-  .avaliacoes{padding:50px 16px}
-  .avaliacoes-head h2{font-size:25px}
-}
-</style>
+{% render 'judgeme_widgets', widget_type: 'judgeme_cards_carousel_widget', concierge_install: true %}
 
 {% schema %}
 {
