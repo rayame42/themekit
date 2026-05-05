@@ -6,7 +6,6 @@
       <div class="main-image">
         <img id="mainImage" src="{{ product.featured_image | image_url: width: 900 }}">
       </div>
-
       <div class="thumbs">
         {% for image in product.images %}
           <img src="{{ image | image_url: width: 300 }}" onclick="trocarImagem(this)">
@@ -22,12 +21,6 @@
         {{ product.price | money }}
       </div>
 
-      <!-- DESCRIÇÃO CORRIGIDA -->
-      <div class="desc">
-        {{ product.description }}
-      </div>
-
-      <!-- VARIANTES -->
       <form method="post" action="/cart/add" id="product-form">
         <input type="hidden" name="id" id="variant-id" value="{{ product.variants.first.id }}">
 
@@ -36,17 +29,14 @@
           <p>Cor</p>
           <div class="color-options">
             {% for value in product.options_with_values[0].values %}
-              <div 
+              <div
                 class="color-btn"
                 data-value="{{ value }}"
-                style="
-                  background:
-                  {% if value == 'Preto' %} #000
-                  {% elsif value == 'Vermelho' %} #8B1E3F
-                  {% elsif value == 'Rosa' %} #e8a1b0
-                  {% else %} #ccc
-                  {% endif %}
-                "
+                style="background:
+                  {% if value == 'Preto' %}#000
+                  {% elsif value == 'Vermelho' %}#8B1E3F
+                  {% elsif value == 'Rosa' %}#e8a1b0
+                  {% else %}#ccc{% endif %}"
                 onclick="selectOption(0, '{{ value }}', this)">
               </div>
             {% endfor %}
@@ -65,15 +55,36 @@
           </div>
         </div>
 
-        <button class="btn">
-          Adicionar ao carrinho
-        </button>
+        <!-- GUIA DE MEDIDAS -->
+        {% if product.metafields.custom.size_guide_url != blank %}
+          <a href="{{ product.metafields.custom.size_guide_url }}" target="_blank" class="size-guide-link">
+            ↔ Guia de medidas
+          </a>
+        {% endif %}
+
+        <!-- BOTÕES -->
+        <div class="btn-group">
+          <button type="submit" class="btn btn-cart">
+            Adicionar ao carrinho
+          </button>
+          <a href="/checkout?variant={{ product.variants.first.id }}" id="buy-now" class="btn btn-buy">
+            Comprar agora
+          </a>
+        </div>
+
       </form>
 
       <div class="meta">
         🔥 Últimas unidades disponíveis <br>
-        ✔ Frete rápido • ✔ Troca fácil
+        ✔ Frete grátis • ✔ Troca em até 7 dias
       </div>
+
+      <!-- DESCRIÇÃO NO FINAL -->
+      <div class="desc-title">Descrição</div>
+      <div class="desc">
+        {{ product.description }}
+      </div>
+
     </div>
 
   </div>
@@ -136,39 +147,6 @@
   margin-bottom: 20px;
 }
 
-/* DESCRIÇÃO BONITA */
-.desc {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 35px;
-}
-
-.desc p {
-  margin-bottom: 12px;
-}
-
-.desc strong {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.desc table {
-  width: 100%;
-  margin-top: 10px;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.desc table td,
-.desc table th {
-  padding: 6px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-
 /* VARIANTES */
 .option-group {
   margin-bottom: 25px;
@@ -202,6 +180,7 @@
 .size-options {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .size-btn {
@@ -215,20 +194,50 @@
 
 .size-btn.active {
   border: 2px solid #000;
+  background: #000;
+  color: #fff;
 }
 
-/* BOTÃO */
+/* GUIA DE MEDIDAS */
+.size-guide-link {
+  display: inline-block;
+  font-size: 13px;
+  color: #555;
+  text-decoration: underline;
+  margin-bottom: 24px;
+}
+
+/* BOTÕES */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .btn {
   width: 100%;
-  background: #8B1E3F;
-  color: #fff;
   padding: 16px;
   border: none;
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 6px;
-  margin-top: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.btn-cart {
+  background: #8B1E3F;
+  color: #fff;
+}
+
+.btn-buy {
+  background: #fff;
+  color: #8B1E3F;
+  border: 2px solid #8B1E3F;
 }
 
 /* META */
@@ -237,12 +246,56 @@
   font-size: 12px;
   color: #777;
   line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* DESCRIÇÃO */
+.desc-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+}
+
+.desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.desc p { margin-bottom: 12px; }
+
+.desc strong {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.desc table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.desc table td,
+.desc table th {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
 
 /* MOBILE */
 @media(max-width: 768px){
   .wrap {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .info {
+    max-width: 100%;
   }
 }
 </style>
@@ -252,25 +305,18 @@ let selectedOptions = [];
 
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
-
   const parent = el.parentElement;
-  const buttons = parent.querySelectorAll('*');
-
-  buttons.forEach(btn => btn.classList.remove('active'));
+  parent.querySelectorAll('*').forEach(btn => btn.classList.remove('active'));
   el.classList.add('active');
-
   updateVariant();
 }
 
 function updateVariant() {
   const variants = {{ product.variants | json }};
-  
-  const found = variants.find(v => {
-    return selectedOptions.every((opt, i) => v.options[i] === opt);
-  });
-
+  const found = variants.find(v => selectedOptions.every((opt, i) => v.options[i] === opt));
   if (found) {
     document.getElementById('variant-id').value = found.id;
+    document.getElementById('buy-now').href = '/checkout?variant=' + found.id;
   }
 }
 
