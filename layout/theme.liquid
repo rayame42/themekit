@@ -201,14 +201,18 @@ summary{
 function slideCategories(direction){
   const container = document.querySelector('.categories');
   if(!container) return;
-
   const scrollAmount = container.offsetWidth / 2;
-
-  container.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
+  container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+  var check = setInterval(function(){
+    if(window.jdgm && window.jdgm.customWidgets && window.jdgm.customWidgets.load){
+      window.jdgm.customWidgets.load();
+      clearInterval(check);
+    }
+  }, 200);
+});
 </script>
 
 </body>
