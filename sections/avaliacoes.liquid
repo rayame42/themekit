@@ -8,22 +8,11 @@
     </div>
 
     <div class="avaliacoes-widget">
-      <div class="jdgm-widget jdgm-all-reviews-widget">
-        <div class="jdgm-all-reviews__body"></div>
-      </div>
+      {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_widget', concierge_install: true %}
     </div>
 
   </div>
 </section>
-
-<script>
-window.jdgm = window.jdgm || {};
-jdgm.SHOP_DOMAIN = 'mpqbsz-ij.myshopify.com';
-jdgm.PLATFORM = 'shopify';
-jdgm.PUBLIC_TOKEN = 'ab0uT91c-f3c5ChTDtkb2h4colc';
-</script>
-
-<script data-cfasync="false" type="text/javascript" async src="https://cdnwidget.judge.me/widget_preloader.js"></script>
 
 <style>
 .avaliacoes{
