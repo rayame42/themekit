@@ -15,7 +15,9 @@
     <div class="info">
       <h1>{{ product.title }}</h1>
 
-      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'></div>
+      <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+        {{ product.metafields.judgeme.badge }}
+      </div>
 
       <div class="price">
         {% if product.compare_at_price > product.price %}
@@ -80,7 +82,9 @@
 
   <!-- AVALIAÇÕES DO PRODUTO -->
   <div class="produto-avaliacoes">
-    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}"></div>
+    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-auto-install="false">
+      {{ product.metafields.judgeme.widget }}
+    </div>
   </div>
 
   <!-- PRODUTOS RELACIONADOS -->
