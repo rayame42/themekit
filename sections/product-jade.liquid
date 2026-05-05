@@ -56,14 +56,15 @@
 
         <div class="btn-group">
           <button type="submit" class="btn btn-cart">Adicionar ao carrinho</button>
-          <a href="/checkout?variant={{ product.variants.first.id }}" id="buy-now" class="btn btn-buy">Comprar agora</a>
+          <button type="button" class="btn btn-buy" onclick="comprarAgora()">Comprar agora</button>
         </div>
 
       </form>
 
       <div class="meta">
-  ✔ Frete grátis • ✔ Troca em até 7 dias
-</div>
+        ✔ Frete grátis • ✔ Troca em até 7 dias
+      </div>
+
       <div class="desc-title">Descrição</div>
       <div class="desc">{{ product.description }}</div>
 
@@ -111,19 +112,34 @@
 
 <script>
 let selectedOptions = [];
+
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
   el.parentElement.querySelectorAll('*').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   updateVariant();
 }
+
 function updateVariant() {
   const variants = {{ product.variants | json }};
   const found = variants.find(v => selectedOptions.every((opt, i) => v.options[i] === opt));
   if (found) {
     document.getElementById('variant-id').value = found.id;
-    document.getElementById('buy-now').href = '/checkout?variant=' + found.id;
   }
 }
+
+function comprarAgora() {
+  const variantId = document.getElementById('variant-id').value;
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: parseInt(variantId), quantity: 1})
+  })
+  .then(() => {
+    window.location.href = '/checkout';
+  })
+  .catch(err => console.error(err));
+}
+
 function trocarImagem(el){ document.getElementById("mainImage").src = el.src; }
 </script>
