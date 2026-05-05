@@ -6,6 +6,8 @@
 
   <div class="products-grid">
 
+    {% paginate collection.products by section.settings.produtos_por_pagina %}
+
     {% for product in collection.products %}
     <div class="product-card">
 
@@ -19,7 +21,6 @@
 
       </a>
 
-      <!-- JUDGE.ME -->
       <div class="reviews">
         {{ product.metafields.judgeme.badge }}
       </div>
@@ -35,6 +36,30 @@
 
     </div>
     {% endfor %}
+
+    {% if paginate.pages > 1 %}
+    <div class="paginacao">
+      {% if paginate.previous %}
+        <a href="{{ paginate.previous.url }}" class="pag-btn">← Anterior</a>
+      {% endif %}
+
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <a href="{{ part.url }}" class="pag-btn">{{ part.title }}</a>
+        {% elsif part.title == paginate.current_page %}
+          <span class="pag-btn pag-atual">{{ part.title }}</span>
+        {% else %}
+          <span class="pag-sep">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.next %}
+        <a href="{{ paginate.next.url }}" class="pag-btn">Próxima →</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% endpaginate %}
 
   </div>
 
@@ -88,12 +113,8 @@
 }
 
 @media(hover:hover){
-  .image-wrapper:hover .img2{
-    opacity:1;
-  }
-  .image-wrapper:hover .img1{
-    opacity:0;
-  }
+  .image-wrapper:hover .img2{ opacity:1; }
+  .image-wrapper:hover .img1{ opacity:0; }
 }
 
 .title{
@@ -122,10 +143,65 @@
   font-size:12px;
 }
 
+/* PAGINAÇÃO */
+.paginacao{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:40px;
+  flex-wrap:wrap;
+}
+
+.pag-btn{
+  padding:8px 16px;
+  border:1px solid #ddd;
+  border-radius:4px;
+  text-decoration:none;
+  font-size:13px;
+  color:#111;
+  transition:0.3s;
+}
+
+.pag-btn:hover{
+  background:#2b0000;
+  color:#fff;
+  border-color:#2b0000;
+}
+
+.pag-atual{
+  background:#2b0000;
+  color:#fff;
+  border-color:#2b0000;
+  cursor:default;
+}
+
+.pag-sep{
+  font-size:13px;
+  color:#aaa;
+  padding:8px 4px;
+}
+
 @media(max-width:768px){
-  .products-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .products-grid{ grid-template-columns:repeat(2,1fr); }
 }
 
 </style>
+
+{% schema %}
+{
+  "name": "Coleção",
+  "settings": [
+    {
+      "type": "range",
+      "id": "produtos_por_pagina",
+      "label": "Produtos por página",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}
