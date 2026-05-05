@@ -8,13 +8,19 @@
     </div>
 
     <div class="avaliacoes-widget">
-      <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'mpqbsz-ij.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'ab0uT91c-f3c5ChTDtkb2h4colc';</script>
-      <script data-cfasync='false' type='text/javascript' async src='https://cdnwidget.judge.me/widget_preloader.js'></script>
-      <div class="jdgm-widget jdgm-all-reviews-widget" data-id="{{ shop.id }}"></div>
+      <div class="jdgm-widget jdgm-all-reviews-widget"></div>
     </div>
 
   </div>
 </section>
+
+<script>
+window.jdgm=window.jdgm||{};
+jdgm.SHOP_DOMAIN='mpqbsz-ij.myshopify.com';
+jdgm.PLATFORM='shopify';
+jdgm.PUBLIC_TOKEN='ab0uT91c-f3c5ChTDtkb2h4colc';
+</script>
+<script data-cfasync="false" async src="https://cdnwidget.judge.me/widget_preloader.js"></script>
 
 <style>
 .avaliacoes{
@@ -29,13 +35,12 @@
 
 .avaliacoes-head{
   text-align:center;
-  margin-bottom:48px;
+  margin-bottom:45px;
 }
 
 .avaliacoes-head span{
   font-size:11px;
   letter-spacing:3px;
-  text-transform:uppercase;
   color:#7a6a6a;
 }
 
@@ -52,16 +57,41 @@
   color:#888;
 }
 
+.avaliacoes-widget{
+  min-height:120px;
+}
+
+.jdgm-all-reviews-widget{
+  background:transparent!important;
+}
+
 @media(max-width:768px){
-  .avaliacoes{ padding:50px 16px; }
-  .avaliacoes-head{ margin-bottom:32px; }
-  .avaliacoes-head h2{ font-size:24px; }
+  .avaliacoes{
+    padding:50px 16px;
+  }
+
+  .avaliacoes-head{
+    margin-bottom:30px;
+  }
+
+  .avaliacoes-head h2{
+    font-size:25px;
+    line-height:1.25;
+  }
+
+  .avaliacoes-head p{
+    font-size:13px;
+  }
 }
 </style>
 
 {% schema %}
 {
   "name": "Avaliações",
-  "presets": [{ "name": "Avaliações" }]
+  "presets": [
+    {
+      "name": "Avaliações"
+    }
+  ]
 }
 {% endschema %}
