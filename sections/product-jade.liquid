@@ -36,6 +36,7 @@
           <div class="color-options">
             {% for value in product.options_with_values[0].values %}
               <div class="color-btn" data-value="{{ value }}"
+                data-hex="{% if value == 'Preto' %}#000{% elsif value == 'Vermelho' %}#8B1E3F{% elsif value == 'Rosa' %}#e8a1b0{% else %}#2b0000{% endif %}"
                 style="background:{% if value == 'Preto' %}#000{% elsif value == 'Vermelho' %}#8B1E3F{% elsif value == 'Rosa' %}#e8a1b0{% else %}#ccc{% endif %}"
                 onclick="selectOption(0, '{{ value }}', this)">
               </div>
@@ -104,10 +105,10 @@
 .opcao-label{color:#2b0000;font-weight:600}
 .color-options{display:flex;gap:10px;flex-wrap:wrap}
 .color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:0.2s}
-.color-btn.active{border:2px solid #2b0000;transform:scale(1.2);box-shadow:0 0 0 2px #fff,0 0 0 4px #2b0000}
+.color-btn.active{transform:scale(1.2);box-shadow:0 0 0 2px #fff,0 0 0 4px #2b0000}
 .size-options{display:flex;gap:10px;flex-wrap:wrap}
-.size-btn{padding:8px 14px;border:1px solid #ccc;background:#fff;cursor:pointer;border-radius:4px;font-size:13px;transition:0.2s}
-.size-btn.active{border:2px solid #2b0000;background:#2b0000;color:#fff;font-weight:600}
+.size-btn{padding:8px 14px;border:1px solid #ccc;background:#fff;cursor:pointer;border-radius:4px;font-size:13px;transition:0.2s;color:#111}
+.size-btn.active{color:#fff;font-weight:600;border-width:2px}
 .size-btn.esgotado{opacity:0.35;text-decoration:line-through;cursor:not-allowed}
 .size-guide-link{display:inline-block;font-size:13px;color:#555;text-decoration:underline;margin-bottom:24px}
 .stock-msg{font-size:13px;color:#c0392b;margin-bottom:12px;padding:10px;background:#fdf0f0;border-radius:6px}
@@ -123,8 +124,6 @@
 .desc strong{display:block;margin-top:20px;margin-bottom:6px;font-weight:600}
 .desc table{width:100%;margin-top:10px;border-collapse:collapse;font-size:13px}
 .desc table td,.desc table th{padding:6px;border-bottom:1px solid #eee;text-align:left}
-
-/* RELACIONADOS */
 .relacionados{margin-top:60px;padding-top:40px;border-top:1px solid #eee}
 .relacionados h2{font-size:22px;font-weight:300;margin-bottom:24px;color:#111}
 .relacionados-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -132,7 +131,6 @@
 .rel-card img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block}
 .rel-card p{font-size:13px;margin-top:8px}
 .rel-card .rel-price{font-size:13px;color:#8B1E3F;font-weight:600;margin-top:4px}
-
 @media(max-width:768px){
   .wrap{grid-template-columns:1fr;gap:32px}
   .info{max-width:100%}
@@ -144,6 +142,20 @@
 const variants = {{ product.variants | json }};
 const totalOptions = {{ product.options.size }};
 let selectedOptions = new Array(totalOptions).fill(null);
+let corHexAtual = '#2b0000';
+
+function getCorHex(el) {
+  return el.dataset.hex || '#2b0000';
+}
+
+function atualizarCorTamanho() {
+  document.querySelectorAll('.size-btn.active').forEach(btn => {
+    btn.style.background = corHexAtual;
+    btn.style.borderColor = corHexAtual;
+  });
+  const label = document.getElementById('cor-selecionada');
+  if(label) label.style.color = corHexAtual;
+}
 
 function selectOption(index, value, el) {
   selectedOptions[index] = value;
@@ -151,6 +163,7 @@ function selectOption(index, value, el) {
   el.classList.add('active');
 
   if(index === 0){
+    corHexAtual = getCorHex(el);
     const label = document.getElementById('cor-selecionada');
     if(label) label.textContent = value;
   }
@@ -159,13 +172,13 @@ function selectOption(index, value, el) {
     if(label) label.textContent = value;
   }
 
+  atualizarCorTamanho();
   updateVariant();
   atualizarSizes();
 }
 
 function atualizarSizes() {
-  const sizeBtns = document.querySelectorAll('.size-btn');
-  sizeBtns.forEach(btn => {
+  document.querySelectorAll('.size-btn').forEach(btn => {
     const sizeValue = btn.dataset.value;
     const testOptions = [...selectedOptions];
     testOptions[1] = sizeValue;
@@ -174,6 +187,10 @@ function atualizarSizes() {
       btn.classList.add('esgotado');
     } else {
       btn.classList.remove('esgotado');
+    }
+    if(btn.classList.contains('active')){
+      btn.style.background = corHexAtual;
+      btn.style.borderColor = corHexAtual;
     }
   });
 }
@@ -199,8 +216,7 @@ function updateVariant() {
 }
 
 function validarOpcoes() {
-  const naoSelecionados = selectedOptions.some(o => o === null);
-  if(naoSelecionados){
+  if(selectedOptions.some(o => o === null)){
     alert('Por favor, selecione cor e tamanho antes de continuar.');
     return false;
   }
