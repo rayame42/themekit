@@ -1,0 +1,160 @@
+<section class="search-page">
+  <div class="search-container">
+
+    <div class="search-head">
+      <span>JADE INTIMATES</span>
+      <h1>Pesquisa</h1>
+    </div>
+
+    <form action="/search" method="get" class="search-form">
+      <input type="text" name="q" placeholder="Buscar produtos..." value="{{ search.terms }}" autofocus>
+      <button type="submit">Buscar</button>
+    </form>
+
+    {% if search.performed %}
+      {% if search.results_count == 0 %}
+        <p class="search-empty">Nenhum resultado encontrado para "<strong>{{ search.terms }}</strong>".</p>
+      {% else %}
+        <p class="search-count">{{ search.results_count }} resultado(s) para "<strong>{{ search.terms }}</strong>"</p>
+        <div class="search-grid">
+          {% for item in search.results %}
+            <a href="{{ item.url }}" class="search-card">
+              {% if item.featured_image %}
+                <img src="{{ item.featured_image | image_url: width: 400 }}" alt="{{ item.title }}">
+              {% endif %}
+              <div class="search-card-info">
+                <p class="search-card-title">{{ item.title }}</p>
+                {% if item.price %}
+                  <p class="search-card-price">{{ item.price | money }}</p>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+.search-page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:60px 20px;
+}
+
+.search-head{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.search-head span{
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#7a6a6a;
+}
+
+.search-head h1{
+  font-size:36px;
+  font-weight:300;
+  letter-spacing:2px;
+  margin:12px 0 0;
+  color:#111;
+}
+
+.search-form{
+  display:flex;
+  gap:12px;
+  max-width:600px;
+  margin:0 auto 48px;
+}
+
+.search-form input{
+  flex:1;
+  padding:14px 16px;
+  border:1px solid #e0e0e0;
+  border-radius:6px;
+  font-size:14px;
+  color:#111;
+  box-sizing:border-box;
+}
+
+.search-form input:focus{
+  outline:none;
+  border-color:#2b0000;
+}
+
+.search-form button{
+  background:#2b0000;
+  color:#fff;
+  padding:14px 24px;
+  border:none;
+  border-radius:6px;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.search-empty{
+  text-align:center;
+  color:#888;
+  font-size:15px;
+  margin-top:40px;
+}
+
+.search-count{
+  font-size:14px;
+  color:#888;
+  margin-bottom:32px;
+}
+
+.search-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.search-card{
+  text-decoration:none;
+  color:#111;
+}
+
+.search-card img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.search-card-info{
+  margin-top:10px;
+}
+
+.search-card-title{
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.search-card-price{
+  font-size:14px;
+  color:#8B1E3F;
+  font-weight:600;
+}
+
+@media(max-width:768px){
+  .search-grid{grid-template-columns:repeat(2,1fr)}
+  .search-form{flex-direction:column}
+  .search-form button{width:100%}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pesquisa",
+  "presets": [{ "name": "Pesquisa" }]
+}
+{% endschema %}
