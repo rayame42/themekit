@@ -8,11 +8,22 @@
     </div>
 
     <div class="avaliacoes-widget">
-      <div class="jdgm-widget jdgm-all-reviews-widget"></div>
+      <div class="jdgm-widget jdgm-all-reviews-widget">
+        <div class="jdgm-all-reviews__body"></div>
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+window.jdgm = window.jdgm || {};
+jdgm.SHOP_DOMAIN = 'mpqbsz-ij.myshopify.com';
+jdgm.PLATFORM = 'shopify';
+jdgm.PUBLIC_TOKEN = 'ab0uT91c-f3c5ChTDtkb2h4colc';
+</script>
+
+<script data-cfasync="false" type="text/javascript" async src="https://cdnwidget.judge.me/widget_preloader.js"></script>
 
 <style>
 .avaliacoes{
@@ -31,6 +42,7 @@
 }
 
 .avaliacoes-head span{
+  display:block;
   font-size:11px;
   letter-spacing:3px;
   text-transform:uppercase;
@@ -53,12 +65,16 @@
 
 .avaliacoes-widget{
   width:100%;
-  min-height:160px;
-  background:transparent;
+  min-height:200px;
+  background:transparent!important;
 }
 
-.avaliacoes-widget .jdgm-widget{
-  width:100%;
+.jdgm-all-reviews-widget{
+  width:100%!important;
+  background:transparent!important;
+}
+
+.jdgm-all-reviews__body{
   background:transparent!important;
 }
 
