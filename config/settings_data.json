@@ -237,12 +237,11 @@
       "selos-confianca": {
         "type": "selos-confianca",
         "settings": {
-          "envio1": "shopify://shop_images/SELENE.png",
-          "envio2": "shopify://shop_images/SaveClip.App_653765502_17999809496877414_4454328147656201766_n.jpg",
-          "envio3": "shopify://shop_images/SaveClip.App_655915437_18117993619653188_4822264918318037777_n.jpg",
-          "seg1": "shopify://shop_images/SELENE.png",
-          "seg2": "shopify://shop_images/SaveClip.App_653765502_17999809496877414_4454328147656201766_n.jpg",
-          "seg3": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg"
+          "envio1": "shopify://shop_images/correios.webp",
+          "envio2": "shopify://shop_images/OIP.webp",
+          "seg1": "shopify://shop_images/Captura_de_tela_de_2026-05-04_23-04-01.png",
+          "seg2": "shopify://shop_images/OIP_1.webp",
+          "seg3": "shopify://shop_images/Lets-Encrypt-Logo-Vector.jpg"
         }
       },
       "product-jade": {
