@@ -244,6 +244,13 @@
           "seg2": "shopify://shop_images/SaveClip.App_653765502_17999809496877414_4454328147656201766_n.jpg",
           "seg3": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg"
         }
+      },
+      "product-jade": {
+        "type": "product-jade",
+        "custom_css": [
+          ".btn-buy{box-sizing:border-box;width:100%!important}"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [],
