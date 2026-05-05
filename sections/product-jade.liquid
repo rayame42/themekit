@@ -32,7 +32,7 @@
         <input type="hidden" name="id" id="variant-id" value="">
 
         <div class="option-group">
-          <p>Cor</p>
+          <p>Cor: <span id="cor-selecionada" class="opcao-label">—</span></p>
           <div class="color-options">
             {% for value in product.options_with_values[0].values %}
               <div class="color-btn" data-value="{{ value }}"
@@ -45,7 +45,7 @@
 
         {% if product.options.size > 1 %}
         <div class="option-group">
-          <p>Tamanho</p>
+          <p>Tamanho: <span id="tamanho-selecionado" class="opcao-label">—</span></p>
           <div class="size-options">
             {% for value in product.options_with_values[1].values %}
               <button type="button" class="size-btn" data-value="{{ value }}" onclick="selectOption(1, '{{ value }}', this)">{{ value }}</button>
@@ -101,12 +101,13 @@
 .price-atual{font-size:22px;color:#8B1E3F;font-weight:600}
 .option-group{margin-bottom:25px}
 .option-group p{font-size:13px;font-weight:600;margin-bottom:10px}
+.opcao-label{color:#2b0000;font-weight:600}
 .color-options{display:flex;gap:10px;flex-wrap:wrap}
-.color-btn{width:28px;height:28px;border-radius:50%;border:1px solid #ccc;cursor:pointer}
-.color-btn.active{border:2px solid #000}
+.color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:0.2s}
+.color-btn.active{border:2px solid #2b0000;transform:scale(1.2);box-shadow:0 0 0 2px #fff,0 0 0 4px #2b0000}
 .size-options{display:flex;gap:10px;flex-wrap:wrap}
-.size-btn{padding:8px 14px;border:1px solid #ccc;background:#fff;cursor:pointer;border-radius:4px;font-size:13px}
-.size-btn.active{border:2px solid #000;background:#000;color:#fff}
+.size-btn{padding:8px 14px;border:1px solid #ccc;background:#fff;cursor:pointer;border-radius:4px;font-size:13px;transition:0.2s}
+.size-btn.active{border:2px solid #2b0000;background:#2b0000;color:#fff;font-weight:600}
 .size-btn.esgotado{opacity:0.35;text-decoration:line-through;cursor:not-allowed}
 .size-guide-link{display:inline-block;font-size:13px;color:#555;text-decoration:underline;margin-bottom:24px}
 .stock-msg{font-size:13px;color:#c0392b;margin-bottom:12px;padding:10px;background:#fdf0f0;border-radius:6px}
@@ -124,44 +125,13 @@
 .desc table td,.desc table th{padding:6px;border-bottom:1px solid #eee;text-align:left}
 
 /* RELACIONADOS */
-.relacionados{
-  margin-top:60px;
-  padding-top:40px;
-  border-top:1px solid #eee;
-}
-.relacionados h2{
-  font-size:22px;
-  font-weight:300;
-  margin-bottom:24px;
-  color:#111;
-}
-.relacionados-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-.rel-card{
-  text-decoration:none;
-  color:#111;
-  display:block;
-}
-.rel-card img{
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  border-radius:8px;
-  display:block;
-}
-.rel-card p{
-  font-size:13px;
-  margin-top:8px;
-}
-.rel-card .rel-price{
-  font-size:13px;
-  color:#8B1E3F;
-  font-weight:600;
-  margin-top:4px;
-}
+.relacionados{margin-top:60px;padding-top:40px;border-top:1px solid #eee}
+.relacionados h2{font-size:22px;font-weight:300;margin-bottom:24px;color:#111}
+.relacionados-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.rel-card{text-decoration:none;color:#111;display:block}
+.rel-card img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block}
+.rel-card p{font-size:13px;margin-top:8px}
+.rel-card .rel-price{font-size:13px;color:#8B1E3F;font-weight:600;margin-top:4px}
 
 @media(max-width:768px){
   .wrap{grid-template-columns:1fr;gap:32px}
@@ -179,6 +149,16 @@ function selectOption(index, value, el) {
   selectedOptions[index] = value;
   el.parentElement.querySelectorAll('*').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
+
+  if(index === 0){
+    const label = document.getElementById('cor-selecionada');
+    if(label) label.textContent = value;
+  }
+  if(index === 1){
+    const label = document.getElementById('tamanho-selecionado');
+    if(label) label.textContent = value;
+  }
+
   updateVariant();
   atualizarSizes();
 }
@@ -246,7 +226,6 @@ function comprarAgora() {
 
 function trocarImagem(el){ document.getElementById("mainImage").src = el.src; }
 
-// PRODUTOS RELACIONADOS
 fetch(`/recommendations/products.json?product_id={{ product.id }}&limit=4`)
   .then(r => r.json())
   .then(data => {
