@@ -1,0 +1,64 @@
+<section class="pagina-404">
+  <div class="erro-container">
+    <span>404</span>
+    <h1>Página não encontrada</h1>
+    <p>A página que você procura não existe ou foi movida.</p>
+    <a href="/" class="btn-home">Voltar à loja</a>
+  </div>
+</section>
+
+<style>
+.pagina-404{
+  min-height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 20px;
+  text-align:center;
+}
+
+.erro-container span{
+  font-size:100px;
+  font-weight:200;
+  color:#e0e0e0;
+  line-height:1;
+  display:block;
+}
+
+.erro-container h1{
+  font-size:28px;
+  font-weight:300;
+  letter-spacing:2px;
+  color:#111;
+  margin:16px 0 12px;
+}
+
+.erro-container p{
+  font-size:15px;
+  color:#888;
+  margin-bottom:32px;
+}
+
+.btn-home{
+  display:inline-block;
+  background:#2b0000;
+  color:#fff;
+  padding:14px 32px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.btn-home:hover{
+  background:#8B1E3F;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Página 404",
+  "presets": [{ "name": "Página 404" }]
+}
+{% endschema %}
