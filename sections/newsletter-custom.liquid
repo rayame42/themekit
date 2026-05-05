@@ -1,15 +1,22 @@
 <section class="newsletter-block">
-
   <div class="container">
     <h2>Faça parte da nossa lista de e&#8209;mails</h2>
     <p>Receba ofertas exclusivas e acesso antecipado.</p>
 
-    <div class="form">
-      <input type="email" placeholder="E-mail">
-      <button>Inscreva-se</button>
-    </div>
+    {% form 'customer', id: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="form">
+        <input type="email" name="contact[email]" placeholder="E-mail" required>
+        <button type="submit">Inscreva-se</button>
+      </div>
+      {% if form.posted_successfully? %}
+        <p class="newsletter-success">✔ Obrigada! Você foi cadastrada com sucesso.</p>
+      {% endif %}
+      {% if form.errors %}
+        <p class="newsletter-error">{{ form.errors | default_errors }}</p>
+      {% endif %}
+    {% endform %}
   </div>
-
 </section>
 
 <style>
@@ -38,15 +45,31 @@
   color:#fff;
   border:none;
 }
+
+.newsletter-success{
+  color:#2b7a2b;
+  font-size:14px;
+  margin-top:16px;
+}
+
+.newsletter-error{
+  color:#c0392b;
+  font-size:14px;
+  margin-top:16px;
+}
+
+@media(max-width:768px){
+  .newsletter-block{ padding:50px 16px; }
+  .newsletter-block h2{ font-size:20px!important; text-align:center; }
+  .form{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .newsletter-block input{ width:100%; }
+  .newsletter-block button{ width:100%; }
+}
 </style>
 
 {% schema %}
 {
   "name": "Newsletter Premium",
-  "presets": [
-    {
-      "name": "Newsletter"
-    }
-  ]
+  "presets": [{ "name": "Newsletter" }]
 }
 {% endschema %}
