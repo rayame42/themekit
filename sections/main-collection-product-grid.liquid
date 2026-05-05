@@ -1,0 +1,131 @@
+<section class="collection-luxo">
+
+  <div class="collection-header">
+    <h1>{{ collection.title }}</h1>
+  </div>
+
+  <div class="products-grid">
+
+    {% for product in collection.products %}
+    <div class="product-card">
+
+      <a href="{{ product.url }}" class="image-wrapper">
+
+        <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+
+        {% if product.images.size > 1 %}
+          <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+        {% endif %}
+
+      </a>
+
+      <!-- JUDGE.ME -->
+      <div class="reviews">
+        {{ product.metafields.judgeme.badge }}
+      </div>
+
+      <p class="title">{{ product.title }}</p>
+
+      <div class="price">
+        {% if product.compare_at_price > product.price %}
+          <span class="old">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+        <span class="new">{{ product.price | money }}</span>
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+
+<style>
+
+.collection-luxo{
+  max-width:1200px;
+  margin:0 auto;
+  padding:40px 20px;
+}
+
+.collection-header h1{
+  font-size:32px;
+  font-weight:300;
+  margin-bottom:30px;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
+}
+
+.product-card{
+  text-align:left;
+}
+
+.image-wrapper{
+  position:relative;
+  display:block;
+  overflow:hidden;
+}
+
+.img1{
+  width:100%;
+  transition:opacity 0.4s;
+  display:block;
+}
+
+.img2{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 0.4s;
+  pointer-events:none;
+}
+
+@media(hover:hover){
+  .image-wrapper:hover .img2{
+    opacity:1;
+  }
+  .image-wrapper:hover .img1{
+    opacity:0;
+  }
+}
+
+.title{
+  font-size:13px;
+  margin-top:10px;
+}
+
+.price{
+  font-size:14px;
+  margin-top:5px;
+}
+
+.old{
+  text-decoration:line-through;
+  color:#aaa;
+  margin-right:6px;
+}
+
+.new{
+  color:#8B1E3F;
+  font-weight:500;
+}
+
+.reviews{
+  margin-top:8px;
+  font-size:12px;
+}
+
+@media(max-width:768px){
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+</style>
