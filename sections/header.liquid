@@ -1,44 +1,56 @@
 <header class="header-luxo">
-
   <div class="header-wrap">
+
+    <!-- HAMBURGER MOBILE -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
     <!-- LOGO -->
     <div class="logo">
       <a href="/">{{ section.settings.logo_text }}</a>
     </div>
 
-    <!-- MENU -->
+    <!-- MENU DESKTOP -->
     <nav class="menu">
       {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
     </nav>
 
+    <!-- ÍCONES -->
     <div class="icons">
-  <a href="/search" aria-label="Buscar">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="11" cy="11" r="7" stroke="#111" stroke-width="1.5"/>
-      <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#111" stroke-width="1.5"/>
-    </svg>
-  </a>
-
-  <a href="/account" aria-label="Conta">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="8" r="4" stroke="#111" stroke-width="1.5"/>
-      <path d="M4 20c2-4 14-4 16 0" stroke="#111" stroke-width="1.5"/>
-    </svg>
-  </a>
-
-  <a href="/cart" aria-label="Carrinho">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="9" cy="20" r="1.5" stroke="#111" stroke-width="1.5"/>
-      <circle cx="17" cy="20" r="1.5" stroke="#111" stroke-width="1.5"/>
-      <path d="M3 4h2l2.5 10h11l2-7H6" stroke="#111" stroke-width="1.5"/>
-    </svg>
-  </a>
-</div>
+      <a href="/search" aria-label="Buscar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="7" stroke="#111" stroke-width="1.5"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#111" stroke-width="1.5"/>
+        </svg>
+      </a>
+      <a href="/account" aria-label="Conta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4" stroke="#111" stroke-width="1.5"/>
+          <path d="M4 20c2-4 14-4 16 0" stroke="#111" stroke-width="1.5"/>
+        </svg>
+      </a>
+      <a href="/cart" aria-label="Carrinho">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="20" r="1.5" stroke="#111" stroke-width="1.5"/>
+          <circle cx="17" cy="20" r="1.5" stroke="#111" stroke-width="1.5"/>
+          <path d="M3 4h2l2.5 10h11l2-7H6" stroke="#111" stroke-width="1.5"/>
+        </svg>
+      </a>
+    </div>
 
   </div>
+
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" id="menuMobile">
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
 
 </header>
 
@@ -84,10 +96,65 @@
   gap:15px;
 }
 
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none!important;
+  border:none!important;
+  padding:0!important;
+  cursor:pointer;
+  border-radius:0!important;
+}
+
+.hamburger span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:#111;
+  border-radius:2px;
+  transition:0.3s;
+}
+
+/* MENU MOBILE */
+.menu-mobile{
+  display:none;
+  flex-direction:column;
+  background:#fff;
+  border-top:1px solid #eee;
+  padding:16px 20px;
+  gap:0;
+}
+
+.menu-mobile a{
+  text-decoration:none;
+  font-size:14px;
+  color:#111;
+  letter-spacing:1px;
+  padding:12px 0;
+  border-bottom:1px solid #f0f0f0;
+}
+
+.menu-mobile a:last-child{
+  border-bottom:none;
+}
+
+.menu-mobile.active{
+  display:flex;
+}
+
 @media(max-width:768px){
-  .menu{display:none;}
+  .menu{ display:none; }
+  .hamburger{ display:flex; }
 }
 </style>
+
+<script>
+function toggleMenu(){
+  document.getElementById('menuMobile').classList.toggle('active');
+}
+</script>
 
 {% schema %}
 {
