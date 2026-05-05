@@ -12,7 +12,9 @@
     "sections": {
       "home-jade": {
         "type": "home-jade",
-        "custom_css": [],
+        "custom_css": [
+          "@media(max-width:768px){.hero{height:55vh; } .hero-img.desktop{display:none !important; } .hero-img.mobile{display:block !important; } .hero-text{left:20px; bottom:25px; } .hero-text h1{font-size:26px; }}"
+        ],
         "settings": {
           "topbar": "Frete grátis • 6x sem juros • 15% OFF",
           "hero_desktop": "shopify://shop_images/5_01274dc5-4351-4560-9f53-f6af5ab4c5fe.jpg",
