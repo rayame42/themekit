@@ -27,8 +27,8 @@
       "header": {
         "type": "header",
         "custom_css": [
-          ".cart-icon{position:relative;}",
-          ".cart-count{position:absolute; top:-8px; right:-8px; background:#2b0000; color:#fff; font-size:10px; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:600;}"
+          ".cart-icon {position: relative;}",
+          ".cart-count {position: absolute; top: -8px; right: -8px; background: #2b0000; color: #fff; font-size: 10px; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;}"
         ],
         "settings": {
           "logo_text": "Jade Intimates",
@@ -253,8 +253,7 @@
       "product-jade": {
         "type": "product-jade",
         "custom_css": [
-          ".price-old{font-size:16px;color:#999;text-decoration:line-through;margin-right:8px}",
-          ".price-atual{font-size:22px;color:#8B1E3F;font-weight:600}"
+          ".produto-avaliacoes{margin-top:60px; padding-top:40px; border-top:1px solid #eee;}"
         ],
         "settings": {}
       },
