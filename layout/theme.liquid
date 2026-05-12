@@ -1,215 +1,173 @@
-
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ shop.name }}</title>
-{{ content_for_header }}
-<link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-<script>var jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'mpqbsz-ij.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'ab0uT91c-f3c5ChTDtkb2h4colc';</script>
-<script data-cfasync='false' async src='https://cdnwidget.judge.me/widget_preloader.js'></script>
+  <meta charset="utf-8">
+  <title>{{ shop.name }}</title>
 
-<style>
+  {{ content_for_header }}
 
-/* ===== RESET SUAVE ===== */
-body{
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+  <style>
 
-/* ===== NEWSLETTER PREMIUM ===== */
-.newsletter, [class*="newsletter"]{
-  background:#fff;
-  padding:80px 20px;
-  text-align:center;
-}
-
-.newsletter h2, h2{
-  font-size:36px !important;
-  font-weight:300 !important;
-  letter-spacing:1px !important;
-  margin-bottom:10px;
-}
-
-.newsletter p{
-  color:#666;
-  font-size:14px;
-  margin-bottom:30px;
-}
-
-.newsletter form{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-input[type="email"]{
-  border-radius:40px !important;
-  padding:16px 22px !important;
-  border:1px solid #ddd !important;
-  min-width:260px;
-  transition:0.3s;
-}
-
-input[type="email"]:focus{
-  border-color:#2b0000;
-  outline:none;
-}
-
-button{
-  border-radius:40px !important;
-  padding:14px 28px !important;
-  background:#2b0000 !important;
-  color:#fff !important;
-  border:none !important;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  background:#4a0000 !important;
-  transform:translateY(-2px);
-}
-
-/* ===== FOOTER PREMIUM ===== */
-footer, [class*="footer"]{
-  background:#2b0000 !important;
-  color:#fff !important;
-  padding:70px 40px;
-}
-
-footer .container,
-[class*="footer"] .container{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:60px;
-}
-
-footer h3, footer h4{
-  font-size:13px;
-  letter-spacing:2px;
-  margin-bottom:18px;
-  text-transform:uppercase;
-}
-
-footer a, [class*="footer"] a{
-  color:#ccc !important;
-  text-decoration:none;
-  font-size:13px;
-  display:block;
-  margin-bottom:10px;
-  transition:0.3s;
-}
-
-footer a:hover{
-  color:#fff !important;
-  transform:translateX(4px);
-}
-
-footer p{
-  font-size:13px;
-  color:#ddd;
-  line-height:1.6;
-}
-
-footer strong{
-  color:#fff;
-}
-
-/* ===== ATENDIMENTO ===== */
-summary{
-  background:#2b0000 !important;
-  color:#fff !important;
-  padding:18px !important;
-  border-radius:8px;
-}
-
-/* remove bug mobile (bolinhas) */
-@media(max-width:768px){
-  summary::before,
-  summary::after{
-    display:none !important;
-  }
-}
-
-/* ===== CATEGORIAS DESKTOP ===== */
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  padding:30px 40px;
-}
-
-/* ===== SLIDER MOBILE COM SETAS (CORRIGIDO) ===== */
-@media(max-width:768px){
-
-  .categories-wrapper{
-    position:relative;
+  /* RESET */
+  body{
+    margin:0;
+    padding:0;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    background:#fff;
   }
 
-  .categories{
-    display:flex !important;
-    flex-wrap:nowrap !important;
-    overflow-x:auto !important;
-    scroll-behavior:smooth;
-    gap:12px;
-    padding:20px;
+  a{
+    text-decoration:none;
   }
 
-  .categories a{
-    min-width:50% !important;
-    flex:0 0 50% !important;
+  img{
+    max-width:100%;
+    display:block;
   }
 
-  .categories::-webkit-scrollbar{
-    display:none;
+  /* NEWSLETTER */
+  .newsletter,
+  [class*="newsletter"]{
+    background:#fff;
+    padding:80px 20px;
+    text-align:center;
   }
 
-  .arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:36px;
-    height:36px;
-    background:#2b0000;
-    color:#fff;
-    border-radius:50%;
+  .newsletter h2{
+    font-size:36px;
+    font-weight:300;
+    letter-spacing:1px;
+    margin-bottom:10px;
+  }
+
+  .newsletter p{
+    color:#666;
+    font-size:14px;
+    margin-bottom:30px;
+  }
+
+  .newsletter form{
     display:flex;
-    align-items:center;
     justify-content:center;
-    cursor:pointer;
-    z-index:5;
+    gap:12px;
+    flex-wrap:wrap;
   }
 
-  .arrow.left{ left:5px; }
-  .arrow.right{ right:5px; }
+  input[type="email"]{
+    border-radius:40px!important;
+    padding:16px 22px!important;
+    border:1px solid #ddd!important;
+    min-width:260px;
+    transition:.3s;
+  }
 
-}
+  input[type="email"]:focus{
+    outline:none;
+    border-color:#2b0000;
+  }
 
-</style>
+  button{
+    border-radius:40px!important;
+    padding:14px 28px!important;
+    background:#2b0000!important;
+    color:#fff!important;
+    border:none!important;
+    cursor:pointer;
+    transition:.3s;
+  }
+
+  button:hover{
+    background:#4a0000!important;
+    transform:translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer,
+  [class*="footer"]{
+    background:#2b0000!important;
+    color:#fff!important;
+    padding:70px 40px;
+  }
+
+  footer .container,
+  [class*="footer"] .container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:60px;
+  }
+
+  footer h3,
+  footer h4{
+    font-size:13px;
+    letter-spacing:2px;
+    margin-bottom:18px;
+    text-transform:uppercase;
+  }
+
+  footer a,
+  [class*="footer"] a{
+    color:#ccc!important;
+    font-size:13px;
+    margin-bottom:10px;
+    display:block;
+    transition:.3s;
+  }
+
+  footer a:hover{
+    color:#fff!important;
+    transform:translateX(4px);
+  }
+
+  footer p{
+    font-size:13px;
+    color:#ddd;
+    line-height:1.6;
+  }
+
+  /* MOBILE */
+  @media(max-width:768px){
+
+    .newsletter{
+      padding:60px 20px;
+    }
+
+    .newsletter h2{
+      font-size:26px;
+    }
+
+    input[type="email"]{
+      width:100%;
+      min-width:100%;
+    }
+
+    button{
+      width:100%;
+    }
+
+    footer{
+      padding:50px 20px;
+    }
+
+    footer .container,
+    [class*="footer"] .container{
+      grid-template-columns:1fr;
+      gap:30px;
+    }
+
+  }
+
+  </style>
+
 </head>
 
 <body>
 
-{% section 'header' %}
+  {% section 'header' %}
 
-{{ content_for_layout }}
-
-{% section 'newsletter-custom' %}
-{% section 'footer-custom' %}
-
-<script>
-function slideCategories(direction){
-  const container = document.querySelector('.categories');
-  if(!container) return;
-  const scrollAmount = container.offsetWidth / 2;
-  container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-}
-</script>
+  {{ content_for_layout }}
 
 </body>
 </html>
