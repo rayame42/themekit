@@ -7,6 +7,7 @@
 <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'mpqbsz-ij.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'ab0uT91c-f3c5ChTDtkb2h4colc';</script>
 <script data-cfasync='false' type='text/javascript' src='https://cdnwidget.judge.me/widget_preloader.js'></script>
 {{ content_for_header }}
+<link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 
 <style>
 
@@ -197,6 +198,9 @@ summary{
 
 {{ content_for_layout }}
 
+{% section 'newsletter-custom' %}
+{% section 'footer-custom' %}
+
 <script>
 function slideCategories(direction){
   const container = document.querySelector('.categories');
@@ -205,21 +209,23 @@ function slideCategories(direction){
   container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 
+/* Judge.me: inicializa todos os widgets após o carregamento */
 document.addEventListener('DOMContentLoaded', function(){
-  var check = setInterval(function(){
-    if(window.jdgm){
-      if(window.jdgm.customWidgets && window.jdgm.customWidgets.load){
-        window.jdgm.customWidgets.load();
-      }
-      if(window.jdgm.Widget && window.jdgm.Widget.load){
-        window.jdgm.Widget.load();
-      }
-      if(window.jdgm.init){
-        window.jdgm.init();
-      }
-      clearInterval(check);
-    }
-  }, 200);
+  function initJudgeMe(){
+    if(!window.jdgm) return;
+    if(jdgm.init) jdgm.init();
+    if(jdgm.Widget && jdgm.Widget.load) jdgm.Widget.load();
+    if(jdgm.customWidgets && jdgm.customWidgets.load) jdgm.customWidgets.load();
+  }
+
+  if(window.jdgm){
+    initJudgeMe();
+  } else {
+    var jdgmCheck = setInterval(function(){
+      if(window.jdgm){ initJudgeMe(); clearInterval(jdgmCheck); }
+    }, 100);
+    setTimeout(function(){ clearInterval(jdgmCheck); }, 5000);
+  }
 });
 </script>
 

@@ -1,0 +1,134 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Digite a senha para entrar",
+      "login_form_password_label": "Senha",
+      "login_form_password_placeholder": "Sua senha",
+      "login_form_submit": "Entrar",
+      "login_prompt": "Tem uma senha?"
+    },
+    "404": {
+      "title": "Página não encontrada",
+      "subtext": "A página que você tentou acessar não existe.",
+      "link": "Voltar para a loja"
+    },
+    "meta": {
+      "tags": "Marcadas com",
+      "types": "do tipo"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Meu Carrinho",
+      "empty": "Seu carrinho está vazio.",
+      "note": "Nota do pedido",
+      "checkout": "Finalizar compra",
+      "subtotal": "Subtotal",
+      "remove": "Remover",
+      "close": "Fechar",
+      "item_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} itens"
+      }
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Adicionar ao carrinho",
+      "sold_out": "Esgotado",
+      "unavailable": "Indisponível",
+      "on_sale": "Promoção",
+      "quantity": "Quantidade",
+      "description": "Descrição",
+      "vendor": "Fornecedor",
+      "sku": "SKU"
+    },
+    "general": {
+      "from_text": "A partir de",
+      "sale_badge_html": "Sale",
+      "view_product": "Ver produto"
+    }
+  },
+  "collections": {
+    "general": {
+      "view_all": "Ver tudo",
+      "items_with_count": {
+        "one": "{{ count }} produto",
+        "other": "{{ count }} produtos"
+      }
+    }
+  },
+  "search": {
+    "placeholder": "Buscar...",
+    "submit": "Buscar",
+    "no_results": "Nenhum resultado para",
+    "results_with_count": {
+      "one": "{{ count }} resultado",
+      "other": "{{ count }} resultados"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Entrar",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Entrar",
+      "forgot_password": "Esqueceu a senha?",
+      "sign_up": "Criar conta"
+    },
+    "register": {
+      "title": "Criar conta",
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Criar conta"
+    },
+    "addresses": {
+      "title": "Endereços",
+      "default": "Padrão",
+      "add_new": "Adicionar novo endereço",
+      "edit_address": "Editar endereço",
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "company": "Empresa",
+      "address1": "Endereço",
+      "address2": "Complemento",
+      "city": "Cidade",
+      "country": "País",
+      "phone": "Telefone",
+      "set_default": "Definir como padrão",
+      "add": "Adicionar endereço",
+      "update": "Atualizar endereço",
+      "cancel": "Cancelar",
+      "delete": "Excluir",
+      "delete_confirm": "Tem certeza que deseja excluir este endereço?"
+    },
+    "order": {
+      "title": "Pedido",
+      "date": "Data",
+      "payment_status": "Pagamento",
+      "fulfillment_status": "Envio",
+      "total": "Total"
+    },
+    "account": {
+      "title": "Minha conta",
+      "orders": "Pedidos",
+      "return": "← Voltar",
+      "details": "Detalhes da conta",
+      "sign_out": "Sair"
+    }
+  },
+  "newsletter": {
+    "label": "E-mail",
+    "placeholder": "Seu e-mail",
+    "submit": "Inscreva-se",
+    "success": "Obrigado! Você foi cadastrado(a) com sucesso."
+  },
+  "accessibility": {
+    "skip_to_content": "Ir para o conteúdo",
+    "close": "Fechar",
+    "open_menu": "Abrir menu",
+    "close_menu": "Fechar menu"
+  }
+}

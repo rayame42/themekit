@@ -1,1 +1,95 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Jade Intimates",
+    "theme_version": "1.0.0",
+    "theme_author": "Jade Intimates",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Cor primária",
+        "default": "#2b0000"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Cor de destaque",
+        "default": "#8B1E3F"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Cor do texto",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Cor do fundo",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Tipografia",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Fonte dos títulos",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Fonte do corpo",
+        "default": "helvetica_n4"
+      }
+    ]
+  },
+  {
+    "name": "Redes Sociais",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL",
+        "default": "https://www.instagram.com/jadeintimates"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL",
+        "default": "https://www.facebook.com/jadeintimatesrj/"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL",
+        "default": "https://www.tiktok.com/@jadeintimates_"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp",
+        "label": "WhatsApp",
+        "default": "5521966776897"
+      }
+    ]
+  },
+  {
+    "name": "Checkout",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "checkout_logo",
+        "label": "Logo no checkout"
+      }
+    ]
+  }
+]
