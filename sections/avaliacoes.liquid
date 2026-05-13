@@ -13,6 +13,9 @@
           <div class="av-stars">
             {% for i in (1..block.settings.estrelas) %}★{% endfor %}
           </div>
+          {% if block.settings.produto != blank %}
+            <span class="av-produto">{{ block.settings.produto }}</span>
+          {% endif %}
           <p class="av-texto">"{{ block.settings.texto }}"</p>
           <span class="av-nome">— {{ block.settings.nome }}</span>
         </div>
@@ -31,7 +34,8 @@
 .avaliacoes-head p{font-size:14px;color:#888;margin:0}
 .avaliacoes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .av-card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
-.av-stars{color:#c8a04a;font-size:18px;margin-bottom:12px;letter-spacing:2px}
+.av-stars{color:#c8a04a;font-size:18px;margin-bottom:8px;letter-spacing:2px}
+.av-produto{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8B1E3F;font-weight:600;margin-bottom:12px;border-bottom:1px solid #f0d0d8;padding-bottom:8px;width:100%}
 .av-texto{font-size:14px;color:#444;line-height:1.7;margin-bottom:16px;font-style:italic}
 .av-nome{font-size:12px;color:#999;letter-spacing:1px;text-transform:uppercase}
 @media(max-width:768px){
@@ -77,6 +81,12 @@
           "max": 5,
           "step": 1,
           "default": 5
+        },
+        {
+          "type": "text",
+          "id": "produto",
+          "label": "Produto avaliado",
+          "default": "Conjunto Sirena"
         },
         {
           "type": "textarea",
