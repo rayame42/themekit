@@ -82,9 +82,7 @@
 
   <!-- AVALIAÇÕES DO PRODUTO -->
   <div class="produto-avaliacoes">
-    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-auto-install="false">
-      {{ product.metafields.judgeme.widget }}
-    </div>
+    {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
   </div>
 
   <!-- PRODUTOS RELACIONADOS -->
