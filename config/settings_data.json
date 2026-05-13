@@ -270,6 +270,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_YaBiag": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Scarlet | Conjunto de Lingerie com Sutiã, Calcinha e Liga de Coxa",
+              "texto": "Tudo é ajustável e serve em qualquer tamanho (até em seios pequenos). A qualidade é ótima.",
+              "nome": "Giovanna Melo"
+            }
+          },
           "avaliacao_d8qAKb": {
             "type": "avaliacao",
             "settings": {
@@ -290,6 +299,7 @@
           }
         },
         "block_order": [
+          "avaliacao_YaBiag",
           "avaliacao_d8qAKb",
           "avaliacao_JqUHJf"
         ],
