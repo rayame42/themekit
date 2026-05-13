@@ -21,7 +21,7 @@
           "hero_mobile": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg",
           "title": "Seu momento. Sua essência.",
           "button": "Explorar coleção",
-          "link": "shopify://collections"
+          "link": "shopify://collections/all"
         }
       },
       "header": {
@@ -311,7 +311,9 @@
       },
       "main-collection-product-grid": {
         "type": "main-collection-product-grid",
-        "settings": {}
+        "settings": {
+          "produtos_por_pagina": 24
+        }
       }
     },
     "content_for_index": [],
