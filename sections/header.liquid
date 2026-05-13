@@ -10,7 +10,13 @@
 
     <!-- LOGO -->
     <div class="logo">
-      <a href="/">{{ section.settings.logo_text }}</a>
+      <a href="/">
+        {% if section.settings.logo %}
+          <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" class="logo-img">
+        {% else %}
+          {{ section.settings.logo_text }}
+        {% endif %}
+      </a>
     </div>
 
     <!-- MENU DESKTOP -->
@@ -80,6 +86,14 @@
   letter-spacing:2px;
   text-decoration:none;
   color:#111;
+  display:flex;
+  align-items:center;
+}
+
+.logo-img{
+  height:{{ section.settings.logo_height }}px;
+  width:auto;
+  display:block;
 }
 
 .menu{
@@ -122,7 +136,6 @@
   font-weight:600;
 }
 
-/* HAMBURGER */
 .hamburger{
   display:none;
   flex-direction:column;
@@ -143,7 +156,6 @@
   transition:0.3s;
 }
 
-/* MENU MOBILE */
 .menu-mobile{
   display:none;
   flex-direction:column;
@@ -187,9 +199,24 @@ function toggleMenu(){
   "name": "Header",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Altura da logo",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
       "type": "text",
       "id": "logo_text",
-      "label": "Nome da marca",
+      "label": "Nome da marca (se não tiver logo)",
       "default": "Jade Intimates"
     },
     {
