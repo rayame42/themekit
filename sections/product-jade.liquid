@@ -15,7 +15,7 @@
     <div class="info">
       <h1>{{ product.title }}</h1>
 
-      <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'>
         {{ product.metafields.judgeme.badge }}
       </div>
 
@@ -82,7 +82,7 @@
 
   <!-- AVALIAÇÕES DO PRODUTO -->
   <div class="produto-avaliacoes">
-    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}"></div>
+    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-auto-install="true"></div>
   </div>
 
   <!-- PRODUTOS RELACIONADOS -->
