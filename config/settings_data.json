@@ -269,6 +269,30 @@
       },
       "avaliacoes": {
         "type": "avaliacoes",
+        "blocks": {
+          "avaliacao_d8qAKb": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Litania | Body Bandagem com Recortes",
+              "texto": "Perfeito! Estou apaixonada!",
+              "nome": "Helena Monteiro"
+            }
+          },
+          "avaliacao_JqUHJf": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Sirena | Conjunto Lingerie em Tule e Renda com Cinta Liga",
+              "texto": "Amei o produto, qualidade incrível!",
+              "nome": "Maria S."
+            }
+          }
+        },
+        "block_order": [
+          "avaliacao_d8qAKb",
+          "avaliacao_JqUHJf"
+        ],
         "settings": {
           "kicker": "CLIENTES JADE",
           "titulo": "O que dizem sobre nós",
