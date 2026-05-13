@@ -1,14 +1,12 @@
 <header class="header-luxo">
   <div class="header-wrap">
 
-    <!-- HAMBURGER MOBILE -->
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <!-- LOGO -->
     <div class="logo">
       <a href="/">
         {% if section.settings.logo %}
@@ -19,14 +17,12 @@
       </a>
     </div>
 
-    <!-- MENU DESKTOP -->
     <nav class="menu">
       {% for link in linklists[section.settings.menu].links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
     </nav>
 
-    <!-- ÍCONES -->
     <div class="icons">
       <a href="/search" aria-label="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -54,7 +50,6 @@
 
   </div>
 
-  <!-- MENU MOBILE -->
   <nav class="menu-mobile" id="menuMobile">
     {% for link in linklists[section.settings.menu].links %}
       <a href="{{ link.url }}">{{ link.title }}</a>
@@ -64,127 +59,28 @@
 </header>
 
 <style>
-.header-luxo{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#fff;
-  border-bottom:1px solid #eee;
-}
-
-.header-wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:15px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.logo a{
-  font-size:18px;
-  letter-spacing:2px;
-  text-decoration:none;
-  color:#111;
-  display:flex;
-  align-items:center;
-}
-
-.logo-img{
-  height:{{ section.settings.logo_height }}px;
-  width:auto;
-  display:block;
-}
-
-.menu{
-  display:flex;
-  gap:25px;
-}
-
-.menu a{
-  text-decoration:none;
-  font-size:12px;
-  color:#111;
-  letter-spacing:1px;
-}
-
-.icons{
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-
-.cart-icon{
-  position:relative;
-  display:flex;
-  align-items:center;
-}
-
-.cart-count{
-  position:absolute;
-  top:-8px;
-  right:-8px;
-  background:#2b0000;
-  color:#fff;
-  font-size:10px;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-}
-
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  background:none!important;
-  border:none!important;
-  padding:0!important;
-  cursor:pointer;
-  border-radius:0!important;
-}
-
-.hamburger span{
-  display:block;
-  width:22px;
-  height:2px;
-  background:#111;
-  border-radius:2px;
-  transition:0.3s;
-}
-
-.menu-mobile{
-  display:none;
-  flex-direction:column;
-  background:#fff;
-  border-top:1px solid #eee;
-  padding:16px 20px;
-  gap:0;
-}
-
-.menu-mobile a{
-  text-decoration:none;
-  font-size:14px;
-  color:#111;
-  letter-spacing:1px;
-  padding:12px 0;
-  border-bottom:1px solid #f0f0f0;
-}
-
-.menu-mobile a:last-child{
-  border-bottom:none;
-}
-
-.menu-mobile.active{
-  display:flex;
-}
+.header-luxo{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #eee}
+.header-wrap{max-width:1200px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo a{font-size:18px;letter-spacing:2px;text-decoration:none;color:#111;display:flex;align-items:center}
+.logo-img{height:{{ section.settings.logo_height }}px;width:auto;display:block}
+.menu{display:flex;gap:25px}
+.menu a{text-decoration:none;font-size:12px;color:#111;letter-spacing:1px}
+.icons{display:flex;gap:15px;align-items:center}
+.cart-icon{position:relative;display:flex;align-items:center}
+.cart-count{position:absolute;top:-8px;right:-8px;background:#2b0000;color:#fff;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none!important;border:none!important;padding:0!important;cursor:pointer;border-radius:0!important}
+.hamburger span{display:block;width:22px;height:2px;background:#111;border-radius:2px;transition:0.3s}
+.menu-mobile{display:none;flex-direction:column;background:#fff;border-top:1px solid #eee;padding:16px 20px;gap:0}
+.menu-mobile a{text-decoration:none;font-size:14px;color:#111;letter-spacing:1px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.menu-mobile a:last-child{border-bottom:none}
+.menu-mobile.active{display:flex}
 
 @media(max-width:768px){
-  .menu{ display:none; }
-  .hamburger{ display:flex; }
+  .menu{display:none}
+  .hamburger{display:flex}
+  .header-wrap{position:relative}
+  .logo{position:absolute;left:50%;transform:translateX(-50%)}
+  .logo-img{height:{{ section.settings.logo_height | minus: 10 }}px}
 }
 </style>
 
