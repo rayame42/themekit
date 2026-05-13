@@ -9,8 +9,8 @@
 
     <div class="logo">
       <a href="/">
-        {% if section.settings.logo %}
-          <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" style="height:{{ section.settings.logo_height }}px;width:auto;display:block;max-width:none;min-height:{{ section.settings.logo_height }}px;">
+        {% if settings.logo %}
+          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" style="height:{{ settings.logo_height }}px;width:auto;display:block;max-width:none;min-height:{{ settings.logo_height }}px;">
         {% else %}
           {{ section.settings.logo_text }}
         {% endif %}
@@ -92,21 +92,6 @@ function toggleMenu(){
 {
   "name": "Header",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "range",
-      "id": "logo_height",
-      "label": "Altura da logo",
-      "min": 20,
-      "max": 80,
-      "step": 2,
-      "default": 40,
-      "unit": "px"
-    },
     {
       "type": "text",
       "id": "logo_text",
