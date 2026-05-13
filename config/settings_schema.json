@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Jade Intimates",
+    "theme_version": "1.0.0",
+    "theme_author": "Jade Intimates",
+    "theme_documentation_url": "https://jadeintimates.com.br",
+    "theme_support_url": "https://jadeintimates.com.br"
+  },
+  {
+    "name": "Geral",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  }
+]
