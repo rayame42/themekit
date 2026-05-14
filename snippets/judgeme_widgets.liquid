@@ -1,5 +1,9 @@
-{% if widget_type == 'judgeme_cards_carousel_widget' %}
-  <div class="jdgm-widget jdgm-cards-carousel-widget" data-id="{{ shop.id }}"></div>
-{% elsif widget_type == 'judgeme_all_reviews_widget' %}
-  <div class="jdgm-widget jdgm-all-reviews-widget" data-id="{{ shop.id }}"></div>
+{% if widget_type == 'judgeme_review_widget' %}
+  <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}"></div>
+{% elsif widget_type == 'judgeme_review_carousel' %}
+  <div class="jdgm-widget jdgm-cards-carousel-widget" data-auto-install="true"></div>
+{% elsif widget_type == 'judgeme_preview_badge' %}
+  <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+    {{ product.metafields.judgeme.badge }}
+  </div>
 {% endif %}
