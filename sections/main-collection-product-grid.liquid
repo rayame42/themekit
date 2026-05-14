@@ -4,190 +4,229 @@
     <h1>{{ collection.title }}</h1>
   </div>
 
-  <div class="products-grid">
+  <div class="collection-layout">
 
-    {% paginate collection.products by section.settings.produtos_por_pagina %}
-
-    {% for product in collection.products %}
-    <div class="product-card">
-
-      <a href="{{ product.url }}" class="image-wrapper">
-
-        <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
-
-        {% if product.images.size > 1 %}
-          <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
-        {% endif %}
-
-      </a>
-
-      <div class="reviews">
-        {{ product.metafields.judgeme.badge }}
+    <!-- FILTROS SIDEBAR -->
+    <aside class="filtros" id="filtros">
+      <div class="filtros-header">
+        <span>Filtros</span>
+        <button class="filtros-limpar" onclick="limparFiltros()">Limpar tudo</button>
       </div>
 
-      <p class="title">{{ product.title }}</p>
+      <form id="filtros-form">
+        {% for filter in collection.filters %}
+          <div class="filtro-grupo">
+            <button type="button" class="filtro-titulo" onclick="toggleFiltro(this)">
+              {{ filter.label }} <span class="filtro-seta">▾</span>
+            </button>
+            <div class="filtro-opcoes">
 
-      <div class="price">
-        {% if product.compare_at_price > product.price %}
-          <span class="old">{{ product.compare_at_price | money }}</span>
+              {% if filter.type == 'price_range' %}
+                <div class="filtro-preco">
+                  <input type="number" name="{{ filter.min_value.param_name }}"
+                    value="{{ filter.min_value.value | divided_by: 100 }}"
+                    placeholder="Mín" min="0">
+                  <span>—</span>
+                  <input type="number" name="{{ filter.max_value.param_name }}"
+                    value="{{ filter.max_value.value | divided_by: 100 }}"
+                    placeholder="Máx" min="0">
+                  <button type="submit" class="filtro-preco-btn">OK</button>
+                </div>
+
+              {% elsif filter.type == 'list' %}
+                {% for value in filter.values %}
+                  <label class="filtro-label {% if value.active %}ativo{% endif %}">
+                    <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"
+                      {% if value.active %}checked{% endif %}
+                      onchange="this.form.submit()">
+                    <span class="filtro-check"></span>
+                    {{ value.label }}
+                    <span class="filtro-count">({{ value.count }})</span>
+                  </label>
+                {% endfor %}
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+      </form>
+    </aside>
+
+    <!-- PRODUTOS -->
+    <div class="collection-right">
+
+      <div class="collection-toolbar">
+        <span class="collection-count">{{ collection.products_count }} produtos</span>
+        <div class="ordenar">
+          <select onchange="window.location.href=this.value">
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+            <option value="?sort_by=manual" {% if sort_by == 'manual' %}selected{% endif %}>Em destaque</option>
+            <option value="?sort_by=price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>Menor preço</option>
+            <option value="?sort_by=price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>Maior preço</option>
+            <option value="?sort_by=created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>Mais recentes</option>
+            <option value="?sort_by=best-selling" {% if sort_by == 'best-selling' %}selected{% endif %}>Mais vendidos</option>
+          </select>
+        </div>
+        <button class="filtros-toggle-mobile" onclick="toggleFiltrosMobile()">⚙ Filtros</button>
+      </div>
+
+      {% if collection.filters %}
+        {% assign active_filters = 0 %}
+        {% for filter in collection.filters %}
+          {% for value in filter.active_values %}
+            {% assign active_filters = active_filters | plus: 1 %}
+          {% endfor %}
+        {% endfor %}
+        {% if active_filters > 0 %}
+          <div class="filtros-ativos">
+            {% for filter in collection.filters %}
+              {% for value in filter.active_values %}
+                <a href="{{ value.url_to_remove }}" class="filtro-tag">
+                  {{ value.label }} ✕
+                </a>
+              {% endfor %}
+            {% endfor %}
+          </div>
         {% endif %}
-        <span class="new">{{ product.price | money }}</span>
+      {% endif %}
+
+      <div class="products-grid">
+        {% paginate collection.products by section.settings.produtos_por_pagina %}
+
+        {% for product in collection.products %}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="image-wrapper">
+            <img class="img1" src="{{ product.featured_image | image_url: width: 600 }}">
+            {% if product.images.size > 1 %}
+              <img class="img2" src="{{ product.images[1] | image_url: width: 600 }}">
+            {% endif %}
+          </a>
+          <div class="reviews">{{ product.metafields.judgeme.badge }}</div>
+          <p class="title">{{ product.title }}</p>
+          <div class="price">
+            {% if product.compare_at_price > product.price %}
+              <span class="old">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="new">{{ product.price | money }}</span>
+          </div>
+        </div>
+        {% endfor %}
+
+        {% if paginate.pages > 1 %}
+        <div class="paginacao">
+          {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="pag-btn">← Anterior</a>
+          {% endif %}
+          {% for part in paginate.parts %}
+            {% if part.is_link %}
+              <a href="{{ part.url }}" class="pag-btn">{{ part.title }}</a>
+            {% elsif part.title == paginate.current_page %}
+              <span class="pag-btn pag-atual">{{ part.title }}</span>
+            {% else %}
+              <span class="pag-sep">{{ part.title }}</span>
+            {% endif %}
+          {% endfor %}
+          {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="pag-btn">Próxima →</a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% endpaginate %}
       </div>
 
     </div>
-    {% endfor %}
-
-    {% if paginate.pages > 1 %}
-    <div class="paginacao">
-      {% if paginate.previous %}
-        <a href="{{ paginate.previous.url }}" class="pag-btn">← Anterior</a>
-      {% endif %}
-
-      {% for part in paginate.parts %}
-        {% if part.is_link %}
-          <a href="{{ part.url }}" class="pag-btn">{{ part.title }}</a>
-        {% elsif part.title == paginate.current_page %}
-          <span class="pag-btn pag-atual">{{ part.title }}</span>
-        {% else %}
-          <span class="pag-sep">{{ part.title }}</span>
-        {% endif %}
-      {% endfor %}
-
-      {% if paginate.next %}
-        <a href="{{ paginate.next.url }}" class="pag-btn">Próxima →</a>
-      {% endif %}
-    </div>
-    {% endif %}
-
-    {% endpaginate %}
-
   </div>
 
 </section>
 
 <style>
+.collection-luxo{max-width:1280px;margin:0 auto;padding:40px 20px}
+.collection-header h1{font-size:32px;font-weight:300;margin-bottom:30px}
 
-.collection-luxo{
-  max-width:1200px;
-  margin:0 auto;
-  padding:40px 20px;
-}
+.collection-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start}
 
-.collection-header h1{
-  font-size:32px;
-  font-weight:300;
-  margin-bottom:30px;
-}
+/* FILTROS */
+.filtros{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:24px;position:sticky;top:20px}
+.filtros-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.filtros-header span{font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.filtros-limpar{font-size:12px;color:#8B1E3F;background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+.filtro-grupo{border-bottom:1px solid #eee;padding:14px 0}
+.filtro-grupo:last-child{border-bottom:none}
+.filtro-titulo{width:100%;background:none;border:none;padding:0;font-size:13px;font-weight:600;color:#111;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;letter-spacing:0.5px}
+.filtro-seta{transition:0.2s;font-size:12px}
+.filtro-titulo.fechado .filtro-seta{transform:rotate(-90deg)}
+.filtro-opcoes{margin-top:12px}
+.filtro-opcoes.fechado{display:none}
+.filtro-label{display:flex;align-items:center;gap:8px;font-size:13px;color:#444;cursor:pointer;padding:5px 0;position:relative}
+.filtro-label input[type="checkbox"]{display:none}
+.filtro-check{width:16px;height:16px;border:1px solid #ccc;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:0.2s}
+.filtro-label input:checked ~ .filtro-check{background:#8B1E3F;border-color:#8B1E3F}
+.filtro-label input:checked ~ .filtro-check::after{content:'✓';color:#fff;font-size:10px}
+.filtro-label.ativo .filtro-check{background:#8B1E3F;border-color:#8B1E3F}
+.filtro-count{color:#aaa;font-size:11px;margin-left:auto}
+.filtro-preco{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filtro-preco input{width:70px;padding:6px 8px;border:1px solid #ddd;border-radius:4px;font-size:13px}
+.filtro-preco-btn{background:#8B1E3F;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-size:12px}
 
-.products-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:25px;
-}
+/* TOOLBAR */
+.collection-toolbar{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.collection-count{font-size:13px;color:#888;flex:1}
+.ordenar select{padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;color:#111;cursor:pointer;background:#fff}
+.filtros-toggle-mobile{display:none;background:#111;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer}
 
-.product-card{
-  text-align:left;
-}
+/* FILTROS ATIVOS */
+.filtros-ativos{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filtro-tag{background:#f0d0d8;color:#8B1E3F;font-size:12px;padding:4px 10px;border-radius:20px;text-decoration:none;transition:0.2s}
+.filtro-tag:hover{background:#8B1E3F;color:#fff}
 
-.image-wrapper{
-  position:relative;
-  display:block;
-  overflow:hidden;
-}
-
-.img1{
-  width:100%;
-  transition:opacity 0.4s;
-  display:block;
-}
-
-.img2{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 0.4s;
-  pointer-events:none;
-}
-
+/* GRID */
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.product-card{text-align:left}
+.image-wrapper{position:relative;display:block;overflow:hidden}
+.img1{width:100%;transition:opacity 0.4s;display:block}
+.img2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.4s;pointer-events:none}
 @media(hover:hover){
-  .image-wrapper:hover .img2{ opacity:1; }
-  .image-wrapper:hover .img1{ opacity:0; }
+  .image-wrapper:hover .img2{opacity:1}
+  .image-wrapper:hover .img1{opacity:0}
 }
-
-.title{
-  font-size:13px;
-  margin-top:10px;
-}
-
-.price{
-  font-size:14px;
-  margin-top:5px;
-}
-
-.old{
-  text-decoration:line-through;
-  color:#aaa;
-  margin-right:6px;
-}
-
-.new{
-  color:#8B1E3F;
-  font-weight:500;
-}
-
-.reviews{
-  margin-top:8px;
-  font-size:12px;
-}
+.title{font-size:13px;margin-top:10px}
+.price{font-size:14px;margin-top:5px}
+.old{text-decoration:line-through;color:#aaa;margin-right:6px}
+.new{color:#8B1E3F;font-weight:500}
+.reviews{margin-top:8px;font-size:12px}
 
 /* PAGINAÇÃO */
-.paginacao{
-  grid-column:1/-1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  margin-top:40px;
-  flex-wrap:wrap;
-}
-
-.pag-btn{
-  padding:8px 16px;
-  border:1px solid #ddd;
-  border-radius:4px;
-  text-decoration:none;
-  font-size:13px;
-  color:#111;
-  transition:0.3s;
-}
-
-.pag-btn:hover{
-  background:#2b0000;
-  color:#fff;
-  border-color:#2b0000;
-}
-
-.pag-atual{
-  background:#2b0000;
-  color:#fff;
-  border-color:#2b0000;
-  cursor:default;
-}
-
-.pag-sep{
-  font-size:13px;
-  color:#aaa;
-  padding:8px 4px;
-}
+.paginacao{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:8px;margin-top:40px;flex-wrap:wrap}
+.pag-btn{padding:8px 16px;border:1px solid #ddd;border-radius:4px;text-decoration:none;font-size:13px;color:#111;transition:0.3s}
+.pag-btn:hover{background:#2b0000;color:#fff;border-color:#2b0000}
+.pag-atual{background:#2b0000;color:#fff;border-color:#2b0000;cursor:default}
+.pag-sep{font-size:13px;color:#aaa;padding:8px 4px}
 
 @media(max-width:768px){
-  .products-grid{ grid-template-columns:repeat(2,1fr); }
+  .collection-layout{grid-template-columns:1fr}
+  .filtros{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;overflow-y:auto;border-radius:0}
+  .filtros.aberto{display:block}
+  .filtros-toggle-mobile{display:block}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<script>
+function toggleFiltro(btn) {
+  btn.classList.toggle('fechado');
+  const opcoes = btn.nextElementSibling;
+  opcoes.classList.toggle('fechado');
 }
 
-</style>
+function toggleFiltrosMobile() {
+  document.getElementById('filtros').classList.toggle('aberto');
+}
+
+function limparFiltros() {
+  window.location.href = '{{ collection.url }}';
+}
+</script>
 
 {% schema %}
 {
