@@ -19,7 +19,7 @@
           "@media (max-width: 768px) {.hero {height: 55vh; } .hero-img.desktop {display: none !important; } .hero-img.mobile {display: block !important; } .hero-text {left: 20px; bottom: 25px; } .hero-text h1 {font-size: 26px; }}"
         ],
         "settings": {
-          "topbar": "Frete grátis • 6x sem juros • 15% OFF",
+          "topbar": "Cupom 10% OFF: PRIMEIRACOMPRA • Frete grátis • 6x sem juros",
           "hero_desktop": "shopify://shop_images/5_01274dc5-4351-4560-9f53-f6af5ab4c5fe.jpg",
           "hero_mobile": "shopify://shop_images/SaveClip.App_654472336_18097287886824401_1887465271601951407_n.jpg",
           "title": "Seu momento. Sua essência.",
