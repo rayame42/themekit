@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_DgRFqR": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Pecado Doce | Conjunto de Lingerie em Tule com Sutiã, Calcinha, Cinta-Liga e Liga de Coxa",
+              "texto": "Material perfeito. Tamanho M de acordo com a avaliação de medidas. Delicada!",
+              "nome": "Antonella Barros"
+            }
+          },
           "avaliacao_WXciFd": {
             "type": "avaliacao",
             "settings": {
@@ -345,6 +354,7 @@
           }
         },
         "block_order": [
+          "avaliacao_DgRFqR",
           "avaliacao_WXciFd",
           "avaliacao_UQ9fUJ",
           "avaliacao_VV6N3V",
