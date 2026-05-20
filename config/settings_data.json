@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_XeAbYi": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 4,
+              "produto": "Obsidiana | Corset Preto Sensual com Transparência",
+              "texto": "Muito bonito e elegante, de boa qualidade, perfeito para noites relaxantes a dois.",
+              "nome": "Heloísa Ramos"
+            }
+          },
           "avaliacao_DgRFqR": {
             "type": "avaliacao",
             "settings": {
@@ -354,6 +363,7 @@
           }
         },
         "block_order": [
+          "avaliacao_XeAbYi",
           "avaliacao_DgRFqR",
           "avaliacao_WXciFd",
           "avaliacao_UQ9fUJ",
