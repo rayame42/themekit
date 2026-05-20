@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_VV6N3V": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Eclipse | Camisola Sensual em Renda e Tule com Cinta-Liga",
+              "texto": "Simplesmente adoravel. Serve perfeitamente, qualidade muito boa. Obrigado pelo seu serviço.",
+              "nome": "Ana Veiga"
+            }
+          },
           "avaliacao_GrcJty": {
             "type": "avaliacao",
             "settings": {
@@ -318,6 +327,7 @@
           }
         },
         "block_order": [
+          "avaliacao_VV6N3V",
           "avaliacao_GrcJty",
           "avaliacao_eaY3wi",
           "avaliacao_YaBiag",
