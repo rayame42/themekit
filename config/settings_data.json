@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_WXciFd": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Noir Intense | Conjunto com Sutiã, Calcinha, Cinta Liga e Persex",
+              "texto": "Excelente. Qualidade e acabamento impecáveis. Chegou muito rapido.",
+              "nome": "Vanessa Leal"
+            }
+          },
           "avaliacao_UQ9fUJ": {
             "type": "avaliacao",
             "settings": {
@@ -336,6 +345,7 @@
           }
         },
         "block_order": [
+          "avaliacao_WXciFd",
           "avaliacao_UQ9fUJ",
           "avaliacao_VV6N3V",
           "avaliacao_GrcJty",
