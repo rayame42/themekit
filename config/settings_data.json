@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_GrcJty": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Aura Selvagem | Conjunto de Lingerie com Sutiã, Calcinha e Persex",
+              "texto": "Lingerie linda e exatamente como na foto, entrega rápida e veste perfeitamente. Obrigada.",
+              "nome": "Camila Rodrigues Lima"
+            }
+          },
           "avaliacao_eaY3wi": {
             "type": "avaliacao",
             "settings": {
@@ -309,6 +318,7 @@
           }
         },
         "block_order": [
+          "avaliacao_GrcJty",
           "avaliacao_eaY3wi",
           "avaliacao_YaBiag",
           "avaliacao_d8qAKb",
