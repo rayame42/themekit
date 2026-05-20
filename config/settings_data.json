@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_UQ9fUJ": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Angel | Camisola Sensual em Tule e Renda",
+              "texto": "Muito bonito, de boa qualidade, estou muito satisfeita.",
+              "nome": "Sabrina Dantas Ribeiro"
+            }
+          },
           "avaliacao_VV6N3V": {
             "type": "avaliacao",
             "settings": {
@@ -327,6 +336,7 @@
           }
         },
         "block_order": [
+          "avaliacao_UQ9fUJ",
           "avaliacao_VV6N3V",
           "avaliacao_GrcJty",
           "avaliacao_eaY3wi",
