@@ -271,6 +271,15 @@
       "avaliacoes": {
         "type": "avaliacoes",
         "blocks": {
+          "avaliacao_eaY3wi": {
+            "type": "avaliacao",
+            "settings": {
+              "estrelas": 5,
+              "produto": "Lilith | Conjunto de Lingerie em Renda com Sutiã, Cinta-Liga e Calcinha",
+              "texto": "Lingerie muito legal! Recomendo comprar 1000000%. Não me lembro da última vez que fiquei tão satisfeita :) A renda é macia, achei que seria áspera, mas, pelo contrário, é muito agradável e suave na pele. No geral, um ótimo conjunto, o tamanho M se ajusta perfeitamente às medidas.",
+              "nome": "Laura Medeiros"
+            }
+          },
           "avaliacao_YaBiag": {
             "type": "avaliacao",
             "settings": {
@@ -300,6 +309,7 @@
           }
         },
         "block_order": [
+          "avaliacao_eaY3wi",
           "avaliacao_YaBiag",
           "avaliacao_d8qAKb",
           "avaliacao_JqUHJf"
