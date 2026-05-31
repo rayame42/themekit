@@ -37,8 +37,8 @@
           <div class="color-options">
             {% for value in product.options_with_values[0].values %}
               <div class="color-btn" data-value="{{ value }}"
-                data-hex="{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#fff{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
-                style="background:{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#fff{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
+                data-hex="{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#f0f0f0{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Violeta' %}#7f00ff{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
+                style="background:{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#f0f0f0{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Violeta' %}#7f00ff{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
                 onclick="selectOption(0, '{{ value }}', this)">
               </div>
             {% endfor %}
