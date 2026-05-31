@@ -1,3 +1,4 @@
+```liquid
 <section class="product-premium">
   <div class="wrap">
 
@@ -36,8 +37,8 @@
           <div class="color-options">
             {% for value in product.options_with_values[0].values %}
               <div class="color-btn" data-value="{{ value }}"
-                data-hex="{% if value == 'Preto' %}#000{% elsif value == 'Vermelho' %}#8B1E3F{% elsif value == 'Rosa' %}#e8a1b0{% else %}#2b0000{% endif %}"
-                style="background:{% if value == 'Preto' %}#000{% elsif value == 'Vermelho' %}#8B1E3F{% elsif value == 'Rosa' %}#e8a1b0{% else %}#ccc{% endif %}"
+                data-hex="{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#fff{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
+                style="background:{% if value == 'Preto' %}#000{% elsif value == 'Branco' %}#fff{% elsif value == 'Rosa' %}#ffcbdb{% elsif value == 'Roxo' %}#800080{% elsif value == 'Vinho' %}#722f37{% elsif value == 'Vermelho' %}#ff0000{% else %}#ccc{% endif %}"
                 onclick="selectOption(0, '{{ value }}', this)">
               </div>
             {% endfor %}
@@ -261,3 +262,4 @@ fetch(`/recommendations/products.json?product_id={{ product.id }}&limit=4`)
     `).join('');
   });
 </script>
+```
